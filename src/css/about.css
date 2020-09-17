@@ -1,3 +1,7 @@
+.header {
+    overflow: scroll;
+}
+
 .row {
     margin: 50px;
 }
