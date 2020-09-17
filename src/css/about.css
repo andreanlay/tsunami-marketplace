@@ -34,3 +34,45 @@
     display: flex;
     flex-direction: column;
 }
+
+#water-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: url("../assets/water.png");
+    opacity: 0.4;
+    background-size: 200px 100px;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: 200px;
+    }
+}
+
+#red-fish {
+    width: 60px;
+    margin-top: 15px;
+    animation: move 30s linear infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(15px) scaleX(-1);
+    }
+    49% {
+        transform: translateX(1490px) scaleX(-1);
+    }
+    50% {
+        transform: translateX(1500px);
+    }
+    100% {
+        transform: translateX(-30px);
+    }
+}
