@@ -21,6 +21,7 @@ a:hover {
     border: 1px solid white;
     text-align: center;
     line-height: 150px;
+    font-size: 24px;
 }
 
 #circle-button:hover {
