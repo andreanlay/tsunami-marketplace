@@ -1,0 +1,36 @@
+.row {
+    margin: 50px;
+}
+
+.data-card {
+    display: flex;
+    flex-direction: row;
+    width: 65%;
+    height: 500px;
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    border-radius: 25%;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-card-right {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 65%;
+    height: 500px;
+    margin-bottom: 50px;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    border-radius: 25%;
+    justify-content: center;
+    align-items: center;    
+}
+
+.content {
+    margin: 150px;
+    display: flex;
+    flex-direction: column;
+}
