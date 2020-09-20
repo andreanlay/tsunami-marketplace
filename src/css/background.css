@@ -17,10 +17,10 @@ body {
 .header {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to bottom right, #12c2e9, #c471ed, #f64f59);
+    background: linear-gradient(to bottom right, #5078F2, #A4BFEF);
     overflow: hidden;
-    background-size: 275% 275%;
-    animation: change 10s ease-in-out infinite;
+    background-size: 200% 200%;
+    animation: change 8s ease-in-out infinite;
 }
 
 @keyframes change {
