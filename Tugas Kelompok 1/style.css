@@ -1,0 +1,16 @@
+.jumbotron {
+    background-color: transparent;
+}
+
+/*
+    Sebelumnya kan kita taro gambarnya di cssnya buat carousel item,
+    nah karna kita banyak slide, otomatis gk bisa pake yg general kek gini yg pake .(dot) yg per class
+    satu satunya solusi itu kalo gk inline css style, pake id, tapi pake id jadi rame cssnya
+    skr kita pake yg inline css style
+    background-image buang
+*/
+
+.carousel-item {
+    background-size: cover;
+    height: 100vh;
+}
