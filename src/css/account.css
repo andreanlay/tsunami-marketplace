@@ -1,0 +1,68 @@
+.topnav {
+    overflow: hidden;
+    background-color: rgb(240, 240, 240);
+    margin-top: 25px;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+/* To indicate current active button*/
+.topnav a.active {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Right hand side of navigation bar */
+#right-side {
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+#brand {
+    margin: 10px;
+}
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(235, 235, 235);
+    margin-top: 25px;
+}
+
+#profile-cover {
+    width: 100%;
+    height: 300px;
+}
+
+.profile-data {
+    display: flex;
+    flex-direction: row;
+}
+
+#profile-photo {
+    width: 100px;
+    height: 100px;
+}
+
+.card {
+    top: -100px;
+    left: 50px;
+    width: 400px;
+    box-shadow: 0 1px 1px grey;
+    border-radius: 12px 12px 12px 12px;
+}

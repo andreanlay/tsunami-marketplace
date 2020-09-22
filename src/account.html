@@ -5,21 +5,74 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/account.css">
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Tsunami</title>
     </head>
     <body>
         <div class="container-fluid">
-            <div class="topnav">
-                <a href="homepage.html"><img src="assets/chevron_left.png" style="width: 25px; height: 25px; margin-right: 5px;">Back to Home</a>
-                <div id="right-side">
-                    <a id="user-profile" href="account.html">Irfan Bachdim</a>
+            <div class="row no-gutters">
+                <div class="col-2">
+                    <div class="side-bar rounded-left text-center">
+                        <div id="brand">
+                            <img src="assets/tsunami_logo.png" style="width: 35px; height: 35px;">
+                            <span>Tsunami</span>
+                        </div>
+                        <button type="button" class="btn btn-default">
+                            <i class="fa fa-columns"></i> Dashboard
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <i class="fa fa-cog"></i> Account Setting
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <h1>All account related things here</h1>
+                <div class="col-10">
+                    <div class="topnav rounded-right">
+                        <a href="homepage.html"><i class="fa fa-chevron-left"></i> Back to Home</a>
+                        <div id="right-side">
+                            <a href="landing.html"> Sign out <i class="fa fa-sign-out" style="margin-left: 5px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <img id="profile-cover" src="assets/profile_cover_default.jpg">
+                    </div>
+                    <div class="profile-data">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <img id="profile-photo" src="assets/profile_photo_default.png">
+                                <h5 class="card-title">Irfan Bachdim</h5>
+                                <h6 class="card-subtitle text-muted">Silver Member</h6>
+                                <h6 class="m-2 text-muted">232 / 500 points for Gold Member (<a href="#" style="color: blue;">Benefits</a>)</h6>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <p>Reviews given: </p>
+                                    <p style="color: hotpink;">37</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p>5 stars received: </p>
+                                    <p style="color: greenyellow;">21</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p>Average stars: </p>
+                                    <p style="color: blue;">4.7</p>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <p>Joined since: </p>
+                                    <p style="color: orange">4th July 2020</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p>Online hours: </p>
+                                    <p style="color: lightseagreen">4.7 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card ml-4">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
