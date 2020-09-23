@@ -8,13 +8,14 @@
         <link rel="stylesheet" href="css/account.css">
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <title>Tsunami</title>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row no-gutters">
-                <div class="col-2">
-                    <div class="side-bar rounded-left text-center">
+                <div class="col-2 mb-0">
+                    <div class="side-bar rounded-left rounded-bottom text-center">
                         <div id="brand">
                             <img src="assets/tsunami_logo.png" style="width: 35px; height: 35px;">
                             <span>Tsunami</span>
@@ -37,8 +38,8 @@
                     <div class="profile">
                         <img id="profile-cover" src="assets/profile_cover_default.jpg">
                     </div>
-                    <div class="profile-data">
-                        <div class="card text-center">
+                    <div class="profile-data mb-0">
+                        <div class="card text-center" id="account-info">
                             <div class="card-body">
                                 <img id="profile-photo" src="assets/profile_photo_default.png">
                                 <h5 class="card-title">Irfan Bachdim</h5>
@@ -48,6 +49,10 @@
                                 <div class="d-flex justify-content-between">
                                     <p>Reviews given: </p>
                                     <p style="color: hotpink;">37</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p>Product(s) sold: </p>
+                                    <p style="color: goldenrod;">25</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p>5 stars received: </p>
@@ -63,15 +68,208 @@
                                     <p style="color: orange">4th July 2020</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
+                                    <p>Followers: </p>
+                                    <p style="color: darkcyan">0</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
                                     <p>Online hours: </p>
                                     <p style="color: lightseagreen">4.7 hours</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card ml-4">
-                            
+                        <div class="card ml-4" id="account-setting">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs" id="card-nav" role="tablist">
+                                    <li class="nav-item">
+                                        <a href="#personal-info" class="nav-link active" data-toggle="tab" role="tab" aria-controls="personal-info" aria-selected="true">Personal Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#security" class="nav-link" data-toggle="tab" role="tab" aria-controls="security" aria-selected="false">Security</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#address" class="nav-link" data-toggle="tab" role="tab" aria-controls="address" aria-selected="false">Address</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="personal-info" aria-labelledby="personal-info-tab">
+                                        <form action="">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="first-name-input">First Name</label>
+                                                        <input type="text" class="form-control" id="first-name-input" placeholder="First Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dob-input">Date of Birth</label>
+                                                        <input type="date" class="form-control" id="dobbinput" placeholder="Date of Birth">
+                                                    </div>
+                                                    <label for="phone-number-input">Phone Number</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">+62</div>
+                                                        </div>
+                                                        <input type="number" class="form-control" id="phone-number-input" placeholder="Phone Number">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="last-name-input">Last Name</label>
+                                                        <input type="text" class="form-control" id="last-name-input" placeholder="Last Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="gender-cb">Gender</label>
+                                                        <select class="form-control" id="gender-cb">
+                                                          <option>Male</option>
+                                                          <option>Female</option>
+                                                          <option>Prefer not to say</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="email-input">Email Address</label>
+                                                        <input type="email" class="form-control" id="email-input" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Linked Account</p>
+                                                    <div class="google-signin">
+                                                        <p>
+                                                            <img src="https://img.icons8.com/color/30/000000/google-logo.png"/>
+                                                            <span class="text-muted">Sign in with Google</span>
+                                                            <button class="btn btn-primary float-right disconnected">Connect</button>
+                                                        </p>
+                                                    </div>
+                                                    <hr>
+                                                    <button class="btn btn-primary float-right">Update Information</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="security" role="tabpanel" aria-labelledby="security-tab">
+                                        <form action="">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="current-password-input">Current Password</label>
+                                                        <input type="password" class="form-control" id="current-password-input" placeholder="Current Password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="new-password-input">New Password</label>
+                                                        <input type="password" class="form-control" id="new-password-input" placeholder="New Password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="confirm-password-input">Confirm new password</label>
+                                                        <input type="password" class="form-control" id="confirm-password-input" placeholder="Confirm new Password">
+                                                    </div>
+                                                    <p class="text-muted float-right">Password strength: <span style="color: green;">Good</span></p>
+                                                    <br><br>
+                                                    <button class="btn btn-primary float-right">Update Password</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="address" role="tabpanel" aria-labelledby="address-tab">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Recipient</th>
+                                                    <th scope="col">Shipping Address</th>
+                                                    <th scope="col">Default Address</th>
+                                                    <th scope="col">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <th>Leonardo Da Vinci</th>
+                                                    <th>Universitas Tarumanagara</th>
+                                                    <th>Yes</th>
+                                                    <th>
+                                                        <a href="#editModal" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a>
+                                                        <a href="#deleteModal" class="ml-3" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></a>
+                                                        <a href="#chooseModal" class="ml-3" data-toggle="modal" data-target="#setAddressModal"><i class="fa fa-check"></i></a>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Shipping Address</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="">
+                                                            <div class="form-group">
+                                                                <label for="recipient-input">Recipient</label>
+                                                                <input type="text" class="form-control" id="recipient-input" placeholder="Recipient Name" value="Leonardo Da Vinci">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="address-input">Shipping Address</label>
+                                                                <input type="text" class="form-control" id="address-input" placeholder="Shipping Address" value="Universitas Tarumanagara">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="deleteModal" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete This Address ?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Deleted address can't be restored!
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="setAddressModal" role="dialog" aria-labelledby="setAddressModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Set this address as default ?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Default address will be used as default address in every transaction.</p>
+                                                        <p class="text-muted">Note: You can always choose another shipping address</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Set Address</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- This -->
                 </div>
             </div>
         </div>

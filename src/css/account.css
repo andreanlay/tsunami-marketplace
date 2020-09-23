@@ -1,6 +1,15 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body {
+    background: radial-gradient(#5680E9, #84CEEB, #5AB9EA, #C1C8E4, #8860D0);
+}
+
 .topnav {
     overflow: hidden;
-    background-color: rgb(240, 240, 240);
+    background-color: rgba(240, 240, 240, 0.5);
     margin-top: 25px;
 }
 
@@ -40,8 +49,9 @@
 .side-bar {
     display: flex;
     flex-direction: column;
-    background-color: rgb(235, 235, 235);
+    background-color: rgba(235, 235, 235, 0.6);
     margin-top: 25px;
+    height: 88%;
 }
 
 #profile-cover {
@@ -59,10 +69,23 @@
     height: 100px;
 }
 
-.card {
+#account-info {
     top: -100px;
     left: 50px;
     width: 400px;
     box-shadow: 0 1px 1px grey;
     border-radius: 12px 12px 12px 12px;
+}
+
+#account-setting {
+    top: -100px;
+    left: 50px;
+    width: 60%;
+    box-shadow: 0 1px 1px grey;
+    border-radius: 12px 12px 12px 12px;
+}
+
+.disconnected {
+    background: white;
+    color: blue;
 }
