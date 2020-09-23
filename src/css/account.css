@@ -10,7 +10,6 @@ body {
 .topnav {
     overflow: hidden;
     background-color: rgba(240, 240, 240, 0.5);
-    margin-top: 25px;
 }
 
 .topnav a {
@@ -47,11 +46,8 @@ body {
 }
 
 .side-bar {
-    display: flex;
-    flex-direction: column;
     background-color: rgba(235, 235, 235, 0.6);
-    margin-top: 25px;
-    height: 88%;
+    height: 100%;
 }
 
 #profile-cover {
@@ -70,7 +66,7 @@ body {
 }
 
 #account-info {
-    top: -100px;
+    margin-top: -100px;
     left: 50px;
     width: 400px;
     box-shadow: 0 1px 1px grey;
@@ -78,9 +74,9 @@ body {
 }
 
 #account-setting {
-    top: -100px;
+    margin-top: -100px;
     left: 50px;
-    width: 60%;
+    width: 85%;
     box-shadow: 0 1px 1px grey;
     border-radius: 12px 12px 12px 12px;
 }
@@ -88,4 +84,13 @@ body {
 .disconnected {
     background: white;
     color: blue;
+}
+
+.btn:hover {
+    background-color: lightskyblue;
+}
+
+#delete-account-btn:hover {
+    background-color: red;
+    color: white;
 }
