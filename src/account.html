@@ -9,6 +9,7 @@
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/account.js"></script>
         <title>Tsunami</title>
     </head>
     <body>
@@ -192,7 +193,7 @@
                                                             <label for="confirm-password-input">Confirm new password</label>
                                                             <input type="password" class="form-control" id="confirm-password-input" placeholder="Confirm new Password">
                                                         </div>
-                                                        <p class="text-muted float-right">Password strength: <span style="color: green;">Good</span></p>
+                                                        <p class="text-muted float-right">Password strength: <span id="password-strength" style="color: blue;">Unavailable</span></p>
                                                         <br><br>
                                                         <button class="btn btn-primary float-right">Update Password</button>
                                                     </div>
