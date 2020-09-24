@@ -28,7 +28,7 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ## v0.1 - September, 3 2020
 ### Added
 - Initial Project Structure
-### changed
+### Changed
 - None
 
 ## v0.2 - September 14, 2020
