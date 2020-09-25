@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Our Team](#contributor)
 - [5W + 1H](#plan)
+- [Road Map](#road-map)
 
 # Contributor
 1. Harry Chandra 535170076
@@ -25,7 +26,7 @@ Project ini kami buat untuk menunjukan konsep marketplace yang unik dan agar par
 Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kelompok, lalu akan digabungkan menjadi 1 di repository github utama.
 
 # Road Map
-## v0.1 - September, 3 2020
+## v0.1 - September 3, 2020
 ### Added
 - Initial Project Structure
 ### Changed
