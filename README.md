@@ -94,6 +94,12 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - None
 
+## v0.64 - September 26, 2020
+### Added
+- Carousel on home page
+- Tsunami setting button on account page
+### Changed
+- None
 
 
 
