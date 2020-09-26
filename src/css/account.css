@@ -50,6 +50,10 @@ body {
     height: 100%;
 }
 
+.sidebar-active {
+    background-color: lightskyblue;
+}
+
 #profile-cover {
     width: 100%;
     height: 300px;
