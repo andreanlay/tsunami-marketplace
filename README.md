@@ -97,6 +97,7 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ## v0.64 - September 26, 2020
 ### Added
 - Carousel on home page
+- Buttons to pay bills and intro jumbotron
 - Tsunami setting button on account page
 ### Changed
 - None
