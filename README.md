@@ -102,6 +102,13 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - None
 
+## V0.65 - September 27, 2020
+### Added
+- Furnitures card on home page
+
+### Changed
+- None
+
 
 
 
