@@ -8,7 +8,10 @@
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/catalog_infinite.css">
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="js/catalog_infinite.js"></script>
         <title>Tsunami</title>
     </head>
     <body>
@@ -33,23 +36,63 @@
                 <form action="">
                     <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-4">
                         <div class="input-group">
-                            <input type="search" placeholder="What are you searching for ?" class="form-control border-0 bg-light">
+                            <input id="search" type="search" placeholder="What are you searching for ?" class="form-control border-0 bg-light">
                             <div class="input-group-append">
-                                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                                <button id="button-addon1" type="submit" class="btn btn-link text-primary" disabled><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="jumbotron d-flex align-items-center mb-0 parallax" id="parallax-2" style="background-color: lightgreen;">
+        <div class="jumbotron d-flex align-items-center mb-0 parallax beauty" id="parallax-2">
             <div class="container text-center">
-                <h1 class="display-4">First item</h1>
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-4">Beauty</h1>
+                        <a class="browse-category" href="" style="color: black">Explore <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="jumbotron d-flex align-items-center mb-0 parallax" id="parallax-2" style="background-color: lightpink;">
+        <div class="jumbotron d-flex align-items-center mb-0 parallax books" id="parallax-3">
             <div class="container text-center">
-                <h1 class="display-4">Second item</h1>
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-4" style="color: white;">Books</h1>
+                        <a class="browse-category" href="">Explore <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron d-flex align-items-center mb-0 parallax electronic" id="parallax-4">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-4" style="color: white;">Electronic</h1>
+                        <a class="browse-category" href="">Explore <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron d-flex align-items-center mb-0 parallax fashion" id="parallax-5">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-4" style="color: white;">Fashion</h1>
+                        <a class="browse-category" href="">Explore <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron d-flex align-items-center mb-0 parallax kitchen" id="parallax-6">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-4" style="color: white;">Kitchen</h1>
+                        <a class="browse-category" href="">Explore <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
