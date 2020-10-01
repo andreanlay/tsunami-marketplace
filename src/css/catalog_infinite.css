@@ -3,7 +3,7 @@
     position: fixed !important;
     background-color: #e9e9e9;
     border-radius: 25px 25px 25px 25px;
-    width: 98% !important
+    width: 98% !important;
 }
 
 /*
@@ -53,11 +53,22 @@ html {
     background: linear-gradient(200deg, #7F7FD5, #86A8E7, #91EAE4)
 }
 
-/*
-    Custom Bootstrap Display class
-*/
+#parallax-2 {
+    background-image: url("../assets/category_infinity/beauty_cover.jpg");
+}
 
-.display-6 {
-    font-size: 1.75rem;
-    font-weight: 300;
+#parallax-3 {
+    background-image: url("../assets/category_infinity/books_cover.jpg");
+}
+
+#parallax-4 {
+    background-image: url("../assets/category_infinity/electronic_cover.jpg");
+}
+
+#parallax-5 {
+    background-image: url("../assets/category_infinity/fashion_cover.jpg");
+}
+
+#parallax-6 {
+    background-image: url("../assets/category_infinity/kitchen_cover.jpg");
 }
