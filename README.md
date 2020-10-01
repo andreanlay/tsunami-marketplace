@@ -117,5 +117,11 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - None
 
+## v0.67 - September 30, 2020
+### Added
+- Separate catalog.html to catalog_infinite.html and catalog_metro.html
+- Add parallax to infinite scroll catalog
 
+### Changed
+- Link catalog button on homepage to catalog_infinite.html
 
