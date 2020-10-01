@@ -49,26 +49,6 @@ html {
     height: 100vh;
 }
 
-#parallax-1 {
+#main-jumbotron {
     background: linear-gradient(200deg, #7F7FD5, #86A8E7, #91EAE4)
-}
-
-#parallax-2 {
-    background-image: url("../assets/category_infinity/beauty_cover.jpg");
-}
-
-#parallax-3 {
-    background-image: url("../assets/category_infinity/books_cover.jpg");
-}
-
-#parallax-4 {
-    background-image: url("../assets/category_infinity/electronic_cover.jpg");
-}
-
-#parallax-5 {
-    background-image: url("../assets/category_infinity/fashion_cover.jpg");
-}
-
-#parallax-6 {
-    background-image: url("../assets/category_infinity/kitchen_cover.jpg");
 }
