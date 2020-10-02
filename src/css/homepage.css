@@ -1,14 +1,14 @@
-#bills-jumbotron {
-    border-radius: 25px 25px 25px 25px;
-    background-color: rgba(208, 239, 255, 0.5);
-}
-
 .bills-btn {
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     border-radius: 25px 25px 25px 25px;
 }
 
 .btn:hover {
     background-color: #B7F8DB;
+}
+
+.display-7 {
+    font-size: 2.0rem;
+    font-weight: 300;
 }
