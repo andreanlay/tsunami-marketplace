@@ -125,3 +125,11 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - Link catalog button on homepage to catalog_infinite.html
 
+## v0.7 - October 1, 2020
+### Added
+- Add suggestions to search box in Catalog
+- Add autoscroll for suggestion search in Catalog
+- Finish Infinite Catalog UI using parallax
+
+### Changed
+None
