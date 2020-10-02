@@ -8,6 +8,14 @@
     background-color: #B7F8DB;
 }
 
+a {
+    color: gray;
+}
+
+a:hover {
+    color: black;
+}
+
 /* Card Effects */
 
 .card {
