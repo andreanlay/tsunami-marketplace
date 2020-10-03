@@ -21,46 +21,6 @@
     transform: scale(0.95);
 }
 
-#books-action {
-    background-color: lightcoral;
-}
-
-#books-fantasy {
-    background-color: lightseagreen;
-}
-
-#books-children {
-    background-color: lightpink;
-}
-
-#books-history {
-    background-color: lightskyblue;
-}
-
-#books-politics {
-    background-color: lightgreen;
-}
-
-#books-selfhelp {
-    background-color: lightslategray;
-}
-
-#books-scifi {
-    background-color: peachpuff;
-}
-
-#books-food {
-    background-color: rosybrown;
-}
-
-#automotive-accessories {
-    background-color: skyblue;
-}
-
-#automotive-spareparts {
-    background-color: springgreen;
-}
-
 .flipper {
     display: grid;
     grid-template: 1fr / 1fr;
@@ -69,8 +29,40 @@
     transform-style: preserve-3d;
 }
 
+#action-flipper {
+    animation: flip 20s ease-in-out infinite;
+}
+
+#children-flipper {
+    animation: flip 14s ease-in-out infinite;
+}
+
+#history-flipper {
+    animation: flip 10s ease-in-out infinite;
+}
+
+#fantasy-flipper {
+    animation: flip 5s ease-in-out infinite;
+}
+
+#politics-flipper {
+    animation: flip 25s ease-in-out infinite;
+}
+
+#selfhelp-flipper {
+    animation: flip 23s ease-in-out infinite;
+}
+
+#scifi-flipper {
+    animation: flip 9s ease-in-out infinite;
+}
+
+#food-flipper {
+    animation: flip 16s ease-in-out infinite;
+}
+
 #accessories-flipper { 
-    animation: flip 8s ease-in-out infinite;
+    animation: flip 14s ease-in-out infinite;
 }
 
 #spareparts-flipper {
@@ -95,10 +87,6 @@
 .flipper > * {
     grid-column: 1 / 1;
     grid-row: 1 / 1;
-}
-
-.metro:hover .flipper, .metro.hover .flipper {
-    transform: rotateY(180deg);
 }
 
 .btn-front, .btn-back {
