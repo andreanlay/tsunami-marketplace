@@ -132,4 +132,15 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - Finish Infinite Catalog UI using parallax
 
 ### Changed
-None
+- None
+
+## v0.8 - October 2, 2020
+### Added
+- Add cards animation on homepage
+- Massive homepage UI change 
+- Finish homepage & footer
+
+### Changed
+- Change MetroUI hint in infinite catalog
+- Remove obsolete styles
+- Change search icon to prepend in infinite catalog searchbox
