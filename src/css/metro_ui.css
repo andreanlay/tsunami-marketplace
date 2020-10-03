@@ -30,6 +30,11 @@
     transform-style: preserve-3d;
 }
 
+.display-4 {
+    font-family: 'Roboto Slab', serif;
+    src: url('Fonts/RobotoSlab-Regular.ttf');
+}
+
 /* Books Category Flipper */
 
 #action-flipper {
@@ -150,6 +155,10 @@
 
 #women-flipper {
     animation: flip 20s ease-in-out infinite;
+}
+
+#swim-flipper {
+    animation: flip 14s ease-in-out infinite;
 }
 
 /* Food and Drink Flipper */
@@ -287,6 +296,7 @@
 #gym-flipper {
     animation: flip 15s ease-in-out infinite;
 }
+
 
 
 @keyframes flip {
