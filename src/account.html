@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/account_navbar.css">
         <link rel="stylesheet" href="css/account.css">
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,18 +22,21 @@
                             <img class="img-fluid" src="assets/tsunami_logo.png" style="max-width: 35px; max-height: 35px;">
                             <span class="d-none d-sm-inline">Tsunami</span>
                         </div>
-                        <button type="button" class="btn btn-default">
+                        <a href="dashboard.html" class="btn btn-default">
                             <i class="fa fa-columns"></i> <span class="d-none d-sm-inline">Dashboard</span>
-                        </button>
-                        <button type="button" class="btn btn-default sidebar-active">
+                        </a>
+                        <a href="" class="btn btn-default">
+                            <i class="fa fa-history"></i> <span class="d-none d-sm-inline">Transaction History</span>
+                        </a>
+                        <a class="btn btn-default sidebar-active">
                             <i class="fa fa-cog"></i> <span class="d-none d-sm-inline">Account Setting</span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                        </a>
+                        <a class="btn btn-default">
                             <i class="fa fa-wrench"></i> <span class="d-none d-sm-inline">Tsunami Setting</span>
-                        </button>
-                        <button type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
+                        </a>
+                        <a type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
                             <i class="fa fa-trash"></i> <span class="d-none d-sm-inline">Delete Account</span>
-                        </button>
+                        </a>
                         <div class="modal fade" id="deleteAccountModal" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
