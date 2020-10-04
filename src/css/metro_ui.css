@@ -105,6 +105,14 @@
     animation: flip 10s ease-in-out infinite;
 }
 
+#clean-flipper{
+    animation: flip 9s ease-in-out infinite;
+}
+
+#helmet-flipper{
+    animation: flip 7s ease-in-out infinite;
+}
+
 /* Beauty Category Flipper */
 
 #hair-acc-flipper {
