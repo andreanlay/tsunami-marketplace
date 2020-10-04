@@ -88,15 +88,6 @@ body {
     color: blue;
 }
 
-.btn:hover {
-    background-color: lightskyblue;
-}
-
-#delete-account-btn:hover {
-    background-color: red;
-    color: white;
-}
-
 @media only screen and (max-width: 768px) {
     #account-setting {
         width: 100%;
