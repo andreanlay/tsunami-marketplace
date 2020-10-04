@@ -1,3 +1,14 @@
+
+@font-face { /*Title*/
+    font-family: RobotoSlab;
+    src: url(../Fonts/RobotoSlab-ExtraBold.ttf);
+}
+
+@font-face { /*Description*/
+    font-family: Bebas;
+    src: url(../Fonts/BebasNeue-Regular.ttf);
+}
+
 .metro {
     width: 100%;
     height: 200px;
@@ -31,8 +42,15 @@
 }
 
 .display-4 {
-    font-family: 'Roboto Slab', serif;
-    src: url('Fonts/RobotoSlab-Regular.ttf');
+    font-family: RobotoSlab; 
+}
+
+.btn-front {
+    font-family: Bebas;
+}
+
+.btn-back {
+    font-family: Bebas;
 }
 
 /* Books Category Flipper */
@@ -81,6 +99,10 @@
 
 #spareparts-flipper {
     animation: flip 12s ease-in-out infinite;
+}
+
+#wheels-flipper {
+    animation: flip 10s ease-in-out infinite;
 }
 
 /* Beauty Category Flipper */
