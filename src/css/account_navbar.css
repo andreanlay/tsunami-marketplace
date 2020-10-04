@@ -1,58 +1,59 @@
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-  }
+}
   
-  body {
-      background: radial-gradient(#5680E9, #84CEEB, #5AB9EA, #C1C8E4, #8860D0);
-  }
+body {
+    height: 100vh;
+    background: linear-gradient(#fbc2eb, #a6c1ee);
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: rgba(240, 240, 240, 0.5);
+}
   
-  .topnav {
-      overflow: hidden;
-      background-color: rgba(240, 240, 240, 0.5);
-  }
-  
-  .topnav a {
-      float: left;
-      display: block;
-      color: black;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-  }
-  
-  .topnav a:hover {
-      background-color: #ddd;
-      color: black;
-  }
-  
-  
-  /* To indicate current active button*/
-  .topnav a.active {
-      background-color: #2196F3;
-      color: white;
-  }
-  
-  /* Right hand side of navigation bar */
-  #right-side {
-      display: flex;
-      flex-direction: row;
-      float: right;
-  }
-  
-  #brand {
-      margin: 10px;
-  }
-  
-  .side-bar {
-      background-color: rgba(235, 235, 235, 0.6);
-      height: 100%;
-  }
-  
-  .sidebar-active {
-      background-color: lightskyblue;
-  }
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+/* To indicate current active button*/
+.topnav a.active {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Right hand side of navigation bar */
+#right-side {
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+#brand {
+    margin: 10px;
+}
+
+.side-bar {
+    background-color: rgba(235, 235, 235, 0.6);
+    height: 100%;
+}
+
+.sidebar-active {
+    background-color: lightskyblue;
+}
 
 .btn:hover {
     background-color: lightskyblue;
