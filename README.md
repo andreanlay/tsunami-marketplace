@@ -144,3 +144,11 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - Change MetroUI hint in infinite catalog
 - Remove obsolete styles
 - Change search icon to prepend in infinite catalog searchbox
+
+## v.0.85 - October 3, 2020
+### Added
+- New fonts
+- Rework & finish MetroUI Catalog
+
+### Changed
+- Change metroUI css to standalone file
