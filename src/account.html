@@ -18,20 +18,20 @@
                 <div class="col-2">
                     <div class="d-flex flex-column side-bar rounded-left rounded-bottom text-center">
                         <div id="brand">
-                            <img src="assets/tsunami_logo.png" style="width: 35px; height: 35px;">
-                            <span>Tsunami</span>
+                            <img class="img-fluid" src="assets/tsunami_logo.png" style="max-width: 35px; max-height: 35px;">
+                            <span class="d-none d-sm-inline">Tsunami</span>
                         </div>
                         <button type="button" class="btn btn-default">
-                            <i class="fa fa-columns"></i> Dashboard
+                            <i class="fa fa-columns"></i> <span class="d-none d-sm-inline">Dashboard</span>
                         </button>
                         <button type="button" class="btn btn-default sidebar-active">
-                            <i class="fa fa-cog"></i> Account Setting
+                            <i class="fa fa-cog"></i> <span class="d-none d-sm-inline">Account Setting</span>
                         </button>
                         <button type="button" class="btn btn-default">
-                            <i class="fa fa-wrench"></i> Tsunami Setting
+                            <i class="fa fa-wrench"></i> <span class="d-none d-sm-inline">Tsunami Setting</span>
                         </button>
                         <button type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
-                            <i class="fa fa-trash"></i> Delete Account
+                            <i class="fa fa-trash"></i> <span class="d-none d-sm-inline">Delete Account</span>
                         </button>
                         <div class="modal fade" id="deleteAccountModal" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -65,8 +65,8 @@
                         <img id="profile-cover" src="assets/profile_cover_default.jpg">
                     </div>
                     <div class="row">
-                        <div class="col-4">
-                            <div class="profile-data">
+                        <div class="col-sm-4">
+                            <div class="profile-data mt-n5 ml-md-1 ml-n5">
                                 <div class="card text-center" id="account-info">
                                     <div class="card-body">
                                         <img id="profile-photo" src="assets/profile_photo_default.png">
@@ -107,8 +107,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-8">
-                            <div class="card ml-4" id="account-setting">
+                        <div class="col-sm-8">
+                            <div class="card ml-md-5 ml-n5 mt-md-n5 mt-3" id="account-setting">
                                 <div class="card-header">
                                     <ul class="nav nav-tabs card-header-tabs" id="card-nav" role="tablist">
                                         <li class="nav-item">
@@ -127,7 +127,7 @@
                                         <div class="tab-pane active" role="tabpanel" id="personal-info" aria-labelledby="personal-info-tab">
                                             <form action="">
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col-sm">
                                                         <div class="form-group">
                                                             <label for="first-name-input">First Name</label>
                                                             <input type="text" class="form-control" id="first-name-input" placeholder="First Name">

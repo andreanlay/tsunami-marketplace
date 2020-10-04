@@ -70,15 +70,13 @@ body {
 }
 
 #account-info {
-    margin-top: -100px;
     left: 50px;
-    width: 400px;
+    width: 88%;
     box-shadow: 0 1px 1px grey;
     border-radius: 12px 12px 12px 12px;
 }
 
 #account-setting {
-    margin-top: -100px;
     left: 50px;
     width: 85%;
     box-shadow: 0 1px 1px grey;
@@ -97,4 +95,10 @@ body {
 #delete-account-btn:hover {
     background-color: red;
     color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    #account-setting {
+        width: 100%;
+    }
 }
