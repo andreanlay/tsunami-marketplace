@@ -163,3 +163,4 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - Changed some metro catalog hints
 - Make account setting responsive
 - Make homepage footer responsive
+- Changed user accounts gradient color
