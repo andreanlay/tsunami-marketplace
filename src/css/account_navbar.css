@@ -1,11 +1,6 @@
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-  
 body {
-    height: 100vh;
     background: linear-gradient(#fbc2eb, #a6c1ee);
+    min-height: 100vh;
 }
 
 .topnav {
