@@ -170,5 +170,5 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - None
 
 ### Changed
-- Fix metro not broken grid
+- Fix metro broken grid
 - Add animation to new metro subcatalog
