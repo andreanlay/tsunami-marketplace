@@ -152,3 +152,23 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 
 ### Changed
 - Change metroUI css to standalone file
+
+## v0.86a - October 4, 2020
+### Added
+- New Categories in metro catalog
+- Finish user dashboard
+
+### Changed
+- Metro catalog fonts
+- Changed some metro catalog hints
+- Make account setting responsive
+- Make homepage footer responsive
+- Changed user accounts gradient color
+
+## v0.86b - October 5, 2020
+### Added
+- None
+
+### Changed
+- Fix metro not broken grid
+- Add animation to new metro subcatalog
