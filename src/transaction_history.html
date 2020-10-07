@@ -6,11 +6,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/account_navbar.css">
-        <link rel="stylesheet" href="css/products_dashboard.css">
+        <link rel="stylesheet" href="css/transaction_history.css">
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="js/products_dashboard.js"></script>
+        <script src="js/transaction_history.js"></script>
         <title>Tsunami</title>
     </head>
     <body>
@@ -34,7 +34,7 @@
                         <a href="account.html" class="btn btn-default">
                             <i class="fa fa-cog"></i> <span class="d-none d-sm-inline">Account Setting</span>
                         </a>
-                        <a class="btn btn-default">
+                        <a href="tsunami_setting.html" class="btn btn-default">
                             <i class="fa fa-wrench"></i> <span class="d-none d-sm-inline">Tsunami Setting</span>
                         </a>
                         <a type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
@@ -68,36 +68,129 @@
                             <a href="landing.html"> Sign out <i class="fa fa-sign-out" style="margin-left: 5px;"></i></a>
                         </div>
                     </div>
-                    <div class="row m-3 no-gutters">
-                        
+                    <div class="row no-gutters">
+                        <div class="card bg-danger m-3 shadow-sm text-white" style="max-width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">Saving</h5>
+                              <p class="card-text">You just saved Rp<b>153.200</b> from vouchers this month.</p>
+                            </div>
+                        </div>
+                        <div class="card bg-success m-3 shadow-sm text-white" style="max-width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">Spending</h5>
+                              <p class="card-text">You just spent Rp<b>55.983.300</b> from transactions this month.</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="row m-3 no-gutters">
                         <div class="col">
-                            <div class="card bg-light m-3 shadow-sm text-black">
+                            <div class="card bg-light shadow-sm text-black">
                                 <div class="card-header bg-primary text-white">
-                                    <button class="btn-product float-left">Sort by</button>
+                                    <h1 class="lead float-left">Transaction History</h1>
+                                    <button class="btn-product float-right">Sort by</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
                                                 <th scope="col">#</th>
-
+                                                <th scope="col">Invoice ID</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Review</th>
+                                                <th scope="col"></th>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    
+                                                    <td>1</td>
+                                                    <td>TSU-0001</td>
+                                                    <td>Gigabyte RTX 3080</td>
+                                                    <td>2 Unit</td>
+                                                    <td>Rp56.000.000</td>
+                                                    <td>
+                                                        <span style="color: green"><b>Done</b></span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row no-gutters">
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Print invoice"><i class="fa fa-sticky-note fa-lg"></i></a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="View product"><i class="fa fa-eye fa-lg"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>TSU-0002</td>
+                                                    <td>FACOM Spanner 4 mm x 5 mm</td>
+                                                    <td>1 Unit</td>
+                                                    <td>Rp136.500</td>
+                                                    <td>
+                                                        <a href="#reviewModal" data-toggle="modal" data-target="#reviewModal"><i class="fa fa-pencil fa-lg"></i> Give review</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row no-gutters">
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Print invoice"><i class="fa fa-sticky-note fa-lg"></i></a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="View product"><i class="fa fa-eye fa-lg"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div class="modal fade" id="reviewModal" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Send review to seller</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="">
+                                                            <div class="form-group">
+                                                                <label for="title-input">Title</label>
+                                                                <input type="text" class="form-control" id="title-input" placeholder="Title" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="description-input">Description</label>
+                                                                <input type="text" class="form-control" id="description-input" placeholder="Description" value="">
+                                                            </div>
+                                                            <div class="row justify-content-center" id="star-rating">
+                                                                <span class="fa fa-star-o fa-2x" data-rating="1"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="2"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="3"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="4"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="5"></span>
+                                                                <input type="hidden" class="rating-value" value="0">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     </body>
 </html>
