@@ -1,0 +1,21 @@
+.btn-product {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    color: white;
+    opacity: 0.75;
+    transition: 0.2s linear;
+}
+
+.btn-product:hover {
+    opacity: 1.0;
+}
+
+.btn-product:focus {
+    outline: none;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}

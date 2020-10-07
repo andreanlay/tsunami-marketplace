@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/account_navbar.css">
+        <link rel="stylesheet" href="css/products_dashboard.css">
+        <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/products_dashboard.js"></script>
+        <title>Tsunami</title>
+    </head>
+    <body>
+        <div class="container-fluid mt-3 pb-3">
+            <div class="row no-gutters">
+                <div class="col-2">
+                    <div class="d-flex flex-column side-bar rounded-left rounded-bottom text-center">
+                        <div id="brand">
+                            <img class="img-fluid" src="assets/tsunami_logo.png" style="max-width: 30px; max-height: 28px;">
+                            <span class="d-none d-sm-inline">Tsunami</span>
+                        </div>
+                        <a href="dashboard.html" class="btn btn-default">
+                            <i class="fa fa-columns"></i> <span class="d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <a href="products_dashboard.html" class="btn btn-default sidebar-active">
+                            <i class="fa fa-cubes"></i> <span class="d-none d-sm-inline">Products</span>
+                        </a>
+                        <a href="" class="btn btn-default">
+                            <i class="fa fa-history"></i> <span class="d-none d-sm-inline">Transaction History</span>
+                        </a>
+                        <a href="account.html" class="btn btn-default">
+                            <i class="fa fa-cog"></i> <span class="d-none d-sm-inline">Account Setting</span>
+                        </a>
+                        <a class="btn btn-default">
+                            <i class="fa fa-wrench"></i> <span class="d-none d-sm-inline">Tsunami Setting</span>
+                        </a>
+                        <a type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
+                            <i class="fa fa-trash"></i> <span class="d-none d-sm-inline">Delete Account</span>
+                        </a>
+                        <div class="modal fade" id="deleteAccountModal" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="h6">Deleted account can't be restored! Are you sure ?</h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="topnav rounded-right">
+                        <a href="homepage.html"><i class="fa fa-chevron-left"></i> Back to Home</a>
+                        <div id="right-side">
+                            <a href="landing.html"> Sign out <i class="fa fa-sign-out" style="margin-left: 5px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="row m-3 no-gutters">
+                        <div class="col">
+                            <div class="card bg-light m-3 shadow-sm text-black">
+                                <div class="card-header bg-primary text-white">
+                                    <button class="btn-product float-left">Sort by</button>
+                                    <button class="btn-product float-right" data-toggle="modal" data-target="#addProductModal">Add product</button>
+                                </div>
+                                <div class="modal fade" id="addProductModal" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Product Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="">
+                                                    <div class="form-group">
+                                                        <label for="name-input">Product Name</label>
+                                                        <input type="text" class="form-control" id="name-input" placeholder="Product Name" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="desc-input">Description</label>
+                                                        <input type="text" class="form-control" id="desc-input" placeholder="Description" value="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="category-input">Category</label>
+                                                        <select class="custom-select" id="category-selector">
+                                                            <option selected></option>
+                                                        </select>
+                                                        <div class="subcategories mt-3">
+                                                            <select class="custom-select Automotive" id="automotive-subcat"></select>
+                                                            <select class="custom-select Beauty" id="beauty-subcat"></select>
+                                                            <select class="custom-select Books" id="books-subcat"></select>
+                                                            <select class="custom-select Electronic" id="electronic-subcat"></select>
+                                                            <select class="custom-select Fashion" id="fashion-subcat"></select>
+                                                            <select class="custom-select Food-Drink" id="food-drink-subcat"></select>
+                                                            <select class="custom-select Household" id="household-subcat"></select>
+                                                            <select class="custom-select Kitchen" id="kitchen-subcat"></select>
+                                                            <select class="custom-select Health" id="health-subcat"></select>
+                                                            <select class="custom-select Sport" id="sport-subcat"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="stock-input">Stock</label>
+                                                        <input type="text" class="form-control" id="stock-input" placeholder="Stock" value="">
+                                                    </div>
+                                                    <label for="price-input">Price</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="number" class="form-control" id="price-input" placeholder="Price" value="">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-success">Add Product</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Product Image</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Stock</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Actions</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row" class="align-middle">1</th>
+                                                    <td class="w-25">
+                                                        <img src="assets/flashsale_product/rtx3060.jpg" class="img-fluid img-thumbnail">
+                                                    </td>
+                                                    <td>Gigabyte RTX 3080</td>
+                                                    <td>161</td>
+                                                    <td>Rp28.000.000</td>
+                                                    <td>
+                                                        <a href="#editModal" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit fa-lg"></i></a>
+                                                        <a href="#statModal" data-toggle="modal" data-target="#statModal"><i class="fa fa-line-chart fa-lg ml-3"></i></a>
+                                                        <a href="#viewModal" data-toggle="modal" data-target="#viewModal"><i class="fa fa-eye fa-lg ml-3"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="align-middle">2</th>
+                                                    <td class="w-25">
+                                                        <img src="assets/dailydeals_product/appletv_remote.jpg" class="img-fluid img-thumbnail">
+                                                    </td>
+                                                    <td>Apple TV 4 Remote</td>
+                                                    <td>712</td>
+                                                    <td>Rp352.200</td>
+                                                    <td>
+                                                        <a href="#editModal" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit fa-lg"></i></a>
+                                                        <a href="#statModal" data-toggle="modal" data-target="#statModal"><i class="fa fa-line-chart fa-lg ml-3"></i></a>
+                                                        <a href="#viewModal" data-toggle="modal" data-target="#viewModal"><i class="fa fa-eye fa-lg ml-3"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Product Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div class="form-group">
+                                        <label for="name-input">Product Name</label>
+                                        <input type="text" class="form-control" id="name-input" placeholder="Product Name" value="Gigabyte RTX 3080">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="desc-input">Description</label>
+                                        <input type="text" class="form-control" id="desc-input" placeholder="Description" value="Supercharge your PC!">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category-input">Category</label>
+                                        <select class="custom-select" id="category-selector">
+                                            <option selected></option>
+                                        </select>
+                                        <div class="subcategories mt-3">
+                                            <select class="custom-select Automotive" id="automotive-subcat"></select>
+                                            <select class="custom-select Beauty" id="beauty-subcat"></select>
+                                            <select class="custom-select Books" id="books-subcat"></select>
+                                            <select class="custom-select Electronic" id="electronic-subcat"></select>
+                                            <select class="custom-select Fashion" id="fashion-subcat"></select>
+                                            <select class="custom-select Food-Drink" id="food-drink-subcat"></select>
+                                            <select class="custom-select Household" id="household-subcat"></select>
+                                            <select class="custom-select Kitchen" id="kitchen-subcat"></select>
+                                            <select class="custom-select Health" id="health-subcat"></select>
+                                            <select class="custom-select Sport" id="sport-subcat"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock-input">Stock</label>
+                                        <input type="text" class="form-control" id="stock-input" placeholder="Stock" value="161">
+                                    </div>
+                                    <label for="price-input">Price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Rp</span>
+                                        </div>
+                                        <input type="number" class="form-control" id="price-input" placeholder="Price" value="28000000">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="statModal" role="dialog" aria-labelledby="statModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Product Stats</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <span>Product Sold: </span>
+                                            <span class="float-right"><b>15</b></span>
+                                        </p>
+                                        <p>
+                                            <span>Average stars: </span>
+                                            <span class="float-right"><b>4.87</b></span>
+                                        </p>
+                                        <p>
+                                            <span>Reviews count: </span>
+                                            <span class="float-right"><b>12</b></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
