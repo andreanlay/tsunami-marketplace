@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/payment.css">
+        <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <title>Tsunami</title>
+    </head>
+    <body>
+        <h2>Checkout</h2>
+        <div class="row">
+            <div class="col-75">
+                <div class="container">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>Address</h3>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                <input tpye="text" id="fname" name="fullname" placeholder="Full Name">
+                                <label for="pnumber"><i class="fa fa-mobile"></i> Phone Number</label>
+                                <input type="text" id="pnumber" name="phonenumber" placeholder="Phone Number">
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="Address">
+                                <label for="city"><i class="fa fa-institution"></i> City</label>
+                                <input type="text" id="city" name="city" placeholder="City">
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label for="state">State</label>
+                                        <input type="text" id="state" name="state" placeholder="State">
+                                    </div>
+                                    <div class="col-50">
+                                        <label for="zip">Zip Code</label>
+                                        <input type="text" id="zip" name="zip" placeholder="Zip Code">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-50">
+                                <h3>Payment</h3>
+                                <div class="delivery-options">
+                                    <label for="delivery-options">Choose a delivery option</label>
+                                    <select id="delivery-options">
+                                        <option value="jne-r">JNE Reguler(1-2 days)</option>
+                                        <option value="jne-y">JNE Yes(1 day)</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#payment-modal">Choose Payment <i class ="fa fa-angle-down"></i></button>
+                                <div class="modal fade" id="payment-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title">Checkout Payment</h4>
+                                            </div>
+                                        <div class="modal-body">
+                                            <p>Choose your payment</p>
+                                            <a href="#"><img class="bca" style="width: 150px; height: 150px;" src="assets/payment/bca.jpg" alt=""></a>
+                                            <a href="#"><img class="gopay" style="width: 160px; height: 120px;" src="assets/payment/gopay.jpg" alt=""></a>
+                                            <a href="#"><img class="ovo" style="width: 120px; height: 80px;" src="assets/payment/ovo.jpg" alt=""></a>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    <div class="col-25">
+                        <div class="cartproduct">
+                            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>2</b></span></h4>
+                            <p><a href="#"><img class="rtx3060" style="width: 150px; height: 150px;" src="assets/flashsale_product/rtx3080.jpg"><span class="price">1x Rp. 28.000.000</span></a></p>
+                            <p><a href="#"><img class="xps13-9300" style="width: 150px; height: 130px;" src="assets/flashsale_product/xps13-9300.jpg"><span class="price">1x Rp. 28.000.000</span></a></p>
+                            <hr>    
+                            <p>Total <span class="price" style="color:black"><b>Rp. 56.030.000</b></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
