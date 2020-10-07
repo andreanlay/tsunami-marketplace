@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/account_navbar.css">
+        <link rel="stylesheet" href="css/products_dashboard.css">
+        <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/products_dashboard.js"></script>
+        <title>Tsunami</title>
+    </head>
+    <body>
+        <div class="container-fluid mt-3 pb-3">
+            <div class="row no-gutters">
+                <div class="col-2">
+                    <div class="d-flex flex-column side-bar rounded-left rounded-bottom text-center">
+                        <div id="brand">
+                            <img class="img-fluid" src="assets/tsunami_logo.png" style="max-width: 30px; max-height: 28px;">
+                            <span class="d-none d-sm-inline">Tsunami</span>
+                        </div>
+                        <a href="dashboard.html" class="btn btn-default">
+                            <i class="fa fa-columns"></i> <span class="d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <a href="products_dashboard.html" class="btn btn-default">
+                            <i class="fa fa-cubes"></i> <span class="d-none d-sm-inline">Products</span>
+                        </a>
+                        <a href="transaction_history.html" class="btn btn-default">
+                            <i class="fa fa-history"></i> <span class="d-none d-sm-inline">Transaction History</span>
+                        </a>
+                        <a href="account.html" class="btn btn-default">
+                            <i class="fa fa-cog"></i> <span class="d-none d-sm-inline">Account Setting</span>
+                        </a>
+                        <a href="" class="btn btn-default sidebar-active">
+                            <i class="fa fa-wrench"></i> <span class="d-none d-sm-inline">Tsunami Setting</span>
+                        </a>
+                        <a type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
+                            <i class="fa fa-trash"></i> <span class="d-none d-sm-inline">Delete Account</span>
+                        </a>
+                        <div class="modal fade" id="deleteAccountModal" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="h6">Deleted account can't be restored! Are you sure ?</h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="topnav rounded-right">
+                        <a href="homepage.html"><i class="fa fa-chevron-left"></i> Back to Home</a>
+                        <div id="right-side">
+                            <a href="landing.html"> Sign out <i class="fa fa-sign-out" style="margin-left: 5px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="row m-3 no-gutters">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
