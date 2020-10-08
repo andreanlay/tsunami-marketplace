@@ -172,3 +172,14 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - Fix metro broken grid
 - Add animation to new metro subcatalog
+
+## v0.9 - October 7, 2020
+### Added
+- Finish product dashboard
+- Finish transaction history
+- Finish tsunami setting
+
+### Changed
+- Make Metro catalog responsive
+- Let each page's css decide whether to hide numeric up/down in number inputs
+- Fix gradient background on account.html not fit whole page
