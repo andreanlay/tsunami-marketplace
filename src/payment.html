@@ -9,78 +9,129 @@
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <title>Tsunami</title>
+        <title>Tsunami - Checkout</title>
     </head>
     <body>
-        <h2>Checkout</h2>
-        <div class="row">
-            <div class="col-75">
-                <div class="container">
-                    <form action="">
-                        <div class="row">
-                            <div class="col-50">
-                                <h3>Address</h3>
-                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input tpye="text" id="fname" name="fullname" placeholder="Full Name">
-                                <label for="pnumber"><i class="fa fa-mobile"></i> Phone Number</label>
-                                <input type="text" id="pnumber" name="phonenumber" placeholder="Phone Number">
-                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                                <input type="text" id="adr" name="address" placeholder="Address">
-                                <label for="city"><i class="fa fa-institution"></i> City</label>
-                                <input type="text" id="city" name="city" placeholder="City">
-                                <div class="row">
-                                    <div class="col-50">
-                                        <label for="state">State</label>
-                                        <input type="text" id="state" name="state" placeholder="State">
-                                    </div>
-                                    <div class="col-50">
-                                        <label for="zip">Zip Code</label>
-                                        <input type="text" id="zip" name="zip" placeholder="Zip Code">
-                                    </div>
+        <div class="d-flex flex-row flex-wrap justify-content-center bg-light pt-3 pb-3">
+            <div class="header">
+                <div class="numberCircle text-center active">
+                    <span class="lead">1</span>
+                </div>
+                <p1 class="lead ml-2"><b>Shipping & Payment</b></p1>
+            </div>
+            <div class="header ml-0 ml-md-5">
+                <div class="numberCircle text-center">
+                    <span class="lead">2</span>
+                </div>
+                <p1 class="lead ml-2"><b>Review & Confirmation</b></p1>
+            </div>
+        </div>
+        <br><br>
+        <div class="container-fluid pb-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 class="display-4">Billing Info</h1>
+                    <p class="lead text-muted">Choose a payment option and select an address or create a new one</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-sm-3">
+                    <h1 class="lead"><b>1. Billing Address</b></h1>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                  <b>Universitas Tarumanagara</b>
                                 </div>
-                            </div>
-                            <div class="col-50">
-                                <h3>Payment</h3>
-                                <div class="delivery-options">
-                                    <label for="delivery-options">Choose a delivery option</label>
-                                    <select id="delivery-options">
-                                        <option value="jne-r">JNE Reguler(1-2 days)</option>
-                                        <option value="jne-y">JNE Yes(1 day)</option>
-                                    </select>
+                                <div class="card-body">
+                                  <p class="card-text">Jl. Letjen S. Parman No.21 RT.06/RW.16 Tomang, Kec. Grogol Petamburan, Jakarta Barat</p>
+                                  <a href="#" class="btn btn-success float-right"><i class="fa fa-check"></i> Selected</a>
                                 </div>
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#payment-modal">Choose Payment <i class ="fa fa-angle-down"></i></button>
-                                <div class="modal fade" id="payment-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h4 class="modal-title">Checkout Payment</h4>
-                                            </div>
-                                        <div class="modal-body">
-                                            <p>Choose your payment</p>
-                                            <a href="#"><img class="bca" style="width: 150px; height: 150px;" src="assets/payment/bca.jpg" alt=""></a>
-                                            <a href="#"><img class="gopay" style="width: 160px; height: 120px;" src="assets/payment/gopay.jpg" alt=""></a>
-                                            <a href="#"><img class="ovo" style="width: 120px; height: 80px;" src="assets/payment/ovo.jpg" alt=""></a>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    <div class="col-25">
-                        <div class="cartproduct">
-                            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>2</b></span></h4>
-                            <p><a href="#"><img class="rtx3060" style="width: 150px; height: 150px;" src="assets/flashsale_product/rtx3080.jpg"><span class="price">1x Rp. 28.000.000</span></a></p>
-                            <p><a href="#"><img class="xps13-9300" style="width: 150px; height: 130px;" src="assets/flashsale_product/xps13-9300.jpg"><span class="price">1x Rp. 28.000.000</span></a></p>
-                            <hr>    
-                            <p>Total <span class="price" style="color:black"><b>Rp. 56.030.000</b></span></p>
+                              </div>
                         </div>
                     </div>
+                    <a href="#" class="btn btn-primary mt-3 float-right"><i class="fa fa-plus"></i> Add new address</a>
                 </div>
+                <div class="col-sm-3">
+                    <h1 class="lead"><b>2. Payment Info</b></h1>
+                    <hr>
+                    <div class="form-group">
+                        <label for="payment-type">Payment Type:</label>
+                        <select class="custom-select" name="payment-type" id="payment-type">
+                            <option value="credit-card">Credit Card</option>
+                            <option value="bank-transfer">Bank Transfer</option>
+                            <option value="cod">Cash on Delivery</option>
+                            <option value="ovo">OVO</option>
+                            <option value="gopay">GoPay</option>
+                        </select>
+                    </div>
+                    <div class="credit-card-payment">
+                        <div class="form-group">
+                            <label for="name-on-card">Name on Card:</label>
+                            <input type="text" class="form-control" id="name-on-card" aria-describedby="name-on-card" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number">Card Number:</label>
+                            <input type="number" class="form-control" id="card-number" aria-describedby="card-number" placeholder="xxxx-xxxx-xxxx-xxxx">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="cvv">CVV Number:</label>
+                                    <input type="number" class="form-control" id="cvv" aria-describedby="cvv-number" placeholder="CVV">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="expired-month">Exp. Month:</label>
+                                    <select class="custom-select" name="expired-month" id="exp-month">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="expired-year">Exp. Year:</label>
+                                    <select class="custom-select" name="expired-year" id="exp-year">
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bank-transfer-payment">
+                        
+                    </div>
+                    <div class="cod-payment">
+
+                    </div>
+                    <div class="ovo-payment">
+
+                    </div>
+                    <div class="gopay-payment">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                <button class="continue-btn text-center"><span class="lead"><b>Next Step</b></span><i class="fa fa-chevron-right ml-3"></i></button>
             </div>
         </div>
     </body>
