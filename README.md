@@ -183,3 +183,11 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - Make Metro catalog responsive
 - Let each page's css decide whether to hide numeric up/down in number inputs
 - Fix gradient background on account.html not fit whole page
+
+## v0.91 - October 8, 2020
+### Added
+- Initial payment page
+
+### Changed
+- Fixed conflicting category & subcategory classes in modals (products dashboard)
+- Fixed a typo in RTX3080 file name
