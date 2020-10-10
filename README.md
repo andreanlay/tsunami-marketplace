@@ -191,3 +191,11 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - Fixed conflicting category & subcategory classes in modals (products dashboard)
 - Fixed a typo in RTX3080 file name
+
+## v0.92 - October 9, 2020
+### Added
+- None
+
+### Changed
+- Rework payment UI
+- Fix RTX3080 file name typo on homepage.html
