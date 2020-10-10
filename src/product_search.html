@@ -5,23 +5,215 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/product_search.css">
         <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/product_search.js"></script>
         <title>Tsunami - Search Result</title>
     </head>
     <body>
+        <div class="d-flex flex-row m-3">
+            <a href="homepage.html">
+                <button class="btn btn-default bg-light btn-circle"><i class="fa fa-chevron-left"></i></button>
+            </a>
+            <div class="flex-fill ml-2">
+                <form action="">
+                    <div class="p-2 bg-light rounded rounded-pill mb-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button id="button-search" type="submit" class="btn btn-link text-primary" disabled><i class="fa fa-search"></i></button>
+                            </div>
+                            <input id="search" type="search" placeholder="What are you searching for ? (Press ENTER to search)" class="form-control border-0 bg-light">
+                            <div class="input-group-append mr-2">
+                                <button class="advance-seach" id="advance-search">Advance search</button>
+                            </div>
+                            <div class="v-div d-none d-sm-inline"></div>
+                            <select name="category" id="cat-select" class="custom-select border-0 bg-light">
+                                <option value="all">All</option>
+                                <option value="automotive">Automotive</option>
+                                <option value="beauty">Beauty</option>
+                                <option value="books">Books</option>
+                                <option value="electronic">Electronic</option>
+                                <option value="fashion">Fashion</option>
+                                <option value="food-drink">Food & Drink</option>
+                                <option value="household">Household</option>
+                                <option value="kitchen">Kitchen</option>
+                                <option value="health">Health</option>
+                                <option value="sport">Sport</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div> 
+            <a href="dashboard.html">
+                <button class="btn btn-default bg-light btn-circle ml-2"><i class="fa fa-user-circle"></i></button>
+            </a>
+        </div>
         <div class="container-fluid">
-            <div class="topnav">
-                <a class="active" href="homepage.html"><img src="assets/tsunami_logo_white.png" style="width: 25px; height: 25px; margin-right: 5px;">Tsunami</a>
-                <a href="catalog_infinite.html">Catalog</a>
-                <a href="about.html">About Us</a>
-                <a class="float-right" id="user-profile" href="dashboard.html"><i class="fa fa-user-circle"></i>  Irfan Bachdim</a>
-            </div>    
+            <div class="row justify-content-center">
+                <div class="col-sm-8">
+                    <div class="card mb-5" id="advance-search-card">
+                        <div class="card-header">
+                          Advance Search - Your solution to narrow down searches!
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="search-type"><b>Thing to search</b></label>
+                                        <select name="search-type" id="search-type" class="custom-select">
+                                            <option value="">Select something</option>
+                                            <option value="product">Product</option>
+                                            <option value="shop">Shop</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="product-search">
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <label for="sortby"><b>Sort Product By</b></label>
+                                        <select name="sortby" id="sortby" class="custom-select">
+                                            <option value="product-name">Name</option>
+                                            <option value="product-date">Post Date</option>
+                                            <option value="product-price">Price</option>
+                                            <option value="product-rating">Rating</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <label for="sorttype"><b>Sort type</b></label>
+                                        <select name="sortby" id="sorttype" class="custom-select">
+                                            <option value="ascending">Ascending</option>
+                                            <option value="descending">Descending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+    
+                                </div>
+                            </div>
+                            <div class="row" id="shop-search">
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <label for="sortby"><b>Sort Shop By</b></label>
+                                        <select name="sortby" id="sortby" class="custom-select">
+                                            <option value="shop-name">Name</option>
+                                            <option value="shop-joindate">Join Date</option>
+                                            <option value="shop-productssold">Products sold</option>
+                                            <option value="shop-rating">Rating</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <label for="sorttype"><b>Sort type</b></label>
+                                        <select name="sortby" id="sorttype" class="custom-select">
+                                            <option value="ascending">Ascending</option>
+                                            <option value="descending">Descending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-primary float-right" id="asearch-button">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-3">
+                    <div class="card  rounded shadow-sm">
+                        <div class="header text-center">
+                            <img class="card-img mt-3" src="assets/flashsale_product/rtx3080.jpg" style="width: 300px; height: 200px;">
+                        </div>
+                        <div class="card-body">
+                          <p class="lead">GigaByte RTX 3080</p>
+                          <p>Some product description..</p>
+                          <div class="row">
+                              <div class="col">
+                                <p class="float-right"><i class="fa fa-building mr-2"></i>Lino Shop</p>
+                              </div>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div>
+                                <i class="fa fa-star" style="color: #ffe135;"></i>
+                                <span><b>4.5</b></span>
+                            </div>
+                            <p class="float-right"><b>Rp28.000.000</b></p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <a href=""><i class="fa fa-heart fa-lg" style="color: red;"></i></a>
+                            <button class="btn btn-primary float-right"><i class="fa fa-plus mr-2"></i>Add to cart</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card rounded shadow-sm">
+                        <div class="header text-center">
+                            <img class="card-img mt-3" src="assets/flashsale_product/xps13-9300.jpg" style="width: 300px; height: 200px;">
+                        </div>
+                        <div class="card-body">
+                            <p class="lead">Dell XPS 9300</p>
+                            <p>Some product description..</p>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="float-right"><i class="fa fa-building mr-2"></i>Toko Chandra</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <i class="fa fa-star" style="color: #ffe135;"></i>
+                                    <span><b>4.9</b></span>
+                                </div>
+                                <p class="float-right"><b>Rp28.000.000</b></p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href=""><i class="fa fa-heart fa-lg" style="color: red;"></i></a>
+                                <button class="btn btn-primary float-right"><i class="fa fa-plus mr-2"></i>Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card  rounded shadow-sm">
+                        <div class="header text-center">
+                            <img class="card-img mt-3" src="assets/dailydeals_product/newbalance_shoes.jpg" style="width: 300px; height: 200px;">
+                        </div>
+                        <div class="card-body">
+                          <p class="lead">New Balance Shoes</p>
+                          <p>Some product description..</p>
+                          <div class="row">
+                              <div class="col">
+                                <p class="float-right"><i class="fa fa-building mr-2"></i>Hari Shoes</p>
+                              </div>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <div>
+                                <i class="fa fa-star" style="color: #ffe135;"></i>
+                                <span><b>4.6</b></span>
+                            </div>
+                            <p class="float-right"><b>Rp1.950.000</b></p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <a href=""><i class="fa fa-heart fa-lg" style="color: red;"></i></a>
+                            <button class="btn btn-primary float-right"><i class="fa fa-plus mr-2"></i>Add to cart</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     </body>
