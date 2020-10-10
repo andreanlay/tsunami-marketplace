@@ -10,4 +10,8 @@ $(document).ready(function() {
     $('#btn-next').on('click', function() {
         $('body div').filter('#checkout-p2').fadeIn(500).siblings('div').hide();
     });
+
+    $('#btn-previous').on('click', function() {
+        $('body div').filter('#checkout-p1').fadeIn(500).siblings('div').hide();
+    })
 });

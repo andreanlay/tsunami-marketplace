@@ -50,10 +50,40 @@
                                         <p class="card-text">Jl. Letjen S. Parman No.21 RT.06/RW.16 Tomang, Kec. Grogol Petamburan, Jakarta Barat</p>
                                         <a href="#" class="btn btn-success float-right"><i class="fa fa-check"></i> Selected</a>
                                     </div>
-                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <a href="#" class="btn btn-primary mt-3 float-right"><i class="fa fa-plus"></i> Add new address</a>
+                        <a href="#" data-toggle="modal" data-target="#new-address-modal" class="btn btn-primary mt-3 float-right"><i class="fa fa-plus"></i> Add new address</a>
+                        <div class="modal" tabindex="-1" role="dialog" id="new-address-modal">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Add new address</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name">Recipient Name</label>
+                                        <input type="text" id="recipient-name" class="form-control" placeholder="Recipient Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="home-address">Home Address</label>
+                                        <input type="text" id="home-address" class="form-control" placeholder="Home Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-phonenum">Phone Number</label>
+                                        <input type="number" id="recipient-phonenum" class="form-control" placeholder="Phone Number">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">Add</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <h1 class="lead"><b>2. Payment Info</b></h1>
@@ -210,7 +240,133 @@
                         <p class="lead text-muted">Please check your items and confirm to complete your transaction</p>
                     </div>
                 </div>
-                
+                <div class="row justify-content-center mt-4">
+                    <div class="col-sm-6">
+                        <h1 class="lead"><b>1. Your Order</b></h1>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Item Name</th>
+                                            <th scope="col">Price unit</th>
+                                            <th scope="col">Actions</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>2</td>
+                                            <td>GigaByte RTX3080</td>
+                                            <td>Rp28.000.000</td>
+                                            <th>   
+                                                <a href="" data-toggle="modal" data-target="#remove-modal"><i class="fa fa-times"></i> Remove </a>
+                                            </th>
+                                          </tr>
+                                          <tr>
+                                            <td>1</td>
+                                            <td>Apple TV 4 Remote</td>
+                                            <td>Rp352.000</td>
+                                            <th>   
+                                                <a href=""><i class="fa fa-times"></i> Remove </a>
+                                            </th>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal" tabindex="-1" role="dialog" id="remove-modal">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Confirmation</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                          <h1 class="lead">Delete this item ?</h1>
+                                          <small class="text-muted float-right">Deleted item will be removed from your cart!</small>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-danger">Remove</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-sm-4">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                          <tr>
+                                            <td>Subtotal</td>
+                                            <td><b>Rp28.352.000</b></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Voucher</td>
+                                            <td>-Rp72.500</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Total</td>
+                                              <td>Rp28.279.500</td>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-sm-6">
+                        <h1 class="lead"><b>2. Payment Details</b></h1>
+                        <hr>
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                  <tr class="d-none">
+                                    <th scope="col">Type</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Description</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td colspan="5"><b>Service</b></td>
+                                    <td>BCA</td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="5"><b>Type</b></td>
+                                    <td>Virtual Account</td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="5"><b>Virtual Account ID</b></td>
+                                    <td>320001085612152731</td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <small class="text-muted float-right">Your must pay your order in 24 hours or order will be cancelled automatically</small>
+                    </div>
+                </div>
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-sm-3 text-center">
+                        <button class="continue-btn text-center" id="btn-previous"><i class="fa fa-chevron-left mr-3"></i><span class="lead"><b>Previous step</b></span></button>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <a href="homepage.html">
+                            <button class="continue-btn text-center" id="btn-submit"><span class="lead"><b>Submit</b></span><i class="fa fa-check ml-3"></i></button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
