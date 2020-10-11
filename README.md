@@ -199,3 +199,16 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - Rework payment UI
 - Fix RTX3080 file name typo on homepage.html
+
+## v0.95 - October 10, 2020
+### Added
+- Finish cart page
+- Finish checkout page
+- Finish product search page
+- Initial product details page
+- Proper website title for all pages
+
+### Changed
+- Fixed product dashboard subcategories not showing bug
+- Link all "buy" button to product_detail.html
+- Link search button / enter event on homepage searchbox to product_search.html
