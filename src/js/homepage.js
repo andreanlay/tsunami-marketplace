@@ -17,7 +17,7 @@ $(document).ready(function() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth() + 1;
-    $('#flashsale-header').append(`- ${day} ${months[month]} ${date.getFullYear()}`);
+    $('.flashsale-header').append(`${day} ${months[month]} ${date.getFullYear()}`);
 
     $("#searchbox").keypress(function(event) {
         var code = (event.keyCode ? event.keyCode : event.which);
