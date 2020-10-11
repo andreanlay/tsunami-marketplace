@@ -55,7 +55,7 @@
               </div>
           </div>
             <div class="row no-gutters">
-                <div class="col-8">
+                <div class="col-sm-8">
                     <div id="deals-carousel" class="carousel slide rounded m-4" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#deals-carousel" data-slide-to="0" class="active"></li>
@@ -83,7 +83,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-4 mt-4">
+                <div class="col-4 mt-4 d-sm-inline d-none">
                     <div class="row ml-1">
                         <h1 class="lead">Recharge and Payment</h1>
                     </div>
@@ -129,9 +129,43 @@
                         </div>
                     </div>
                 </div>
+                <div class="row d-sm-none">
+                  <div class="col ml-4">
+                    <button class="btn btn-light bills-btn" data-toggle="modal" data-target="#electricity-modal">
+                      <i class="fa fa-bolt"></i>
+                      <p>Electricity</p>
+                    </button>
+                    <button class="btn btn-light bills-btn mt-4">
+                      <i class="fa fa-tint"></i>
+                      <p>Water</p>
+                    </button>
+                    <button class="btn btn-light bills-btn mt-4">
+                      <i class="fa fa-wifi"></i>
+                      <p>Internet</p>
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-light bills-btn">
+                      <i class="fa fa-mobile"></i>
+                      <p>Mobile Recharge</p>
+                    </button>
+                    <button class="btn btn-light bills-btn mt-4">
+                      <i class="fa fa-bus"></i>
+                      <p>Transportation</p>
+                    </button>
+                    <button class="btn btn-light bills-btn mt-4">
+                      <i class="fa fa-ticket"></i>
+                      <p>Cinema</p>
+                    </button>
+                  </div>
+                </div>
             </div>
-            <div class="row">
-                <h1 class="display-5 mx-auto" id="flashsale-header">Today's Flash sale✨</h1>
+            <div class="row d-sm-inline d-none">
+                <h1 class="display-5 mx-auto flashsale-header">Today's Flash sale✨ - </h1>
+            </div>
+            <div class="row d-sm-none flex-column justify-content-center">
+              <h1 class="display-5 mx-auto">Today's Flash sale✨</h1>
+              <h1 class="display-5 mx-auto flashsale-header"></h1>
             </div>
             <hr>
             <div class="row m-4 d-flex justify-content-center">
@@ -300,7 +334,7 @@
         </div>
         <hr>
         <div class="row m-5">
-            <h1 class="display-4">Why Choose Us?</h1>
+            <h1 class="display-sm-4 display-5">Why Choose Us?</h1>
         </div>
         <div class="row m-5 d-flex justify-content-center">
           <div class="card about-card" style="width: 18rem;">
