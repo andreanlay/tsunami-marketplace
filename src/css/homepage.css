@@ -39,3 +39,20 @@ a:hover {
     font-size: 1.25rem;
     font-weight: 300;
 }
+
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn-circle {
+    width: 55px;
+    height: 55px;
+    padding: 8px 16px;
+    border-radius: 35px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.9;
+    z-index: 1;
+}
