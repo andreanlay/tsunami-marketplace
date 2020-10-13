@@ -212,3 +212,12 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - Fixed product dashboard subcategories not showing bug
 - Link all "buy" button to product_detail.html
 - Link search button / enter event on homepage searchbox to product_search.html
+
+## v0.96 - October 11, 2020
+### Added
+- Finish product details page (add product description, specification, review and discussion tab)
+- Mobile homepage design (with floating button)
+
+### Changed
+- Changed infinite catalog navbar to only floating back and profile button
+- Remove cart and searchbar from metro catalog
