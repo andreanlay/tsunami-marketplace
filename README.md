@@ -221,3 +221,10 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 ### Changed
 - Changed infinite catalog navbar to only floating back and profile button
 - Remove cart and searchbar from metro catalog
+
+## v0.961 - October 12, 2020
+### Added
+- None
+
+### Changed
+- Responsive landing page navbar
