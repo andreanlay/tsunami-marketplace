@@ -68,10 +68,45 @@
                     <div class="topnav rounded-right">
                         <a href="homepage.html"><i class="fa fa-chevron-left"></i> <span class="d-sm-inline d-none">Back to Home</span></a>
                         <div id="right-side">
-                            <a href=""><i class="fa fa-bell"></i></a>
+                            <a href="" data-toggle="modal" data-target="#notification-modal"><i class="fa fa-bell"></i></a>
                             <a href=""><i class="fa fa-comments"></i></a>
                             <div class="v-div"></div>
                             <a href="landing.html"> Sign out <i class="fa fa-sign-out" style="margin-left: 5px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div id="notification-card" class="modal-dialog mr-0" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Notification</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <ul class="timeline">
+                                                <li class="pl-3">
+                                                    <a href="#">People love your product!</a>
+                                                    <small class="float-right">1 October 2020</small>
+                                                    <p>712 people view your Gigabyte RTX3080 just in 1 day!</p>
+                                                </li>
+                                                <li class="pl-3">
+                                                    <a href="#">People love your product!</a>
+                                                    <small class="float-right">1 October 2020</small>
+                                                    <p>712 people view your Gigabyte RTX3080 just in 1 day!</p>
+                                                </li>
+                                                <li class="pl-3">
+                                                    <a href="#">People love your product!</a>
+                                                    <small class="float-right">1 October 2020</small>
+                                                    <p>712 people view your Gigabyte RTX3080 just in 1 day!</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row m-3 no-gutters">
