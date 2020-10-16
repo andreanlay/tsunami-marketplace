@@ -235,3 +235,16 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 
 ### Changed
 - None
+
+## v1.0.0 - October 15, 2020 - October 16, 2020 (Final Front-end version!)
+### Added
+- Dark Mode
+- Notification and chat on account dashboard page
+- Set metro catalog as default switch now finished
+- Invisible mode for account advance setting
+- Courier service price
+
+### Changed
+- Fix spacing on courier price
+- Dynamic gradient removed from Tsunami Customization
+
