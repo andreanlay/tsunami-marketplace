@@ -23,6 +23,11 @@ body {
     color: black;
 }
 
+.v-div {
+    width: 1px;
+    background-color: gray;
+    opacity: 0.3;
+}
 
 /* To indicate current active button*/
 .topnav a.active {
