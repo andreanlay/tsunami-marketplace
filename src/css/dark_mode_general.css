@@ -13,6 +13,7 @@
 
 [data-theme="dark"] .bills-btn {
   color: white;
+  border: none;
   background-color: #312c2c !important;
 }
 
