@@ -103,3 +103,15 @@ body {
 .timeline > li:nth-child(3):before {
     border: 3px solid lightgreen;
 }
+
+.chat-item {
+    color: black;
+}
+
+.chat-item:hover {
+    text-decoration: none;
+}
+
+.chat-item > .row:hover {
+    color: lightskyblue;
+}
