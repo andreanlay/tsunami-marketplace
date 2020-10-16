@@ -222,7 +222,7 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 - Changed infinite catalog navbar to only floating back and profile button
 - Remove cart and searchbar from metro catalog
 
-## v0.961 - October 12, 2020
+## v0.961 - October 13, 2020
 ### Added
 - None
 
