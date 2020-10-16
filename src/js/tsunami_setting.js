@@ -8,10 +8,6 @@ $(document).ready(function() {
     if(catalog == 'metro') {
         $('#metrocatalog-switch').click();
     }
-    var dynamicProfile = JSON.parse(localStorage.getItem('dynamic-gradient'));
-    if(dynamicProfile == 'true') {
-        $('#dynamicgradient-switch').click();
-    }
 
     $('#darkmode-switch').on('change', function() {
         if($(this).is(':checked')) {
@@ -27,15 +23,6 @@ $(document).ready(function() {
             localStorage.setItem('preferred-catalog', JSON.stringify('metro'));
         } else {
             localStorage.removeItem('preferred-catalog');
-        }
-    });
-    $('#dynamicgradient-switch').on('change', function() {
-        if($(this).is(':checked')) {
-            localStorage.setItem('dynamic-gradient', JSON.stringify('true'));
-            $('body').attr('dynamic-gradient', 'true');
-        } else {
-            localStorage.removeItem('dynamic-gradient');
-            $('body').removeAttr('dynamic-gradient', 'true');
         }
     });
 })
