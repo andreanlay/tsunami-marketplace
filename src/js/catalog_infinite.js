@@ -1,3 +1,8 @@
+var preferred_catalog = JSON.parse(localStorage.getItem('preferred-catalog'));
+if(preferred_catalog == "metro") {
+    window.location.href = "../src/catalog_metro.html";
+}
+
 $(document).ready(function() {
     var suggestion = [
         "Automotive",
