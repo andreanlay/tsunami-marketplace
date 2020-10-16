@@ -97,3 +97,11 @@
   color: white;
   background-color: rgb(15, 15, 15);
 }
+
+[data-theme="dark"] .metro {
+  filter: brightness(60%);
+}
+
+[data-theme="dark"] .big-metro {
+  filter: brightness(60%);
+}
