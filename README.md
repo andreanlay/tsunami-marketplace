@@ -228,3 +228,10 @@ Pengerjaan project akan dilakukan sepenuhnya di local machine setiap anggota kel
 
 ### Changed
 - Responsive landing page navbar
+
+## v0.962 - October 14, 2020
+### Added
+- Courier service options
+
+### Changed
+- None
