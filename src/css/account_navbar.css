@@ -63,3 +63,43 @@ body {
     background-color: red;
     color: white;
 }
+
+#notification-card {
+    margin-top: 75px;
+}
+
+.timeline {
+    list-style-type: none;
+}
+
+.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+}
+
+.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.timeline > li:nth-child(1):before {
+    border: 3px solid lightskyblue;
+}
+
+.timeline > li:nth-child(2):before {
+    border: 3px solid lightsalmon;
+}
+
+.timeline > li:nth-child(3):before {
+    border: 3px solid lightgreen;
+}
