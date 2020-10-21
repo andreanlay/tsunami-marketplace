@@ -1,4 +1,5 @@
 # Tsunami Marketplace
+Check our deployed page [Here](https://andreanlay.github.io/tsunami-marketplace/)!
 
 ## Table of Contents
 - [Our Team](#contributor)
