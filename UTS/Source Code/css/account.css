@@ -1,0 +1,44 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+  
+#profile-cover {
+    width: 100%;
+    height: 300px;
+}
+
+.profile-data {
+    display: flex;
+    flex-direction: row;
+}
+
+#profile-photo {
+    width: 100px;
+    height: 100px;
+}
+
+#account-info {
+    left: 50px;
+    width: 88%;
+    box-shadow: 0 1px 1px grey;
+    border-radius: 12px 12px 12px 12px;
+}
+
+#account-setting {
+    left: 50px;
+    width: 85%;
+    box-shadow: 0 1px 1px grey;
+    border-radius: 12px 12px 12px 12px;
+}
+
+.disconnected {
+    background: white;
+    color: blue;
+}
+
+@media only screen and (max-width: 768px) {
+    #account-setting {
+        width: 100%;
+    }
+}
