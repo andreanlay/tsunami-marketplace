@@ -1,5 +1,4 @@
 # Tsunami Marketplace
-Note: ALL submissions (UTS/UAS) folders are in submissions branch ([Click here](https://github.com/andreanlay/tsunami-marketplace/tree/submissions))  
 Check our deployed page [Here](https://andreanlay.github.io/tsunami-marketplace/)!
 
 ## Table of Contents
