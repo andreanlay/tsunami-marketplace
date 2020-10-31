@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="mt-n5">
     <vue-typer
         :text=this.words
         :repeat="0"
@@ -25,18 +25,13 @@ export default {
         VueTyper
     },
     methods: {
-        brandTitleChange(title) {
-            this.brandTitle = title
-        },
         destroySelf() {
-            // const element = document.getElementsByTagName('vue-typer')[0]
             const circleButton = document.getElementById('circle-button')
             circleButton.style.display = 'block'
         }
     },
     data() {
         return {
-            brandTitle: 'Tsunami',
             words: [
                 "Hi👋",
                 "We are Tsunami🌊",

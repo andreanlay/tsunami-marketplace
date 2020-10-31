@@ -1,31 +1,21 @@
 <template>
     <div id="background">
-        <LandingNavBar :brandTitle="brandTitle"/>
+        <LandingNavBar/>
         <b-row class="h-100">
             <b-col class="my-auto">
-                <router-view v-on:brandTitleChange="brandTitleChange"/>
+                <router-view/>
             </b-col>
         </b-row>
     </div>
 </template>
 
 <script>
-import LandingNavBar from '../components/TheLandingNavBar.vue'
+import LandingNavBar from '../components/LandingPage/TheNavBar'
 
 export default {
     title: 'Get Started | Tsunami',
     components: {
         LandingNavBar
-    },
-    methods: {
-        brandTitleChange(title) {
-            this.brandTitle = title
-        },
-    },
-    data() {
-        return {
-            brandTitle: 'Tsunami'
-        }
     },
 }
 </script>

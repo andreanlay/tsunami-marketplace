@@ -1,5 +1,5 @@
 <template>
-<div class="m-4">
+<div class="m-4 mt-n5">
     <b-row>
         <b-col sm="12" md="6" xl="2" offset-md="3" offset-xl="5">
             <p><b>Sign up via social media</b></p>
@@ -54,9 +54,6 @@
 <script>
 export default {
     title: 'Sign Up – Tsunami',
-    mounted() {
-        this.$emit('brandTitleChange', 'Create a new Account')
-    }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-<div class="m-4">
+<div class="m-4 mt-n5">
     <b-row>
         <b-col sm="12" md="6" xl="2" offset-md="3" offset-xl="5">
             <p><b>Login via social media</b></p>
@@ -29,7 +29,7 @@
                     id="password-group"
                 >
                     <b-form-input
-                        id="email-input"
+                        id="password-input"
                         type="password"
                         placeholder="Enter password"
                         required
@@ -49,9 +49,6 @@
 <script>
 export default {
     title: 'Sign In – Tsunami',
-    mounted() {
-        this.$emit('brandTitleChange', 'Login into your account')
-    }
 }
 </script>
 

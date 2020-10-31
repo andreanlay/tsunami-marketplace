@@ -1,15 +1,15 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" fixed="top">
+    <b-navbar toggleable="lg" type="dark">
       <b-container>
         <b-navbar-brand href="#">
-          <img id="logo" src="../assets/tsunami_logo_white.png" alt="">
+          <img id="logo" src="../../assets/tsunami_logo_white.png" alt="">
           {{brandTitle}}
         </b-navbar-brand>
         
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
-            <router-link to="/">
+            <router-link :to="{ name: 'homepage'}">
               <b-nav-item href="home">Home</b-nav-item>
             </router-link>
             <router-link :to="{ name: 'login' }">
@@ -29,10 +29,7 @@
 
 <script>
 export default {
-  name: 'LandingNavBar',
-  props: {
-    brandTitle: String
-  }
+
 }
 </script>
 

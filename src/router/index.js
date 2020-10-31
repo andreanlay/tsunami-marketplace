@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Landing from '../views/Landing.vue'
-import Intro from '../views/Intro.vue'
-import SignIn from '../views/SignIn.vue'
-import SignUp from '../views/SignUp.vue'
-import AboutUs from '../views/AboutUs.vue'
+import Intro from '../components/LandingPage/Intro.vue'
+import SignIn from '../components/LandingPage/SignIn.vue'
+import SignUp from '../components/LandingPage/SignUp.vue'
+import AboutUs from '../components/LandingPage/AboutUs.vue'
 import Home from '../views/Home.vue'
 
 Vue.use(Router)
@@ -14,7 +14,6 @@ export default new Router({
     routes: [
         {
             path: '/get-started',
-            name: 'Get Started',
             component: Landing,
             children: [
                 {
@@ -41,7 +40,7 @@ export default new Router({
         },
         {
             path: '',
-            name: 'Home',
+            name: 'homepage',
             component: Home
         },
     ]    
