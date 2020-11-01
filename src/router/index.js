@@ -7,6 +7,12 @@ import SignUp from '../components/LandingPage/SignUp.vue'
 import AboutUs from '../components/LandingPage/AboutUs.vue'
 import Home from '../views/Home.vue'
 import Catalog from '../views/Catalog.vue'
+import Account from '../views/Account.vue'
+import AccountDashboard from '../components/Account/AccountDashboard.vue'
+import AccountProducts from '../components/Account/AccountProduct.vue'
+import AccountTransactions from '../components/Account/AccountTransaction.vue'
+import AccountSetting from '../components/Account/AccountSetting.vue'
+import TsunamiSetting from '../components/Account/TsunamiSetting.vue'
 
 Vue.use(Router)
 
@@ -48,6 +54,37 @@ export default new Router({
             path: '/catalog',
             name: 'catalog',
             component: Catalog
+        },
+        {
+            path: '/account',
+            component: Account,
+            children: [
+                {
+                    path: '',
+                    name: 'dashboard',
+                    component: AccountDashboard
+                },
+                {
+                    path: 'products',
+                    name: 'account-products',
+                    component: AccountProducts
+                },
+                {
+                    path: 'transactions',
+                    name: 'transactions-history',
+                    component: AccountTransactions
+                },
+                {
+                    path: 'setting',
+                    name: 'account-setting',
+                    component: AccountSetting
+                },
+                {
+                    path: 'tsunami-setting',
+                    name: 'tsunami-setting',
+                    component: TsunamiSetting
+                }
+            ]
         }
     ]    
 })
