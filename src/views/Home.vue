@@ -2,7 +2,7 @@
 <b-container fluid>
     <HomeNavBar/>
     <b-button v-b-modal.search-modal variant="primary" class="floating-btn btn-circle d-sm-none">
-        <b-icon icon="search"></b-icon>
+        <b-icon icon="search" class="icon"></b-icon>
     </b-button>
     <b-modal id="search-modal" title="Search" centered>
         <b-form>
@@ -46,21 +46,74 @@
             </b-row>
         </b-col>
     </b-row>
+    <b-row>
+        <b-col>
+            <h1>Today's Flash sale✨ {{todayDate}}</h1>
+        </b-col>
+    </b-row>
+    <hr>
+    <b-row class="d-flex justify-content-center">
+        <FlashSaleCard v-for="product in flashSaleProducts" :key="product.id" :product="product"/>
+    </b-row>
+    <b-row>
+        <b-col>
+            <h1>Daily deals🎁</h1>
+        </b-col>
+    </b-row>
+    <hr>
+    <b-row class="d-flex justify-content-center">
+        <DailyDealsCard v-for="product in dailyDealsProducts" :key="product.id" :product="product"/>
+    </b-row>
+    <br>
+    <Footer/>
 </b-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import HomeNavBar from '@/components/Homepage/TheNavBar'
 import BillsButton from '@/components/Homepage/BillsButton'
+import FlashSaleCard from '@/components/Homepage/FlashSaleCard'
+import DailyDealsCard from '@/components/Homepage/DailyDealsCard'
+import Footer from '@/components/Homepage/TheFooter'
+
+var months = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December"
+};
 
 export default {
     title: 'Tsunami Marketplace',
     components: {
         HomeNavBar,
-        BillsButton
+        BillsButton,
+        FlashSaleCard,
+        DailyDealsCard,
+        Footer
+    },
+    computed: {
+        ...mapGetters(['flashSaleProducts', 'dailyDealsProducts'])
+    },
+    mounted() {
+        let date = new Date()
+        let day = date.getDate()
+        let month = date.getMonth() + 1
+        this.todayDate = `${day} ${months[month]} ${date.getFullYear()}`
     },
     data() {
         return{
+            todayDate: '',
             banners: [
                 {
                     id: 1,
@@ -128,5 +181,9 @@ export default {
     font-size: 18px;
     line-height: 1.9;
     z-index: 1;
+}
+
+.icon {
+    margin-left: -4px;
 }
 </style>

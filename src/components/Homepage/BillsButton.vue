@@ -22,7 +22,7 @@ export default {
     border-radius: 25px 25px 25px 25px;
 }
 
-.btn:hover {
+.bills-btn:hover {
     background-color: #B7F8DB;
 }
 </style>

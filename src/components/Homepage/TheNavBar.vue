@@ -6,7 +6,7 @@
             Tsunami
         </div>
     </router-link>
-    <router-link :to="{ name: '' }">
+    <router-link :to="{ name: 'catalog' }">
         <div class="nav-btn">
             Catalog
         </div>
