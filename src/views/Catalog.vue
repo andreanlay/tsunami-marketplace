@@ -17,7 +17,7 @@
 import { mapGetters } from 'vuex'
 
 import CatalogNavBar from '@/components/Catalog/TheNavBar'
-import SearchBox from '@/components/Catalog/TheSearchBox.vue'
+import SearchBox from '@/components/Catalog/TheSearchBox'
 import ParallaxSection from '@/components/Catalog/ParallaxSection'
 
 export default {
