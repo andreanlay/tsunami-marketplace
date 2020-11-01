@@ -5,7 +5,7 @@
         <div class="container text-center">
             <h1 class="display-4">Welcome to our Catalog.</h1>
             <h1 class="lead">where all things are organized.</h1>
-            <p>Hate scrolling ? Use our smart search bar with auto suggestions and scroll below!</p>
+            <p>Hate scrolling ? Use our smart search bar with <b> auto suggestions and scrolling</b> below!</p>
             <SearchBox :categories="category_names"/>
         </div>
     </b-jumbotron>
