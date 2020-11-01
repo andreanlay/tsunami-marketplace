@@ -6,6 +6,7 @@ import SignIn from '../components/LandingPage/SignIn.vue'
 import SignUp from '../components/LandingPage/SignUp.vue'
 import AboutUs from '../components/LandingPage/AboutUs.vue'
 import Home from '../views/Home.vue'
+import Catalog from '../views/Catalog.vue'
 
 Vue.use(Router)
 
@@ -43,5 +44,10 @@ export default new Router({
             name: 'homepage',
             component: Home
         },
+        {
+            path: '/catalog',
+            name: 'catalog',
+            component: Catalog
+        }
     ]    
 })
