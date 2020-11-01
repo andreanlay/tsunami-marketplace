@@ -30,7 +30,7 @@
                 <b-icon icon="cart"></b-icon>
             </div>
         </router-link>
-        <router-link :to="{ name: '' }">
+        <router-link :to="{ name: 'dashboard' }">
             <div class="nav-btn">
                 <b-icon icon="person-circle"></b-icon>
                 Irfan Bachdim
@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #logo {
     width: 25px;
     height: 25px;
