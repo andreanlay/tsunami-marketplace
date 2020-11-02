@@ -56,7 +56,7 @@
             class="m-3"
         >
             <b-card-text>
-                <b-table responsive striped :items="productsSold"></b-table>    
+                <b-table responsive striped :items="salesReport"></b-table>    
             </b-card-text>
         </b-card>
     </b-col>
@@ -113,7 +113,7 @@ import { mapGetters } from 'vuex'
 export default {
     title: 'Dashboard – Tsunami',
     computed: {
-        ...mapGetters(['productsSold', 'productReviews'])
+        ...mapGetters(['salesReport', 'productReviews'])
     },
     data() {
         return {
