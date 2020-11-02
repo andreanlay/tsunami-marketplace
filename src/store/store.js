@@ -9,6 +9,7 @@ import DailyDeals from './modules/dailyDeals.js'
 import Catalog from './modules/catalog.js'
 import ProductSold from './modules/productSold.js'
 import ProductReview from './modules/productsReview.js'
+import Products from './modules/products.js'
 
 
 Vue.use(Vuex)
@@ -18,6 +19,7 @@ const store = new Vuex.Store({
         FlashSale,
         DailyDeals,
         Catalog,
+        Products,
         ProductSold,
         ProductReview
     }
