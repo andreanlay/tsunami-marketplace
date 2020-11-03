@@ -60,8 +60,8 @@
         </b-button>
     </router-link>
 
-    <router-link :to="{name: 'dashboard'}">
-        <b-button variant="default" style="width: 100%" id="delete-account-btn" class="mt-auto">
+    <router-link :to="{name: 'introduction'}">
+        <b-button variant="default" style="width: 100%" id="delete-account-btn">
             <b-icon icon="trash"></b-icon>
             <span class="d-none d-sm-inline"> Delete Account</span>
         </b-button>
