@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .bills-btn {
     margin: 10px;
     width: 125px;
