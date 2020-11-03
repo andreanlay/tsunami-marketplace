@@ -48,24 +48,6 @@
             <span class="d-none d-sm-inline"> Account Setting</span>
         </b-button>
     </router-link>
-    <router-link :to="{name: 'tsunami-setting'}">
-        <b-button
-            variant="default"
-            style="width: 100%"
-            @click="setActive(5)"
-            :class="{'sidebar-active' : active == 5}"
-        >
-            <b-icon icon="wrench"></b-icon>
-            <span class="d-none d-sm-inline"> Tsunami Setting</span>
-        </b-button>
-    </router-link>
-
-    <router-link :to="{name: 'introduction'}">
-        <b-button variant="default" style="width: 100%" id="delete-account-btn">
-            <b-icon icon="trash"></b-icon>
-            <span class="d-none d-sm-inline"> Delete Account</span>
-        </b-button>
-    </router-link>
 </div>
 </template>
 

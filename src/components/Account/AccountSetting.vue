@@ -30,6 +30,9 @@
                 <b-tab title="🏠 Address" :title-link-class="'tab-inactive'" lazy>
                     <AddressTab/>
                 </b-tab>
+                <b-tab title="⚙️ Advance" :title-link-class="'tab-inactive'" lazy>
+                    <AdvanceTab/>
+                </b-tab>
             </b-tabs>
         </div>
     </b-col>
@@ -40,13 +43,15 @@
 import InformationTab from '@/components/Account/AccountSetting/TheInformationTab'
 import SecurityTab from '@/components/Account/AccountSetting/TheSecurityTab'
 import AddressTab from '@/components/Account/AccountSetting/TheAddressTab'
+import AdvanceTab from '@/components/Account/AccountSetting/TheAdvanceSetting'
 
 export default {
     title: 'Account Setting – Tsunami',
     components: {
         InformationTab,
         SecurityTab,
-        AddressTab
+        AddressTab,
+        AdvanceTab
     },
     data() {
         return {

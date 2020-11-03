@@ -12,7 +12,6 @@ import AccountDashboard from '../components/Account/AccountDashboard.vue'
 import AccountProducts from '../components/Account/AccountProduct.vue'
 import AccountTransactions from '../components/Account/AccountTransaction.vue'
 import AccountSetting from '../components/Account/AccountSetting.vue'
-import TsunamiSetting from '../components/Account/TsunamiSetting.vue'
 
 Vue.use(Router)
 
@@ -78,11 +77,6 @@ export default new Router({
                     path: 'setting',
                     name: 'account-setting',
                     component: AccountSetting
-                },
-                {
-                    path: 'tsunami-setting',
-                    name: 'tsunami-setting',
-                    component: TsunamiSetting
                 }
             ]
         }
