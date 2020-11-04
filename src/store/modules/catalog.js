@@ -58,60 +58,70 @@ const state = {
     subcatalog: [
         {
             id: 1,
+            name: 'Automotive',
             categories: [
                 'Accessories', 'Car', 'Cleaning Kit', 'Helments', 'Repair Kit', 'Spareparts', 'Wheel'
             ]
         },
         {
             id: 2,
+            name: 'Beauty',
             categories: [
                 'Hair Accessories', 'Body/face paint', 'Eye Make Up','Facial Mask', 'Hair Styling Tools','Lip Color / Nail','Nail Art'
             ]
         },
         {
             id: 3,
+            name: 'Books',
             categories: [
                 'Action / Adventure', 'Children', 'Fantasy', 'Food','History', 'Politics', 'Self-help', 'Science-fiction'
             ]
         },
         {
             id: 4,
+            name: 'Electronic',
             categories: [
                 'Air Conditioner', 'Audio', 'Household Electronic','Kitchen Electronic', 'Lights', 'Television', 'Vaporizer'
             ]
         },
         {
             id: 5,
+            name: 'Fashion',
             categories: [
                 'Male', 'Female', 'Swimming', 'Unisex'
             ]
         },
         {
             id: 6,
+            name: 'Food and Drink',
             categories: [
                 'Cooking ingredients', 'Diary', 'Indonesian Cuisine', 'Lovely Liquid', 'Meat', 'Snacks', 'Package of Snacks'
             ]
         },
         {
             id: 7,
+            name: 'Households',
             categories: [
                 'Bedroom', 'Decoration', 'Furniture', 'Hygiene', 'Toilet', 'Other'
             ]
         },
         {
             id: 8,
+            name: 'Kitchen',
             categories: [
                 'Baking tools', 'Cooking tools', 'Cutlery', 'Dish washer tool', 'Kitchen Accessories', 'Food Storage'
             ]
         },
         {
             id: 9,
+            name: 'Health',
             categories: [
                 'Supplement', 'Mask', 'Medicine', 'Medical tools', 'Vitamins'
             ]
         },
         {
             id: 10,
+            name: 'Sport',
             categories: [
                 'Badminton', 'Basketball', 'Boxing', 'Gym','Sport Accessories', 'Fishing', 'Football', 'Golf',
             ]
