@@ -12,6 +12,7 @@ import AccountDashboard from '../components/Account/AccountDashboard.vue'
 import AccountProducts from '../components/Account/AccountProduct.vue'
 import AccountTransactions from '../components/Account/AccountTransaction.vue'
 import AccountSetting from '../components/Account/AccountSetting.vue'
+import Search from '../views/Search.vue'
 
 Vue.use(Router)
 
@@ -79,6 +80,11 @@ export default new Router({
                     component: AccountSetting
                 }
             ]
+        },
+        {
+            path: '/search/:query',
+            name: 'search',
+            component: Search
         }
     ]    
 })
