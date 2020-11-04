@@ -1,7 +1,7 @@
 <p align="center">
   <img src="src/assets/tsunami_logo.png"
-    width="300"
-    height="300"
+    width="200"
+    height="200"
   />
 </p>
 <h1 align="center"> Tsunami Marketplace </h1>
