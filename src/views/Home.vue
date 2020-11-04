@@ -53,7 +53,7 @@
     </b-row>
     <hr>
     <b-row class="d-flex justify-content-center">
-        <FlashSaleCard v-for="product in flashSaleProducts" :key="product.id" :product="product"/>
+        <FlashSaleCard v-for="product in flashSaleProducts" :key="product.product_id" :product="product"/>
     </b-row>
     <b-row>
         <b-col>
