@@ -16,11 +16,12 @@
             About us
         </div>
     </router-link>
+
     <div id="right-side" class="d-sm-flex d-none">
         <div class="search-bar">
-            <input class="search-box" id="searchbox" type="text" placeholder="Search..">
-            <router-link :to="{ name: '' }">
-                <div class="nav-btn">
+            <input v-model="searchQuery" @keyup.enter="search" class="search-box" id="searchbox" type="text" placeholder="Search..">
+            <router-link :to="{ name: search, params: {query: searchQuery}}">
+                <div @click="search" class="nav-btn">
                     <b-icon icon="search"></b-icon>
                 </div>
             </router-link>
@@ -42,7 +43,21 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            searchQuery: ''
+        }
+    },
+    methods: {
+        search() {
+            this.$router.push({
+                name: 'search',
+                params: {
+                    query: this.searchQuery
+                }
+            })
+        }
+    }
 }
 </script>
 
