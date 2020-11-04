@@ -12,7 +12,7 @@
         {{product.caption}}
     </b-card-text>
     <br>
-    <p><b>IDR <strike>{{product.from / 1000}} K</strike> -> {{product.to / 1000}} K</b></p>
+    <p><b>IDR <strike> {{product.from}}</strike> -> {{product.to}} </b></p>
     
     <b-button href="#" variant="primary">
         <b-icon icon="cart"></b-icon>

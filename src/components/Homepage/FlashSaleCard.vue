@@ -30,7 +30,7 @@
         :animated="animate"
     ></b-progress>
     <br>
-    <p><b>IDR {{product.price / 1000}} K</b></p>
+    <p><b> {{product.price}} </b></p>
     
     <b-button v-if="product.sold == product.stock" href="#" variant="primary" disabled>
         <b-icon icon="cart"></b-icon>
