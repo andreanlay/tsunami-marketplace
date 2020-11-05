@@ -12,7 +12,7 @@
                     </div>
                     <input 
                         type="text" 
-                        v-model="query"
+                        v-model="searchQuery"
                         placeholder="What are you searching for ? (Press ENTER to search)" 
                         class="form-control border-0 bg-light"
                     >
@@ -44,14 +44,20 @@
 import { mapGetters } from 'vuex'
 
 export default {
+    props: {
+        query: String,
+    },
     data() {
         return {
-            query: '',
+            searchQuery: '',
         }
     },
     computed: {
         ...mapGetters(['subcategories'])
     },
+    mounted() {
+        this.searchQuery = this.query
+    }
 }
 </script>
 
