@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/account_navbar.css">
+        <link rel="stylesheet" href="css/transaction_history.css">
+        <link rel="stylesheet" href="css/dark_mode_dashboard.css">
+        <link rel="icon" href="assets/tsunami_logo.png" type="image/icon type">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="js/transaction_history.js"></script>
+        <script src="js/dark_mode.js"></script>
+        <title>Tsunami - Transaction History</title>
+    </head>
+    <body>
+        <div class="container-fluid mt-3 pb-3">
+            <div class="row no-gutters">
+                <div class="col-2">
+                    <div class="d-flex flex-column side-bar rounded-left rounded-bottom text-center">
+                        <div id="brand">
+                            <img id="tsunami-logo" class="img-fluid" src="assets/tsunami_logo.png" style="max-width: 30px; max-height: 28px;">
+                            <span class="d-none d-sm-inline">Tsunami</span>
+                        </div>
+                        <a href="dashboard.html" class="btn btn-default">
+                            <i class="fa fa-columns"></i> <span class="d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <a href="products_dashboard.html" class="btn btn-default">
+                            <i class="fa fa-cubes"></i> <span class="d-none d-sm-inline">Products</span>
+                        </a>
+                        <a href="" class="btn btn-default sidebar-active">
+                            <i class="fa fa-history"></i> <span class="d-none d-sm-inline">Transaction History</span>
+                        </a>
+                        <a href="account.html" class="btn btn-default">
+                            <i class="fa fa-cog"></i> <span class="d-none d-sm-inline">Account Setting</span>
+                        </a>
+                        <a href="tsunami_setting.html" class="btn btn-default">
+                            <i class="fa fa-wrench"></i> <span class="d-none d-sm-inline">Tsunami Setting</span>
+                        </a>
+                        <a type="button" class="btn btn-default mt-auto" id="delete-account-btn" data-toggle="modal" data-target="#deleteAccountModal">
+                            <i class="fa fa-trash"></i> <span class="d-none d-sm-inline">Delete Account</span>
+                        </a>
+                        <div class="modal fade" id="deleteAccountModal" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="h6">Deleted account can't be restored! Are you sure ?</h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="topnav rounded-right">
+                        <a href="homepage.html"><i class="fa fa-chevron-left"></i> <span class="d-sm-inline d-none">Back to Home</span></a>
+                        <div id="right-side">
+                            <a href="" data-toggle="modal" data-target="#notification-modal"><i class="fa fa-bell"></i></a>
+                            <a href="" data-toggle="modal" data-target="#chat-modal"><i class="fa fa-comments"></i></a>
+                            <div class="v-div"></div>
+                            <a href="landing.html"> Sign out <i class="fa fa-sign-out" style="margin-left: 5px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div id="notification-card" class="modal-dialog mr-0" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Notification</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <ul class="timeline">
+                                                <li class="pl-3">
+                                                    <a href="#">People love your product!</a>
+                                                    <small class="float-right">1 October 2020</small>
+                                                    <p>712 people view your Gigabyte RTX3080 just in 1 day!</p>
+                                                </li>
+                                                <li class="pl-3">
+                                                    <a href="#">People love your product!</a>
+                                                    <small class="float-right">1 October 2020</small>
+                                                    <p>712 people view your Gigabyte RTX3080 just in 1 day!</p>
+                                                </li>
+                                                <li class="pl-3">
+                                                    <a href="#">People love your product!</a>
+                                                    <small class="float-right">1 October 2020</small>
+                                                    <p>712 people view your Gigabyte RTX3080 just in 1 day!</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="chat-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div id="chat-card" class="modal-dialog mr-0" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Message</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="#" class="chat-item">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img src="assets/profile_photo_default.png" style="height: 50px; width: 50px;">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <small class="float-right">2 October 2020 07.00 PM</small>
+                                                        <p class="lead">Jantono</p>
+                                                        <p>Hey, do you have any discount for those RTX 3080s ?</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <hr class="chat-divider">
+                                            <a href="#" class="chat-item">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img src="assets/profile_photo_default.png" style="height: 50px; width: 50px;">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <small class="float-right">2 October 2020 07.00 PM</small>
+                                                        <p class="lead">Cakey</p>
+                                                        <p>Ok thank you!</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="card bg-danger m-3 shadow-sm text-white" style="max-width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">Saving</h5>
+                              <p class="card-text">You just saved Rp<b>153.200</b> from vouchers this month.</p>
+                            </div>
+                        </div>
+                        <div class="card bg-success m-3 shadow-sm text-white" style="max-width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">Spending</h5>
+                              <p class="card-text">You just spent Rp<b>55.983.300</b> from transactions this month.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-3 no-gutters">
+                        <div class="col">
+                            <div class="card bg-light shadow-sm text-black">
+                                <div class="card-header bg-primary text-white">
+                                    <h1 class="lead float-left">Transaction History</h1>
+                                    <button class="btn-product float-right">Sort by</button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Invoice ID</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Review</th>
+                                                <th scope="col"></th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>TSU-0001</td>
+                                                    <td>Gigabyte RTX 3080</td>
+                                                    <td>2 Unit</td>
+                                                    <td>Rp56.000.000</td>
+                                                    <td>
+                                                        <span style="color: green"><b>Done</b></span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row no-gutters">
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Print invoice"><i class="fa fa-sticky-note fa-lg"></i></a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="View product"><i class="fa fa-eye fa-lg"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>TSU-0002</td>
+                                                    <td>FACOM Spanner 4 mm x 5 mm</td>
+                                                    <td>1 Unit</td>
+                                                    <td>Rp136.500</td>
+                                                    <td>
+                                                        <a href="#reviewModal" data-toggle="modal" data-target="#reviewModal"><i class="fa fa-pencil fa-lg"></i> Give review</a>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row no-gutters">
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Print invoice"><i class="fa fa-sticky-note fa-lg"></i></a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="View product"><i class="fa fa-eye fa-lg"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="modal fade" id="reviewModal" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Send review to seller</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="">
+                                                            <div class="form-group">
+                                                                <label for="title-input">Title</label>
+                                                                <input type="text" class="form-control" id="title-input" placeholder="Title" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="description-input">Description</label>
+                                                                <input type="text" class="form-control" id="description-input" placeholder="Description" value="">
+                                                            </div>
+                                                            <div class="row justify-content-center" id="star-rating">
+                                                                <span class="fa fa-star-o fa-2x" data-rating="1"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="2"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="3"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="4"></span>
+                                                                <span class="fa fa-star-o fa-2x" data-rating="5"></span>
+                                                                <input type="hidden" class="rating-value" value="0">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>

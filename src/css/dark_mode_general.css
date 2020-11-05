@@ -1,0 +1,107 @@
+[data-theme="dark"] {
+  color: #eee;
+  background-color: #1a1616 !important;
+}
+
+[data-theme="dark"] .bg-primary {
+  background-color: rgb(2, 80, 180) !important;
+}
+
+[data-theme="dark"] .bg-light {
+  background-color: #333 !important;
+}
+
+[data-theme="dark"] .bills-btn {
+  color: white;
+  border: none;
+  background-color: #312c2c !important;
+}
+
+[data-theme="dark"] .bills-btn:hover {
+  background-color: #5c5454 !important;
+}
+
+[data-theme="dark"] .topnav {
+  color: black;
+  background-color: #312c2c !important;
+}
+
+[data-theme="dark"] .topnav > a:hover{
+  background-color: #645959 !important;
+}
+
+[data-theme="dark"] a {
+  color: white !important;
+}
+
+
+[data-theme="dark"] .fa {
+  color: white;
+}
+
+[data-theme="dark"] #main-jumbotron {
+  background: linear-gradient(to bottom right, #0D324D, #7F5A83);
+}
+
+[data-theme="dark"] table {
+  color: white;
+}
+
+[data-theme="dark"] .checkout-btn {
+  color: blue;
+  border: solid 2px darkblue;
+}
+
+[data-theme="dark"] .checkout-btn > .fa{
+  color: blue;
+}
+
+[data-theme="dark"] .checkout-btn:hover {
+  color: white;
+  background-color: darkblue;
+}
+
+[data-theme="dark"] .continue-btn {
+  color: blue;
+  border: solid 2px darkblue;
+}
+
+[data-theme="dark"] .continue-btn > .fa{
+  color: blue;
+}
+
+[data-theme="dark"] .continue-btn:hover {
+  color: white;
+  background-color: darkblue;
+}
+
+[data-theme="dark"] .numberCircle {
+  border: solid 2px darkblue;
+  color: black;
+}
+
+[data-theme="dark"] .active {
+  background-color: darkblue;
+  color: white;
+}
+
+[data-theme="dark"] .card {
+  background-color: #312c2c !important;
+}
+
+[data-theme="dark"] .modal {
+  color: black;
+}
+
+[data-theme="dark"] .modal-content {
+  color: white;
+  background-color: rgb(15, 15, 15);
+}
+
+[data-theme="dark"] .metro {
+  filter: brightness(60%);
+}
+
+[data-theme="dark"] .big-metro {
+  filter: brightness(60%);
+}
