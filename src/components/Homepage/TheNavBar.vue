@@ -26,7 +26,7 @@
                 </div>
             </router-link>
         </div>
-        <router-link :to="{ name: '' }">
+        <router-link :to="{ name: 'cart' }">
             <div class="nav-btn">
                 <b-icon icon="cart"></b-icon>
             </div>
