@@ -13,6 +13,10 @@ import AccountProducts from '../components/Account/AccountProduct.vue'
 import AccountTransactions from '../components/Account/AccountTransaction.vue'
 import AccountSetting from '../components/Account/AccountSetting.vue'
 import Search from '../views/Search.vue'
+import Cart from '../views/Cart.vue'
+import Checkout from '../views/Checkout.vue'
+import CheckoutStepOne from '../components/Checkout/CheckoutStepOne.vue'
+import CheckoutStepTwo from '../components/Checkout/CheckoutStepTwo.vue'
 
 Vue.use(Router)
 
@@ -85,6 +89,28 @@ export default new Router({
             path: '/search/:query',
             name: 'search',
             component: Search
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            component: Cart,
+
+        },
+        {
+            path: '/checkout',
+            component: Checkout,
+            children: [
+                {
+                    path: 'step-one',
+                    name: 'checkout-stepone',
+                    component: CheckoutStepOne,
+                },
+                {
+                    path: 'step-two',
+                    name: 'checkout-steptwo',
+                    component: CheckoutStepTwo
+                }
+            ]
         }
     ]    
 })
