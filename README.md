@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/tsunami_logo.png"
+  <img src="client/src/assets/tsunami_logo.png"
     width="150"
     height="150"
   />
@@ -15,8 +15,18 @@ npm install
 ```
 
 ### 🏢 Compile & Run [Development]
+Run both client and server
 ```
+npm run dev
+```
+Run client only
+```
+cd client
 npm run serve
+```
+Run server only
+```
+npm run server
 ```
 
 ### 🏠 Compiles & Run [Production]
