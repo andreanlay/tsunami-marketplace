@@ -23,6 +23,6 @@ const AccountSchema = new Schema({
     }
 })
 
-const AccountItem = model('accountItem', AccountSchema)
+const Account = model('account', AccountSchema)
 
-module.exports = AccountItem
+module.exports = Account

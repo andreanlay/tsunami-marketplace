@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const AccountItem = require('../../modules/Account')
+const AccountItem = require('../../modules/AccountItem')
 
 const router = Router()
 

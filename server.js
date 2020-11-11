@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const { PORT, mongoUri } = require('./config')
 const app = express()
 
-const accountRoutes = require('./routes/api/AccountItems.js')
+const accountRoutes = require('./routes/api/Account.js')
 
 app.use(cors())
 app.use(morgan('tiny'))
@@ -16,9 +16,9 @@ mongoose.connect(mongoUri, {
     useCreateIndex: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-}).then(() => console.log('MongoDB connected.'))
+}).then(() => console.log('Connected to MongoDB Atlas.'))
   .catch((err) => console.log(err))
 
-app.use('/api/accountItems', accountRoutes)
+app.use('/api/account', accountRoutes)
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`))

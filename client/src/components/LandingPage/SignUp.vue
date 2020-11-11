@@ -17,23 +17,23 @@
             <b-form @submit="onSubmit">
                 <b-form-group>
                     <b-input-group>
-                        <b-form-input type="text" placeholder="First name" required></b-form-input>
-                        <b-form-input type="text" placeholder="Last name" required></b-form-input>
+                        <b-form-input v-model="first_name" type="text" placeholder="First name" required></b-form-input>
+                        <b-form-input v-model="last_name" type="text" placeholder="Last name" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
                     <b-input-group>
-                        <b-form-input type="email" placeholder="Email address" required></b-form-input>
-                    </b-input-group>
-                </b-form-group>
-                <b-form-group>
-                    <b-input-group prepend="+62">
-                        <b-form-input type="number" placeholder="856 2815 6912" required></b-form-input>
+                        <b-form-input v-model="email" type="email" placeholder="Email address" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
                     <b-input-group>
-                        <b-form-input type="password" placeholder="Password" required></b-form-input>
+                        <b-form-input v-model="phone" type="number" placeholder="0856 2815 6912" required></b-form-input>
+                    </b-input-group>
+                </b-form-group>
+                <b-form-group>
+                    <b-input-group>
+                        <b-form-input v-model="password" type="password" placeholder="Password" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
@@ -52,8 +52,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     title: 'Sign Up – Tsunami',
+    data() {
+        return {
+            first_name: '',
+            last_name: '',
+            email: '',
+            phone: '',
+            password: ''
+        }
+    },
+    methods: {
+        onSubmit() {
+            axios.post('api/account/', {
+                first_name: this.first_name,
+                last_name: this.last_name,
+                email: this.email,
+                phone_number: this.phone,
+                password: this.password,
+            })
+            this.$router.push({name: 'homepage'})
+        }
+    }
 }
 </script>
 
