@@ -3,7 +3,6 @@
       <b-container>
         <b-navbar-brand href="#">
           <img id="logo" src="../../assets/tsunami_logo_white.png" alt="">
-          {{brandTitle}}
         </b-navbar-brand>
         
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
