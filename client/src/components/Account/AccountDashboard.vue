@@ -71,7 +71,7 @@
                     class="m-3"
                 >
                     <b-card-text>
-                        <b-progress :value="33" variant="primary" striped :animated="animate"></b-progress>
+                        <b-progress :value="33" variant="primary"></b-progress>
                         1 out of 3 Transaction Completed
                     </b-card-text>
                 </b-card> 
