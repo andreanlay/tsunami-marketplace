@@ -31,10 +31,16 @@
                 <b-icon icon="cart"></b-icon>
             </div>
         </router-link>
-        <router-link :to="{ name: 'dashboard' }">
+        <router-link :to="{ name: 'dashboard' }" v-if="loginStatus">
             <div class="nav-btn">
                 <b-icon icon="person-circle"></b-icon>
-                Irfan Bachdim
+                {{activeUser.first_name + ' ' + activeUser.last_name}}
+            </div>
+        </router-link>
+        <router-link :to="{ name: 'login' }" v-else>
+            <div class="nav-btn">
+                <b-icon icon="person-circle"></b-icon>
+                Guest
             </div>
         </router-link>
     </div>
@@ -42,11 +48,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     data() {
         return {
-            searchQuery: ''
+            searchQuery: '',
         }
+    },
+    computed: {
+        ...mapGetters(['loginStatus', 'activeUser'])
     },
     methods: {
         search() {
@@ -57,7 +68,7 @@ export default {
                 }
             })
         }
-    }
+    },
 }
 </script>
 
