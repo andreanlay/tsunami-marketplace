@@ -14,8 +14,10 @@
             </b-button>
             <div class="v-div"></div>
             <router-link :to="{name: 'introduction'}">
-                Sign Out
-                <b-icon icon="box-arrow-right"></b-icon>
+                <span @click="logout">
+                    Sign Out
+                    <b-icon icon="box-arrow-right"></b-icon>
+                </span>
             </router-link>
         </div> 
     </div>
@@ -89,7 +91,11 @@
 
 <script>
 export default {
-
+    methods: {
+        logout() {
+            this.$store.commit('logout')
+        }
+    }
 }
 </script>
 
