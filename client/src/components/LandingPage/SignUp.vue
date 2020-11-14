@@ -14,11 +14,16 @@
         </b-col>
         <b-col sm="12" md="6" xl="4" offset-md="3" offset-xl="4" class="mt-3">
             <p><b>or create a new Tsunami Account</b></p>
-            <b-form @submit="onSubmit">
+            <b-form @submit.prevent="onSubmit">
                 <b-form-group>
                     <b-input-group>
                         <b-form-input v-model="first_name" type="text" placeholder="First name" required></b-form-input>
                         <b-form-input v-model="last_name" type="text" placeholder="Last name" required></b-form-input>
+                    </b-input-group>
+                </b-form-group>
+                <b-form-group>
+                    <b-input-group>
+                        <b-form-input v-model="username" type="text" placeholder="Username" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
@@ -41,6 +46,7 @@
                         <b-form-input type="password" placeholder="Confirm password" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
+                <p style="color: red" v-show="errorMsg"> {{errorMsg}}</p>
                 <b-form-group>
                     <b-form-checkbox class="float-right"><span style="color: white;">I accept the terms and conditions</span></b-form-checkbox>
                 </b-form-group>
@@ -53,6 +59,7 @@
 
 <script>
 import axios from 'axios'
+import firebase from 'firebase'
 
 export default {
     title: 'Sign Up – Tsunami',
@@ -60,25 +67,30 @@ export default {
         return {
             first_name: '',
             last_name: '',
+            username: '',
             email: '',
             phone: '',
-            password: ''
+            password: '',
+            errorMsg: null,
         }
     },
     methods: {
         onSubmit() {
-            axios.post('api/account/', {
-                first_name: this.first_name,
-                last_name: this.last_name,
-                email: this.email,
-                phone_number: this.phone,
-                password: this.password,
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+            .then(res => {
+                axios.post('api/auth/register', {
+                    uid: res.user.uid,
+                    first_name: this.first_name,
+                    last_name: this.last_name,
+                    phone_number: this.phone
+                }).then(res => {
+                    this.$router.push({name: 'homepage'})
+                    return res
+                })
             })
-            this.$store.commit('login', {
-                first_name: this.first_name,
-                last_name: this.last_name,
+            .catch(err => {
+                this.errorMsg = err.message
             })
-            this.$router.push({name: 'homepage'})
         }
     }
 }

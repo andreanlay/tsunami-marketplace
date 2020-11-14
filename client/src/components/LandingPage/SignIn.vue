@@ -14,13 +14,14 @@
         </b-col>
         <b-col sm="12" md="6" xl="4" offset-md="3" offset-xl="4" class="mt-3">
             <p><b>or login via Tsunami Account</b></p>
-            <b-form @submit="onSubmit">
+            <b-form @submit.prevent="onSubmit">
                 <b-form-group
                     id="email-group"
                 >
                     <b-form-input
                         id="email-input"
                         type="email"
+                        v-model="email"
                         placeholder="Enter email"
                         required
                     ></b-form-input>    
@@ -31,10 +32,12 @@
                     <b-form-input
                         id="password-input"
                         type="password"
+                        v-model="password"
                         placeholder="Enter password"
                         required
                     ></b-form-input>    
                 </b-form-group>
+                <p class="ml-auto" style="color: red" v-show="errorMsg">{{errorMsg}}</p>
                 <p>
                     <a href="" class="float-right" style="color: white;">Forgot password?</a>
                 </p>
@@ -47,8 +50,29 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
     title: 'Sign In – Tsunami',
+    data() {
+        return {
+            email: null,
+            password: null,
+            errorMsg: null,
+        }
+    },
+    methods: {
+        onSubmit() {
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            .then(res => {
+                this.$router.push({name: 'homepage'})
+                return res;
+            })
+            .catch(err => {
+                this.errorMsg = err.message
+            })
+        }
+    }
 }
 </script>
 
