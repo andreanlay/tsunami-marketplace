@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const { PORT, mongoUri } = require('./config')
 const app = express()
 
-const accountRoutes = require('./routes/api/Account.js')
+const authRoute = require('./routes/api/Auth.js')
 
 app.use(cors())
 app.use(morgan('tiny'))
@@ -19,6 +19,6 @@ mongoose.connect(mongoUri, {
 }).then(() => console.log('Connected to MongoDB Atlas.'))
   .catch((err) => console.log(err))
 
-app.use('/api/account', accountRoutes)
+app.use('/api/auth', authRoute)
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`))

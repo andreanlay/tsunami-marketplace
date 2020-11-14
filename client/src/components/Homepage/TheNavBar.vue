@@ -31,18 +31,18 @@
                 <b-icon icon="cart"></b-icon>
             </div>
         </router-link>
-        <router-link :to="{ name: 'dashboard' }" v-if="loginStatus">
+        <router-link :to="{ name: 'dashboard' }">
             <div class="nav-btn">
                 <b-icon icon="person-circle"></b-icon>
                 {{activeUser.first_name + ' ' + activeUser.last_name}}
             </div>
         </router-link>
-        <router-link :to="{ name: 'login' }" v-else>
+        <!-- <router-link :to="{ name: 'login' }" v-else>
             <div class="nav-btn">
                 <b-icon icon="person-circle"></b-icon>
                 Guest
             </div>
-        </router-link>
+        </router-link> -->
     </div>
 </div>
 </template>
