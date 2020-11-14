@@ -62,6 +62,9 @@ export default new Router({
         {
             path: '/account',
             component: Account,
+            meta: {
+                requiresAuth: true
+            },
             children: [
                 {
                     path: '',
