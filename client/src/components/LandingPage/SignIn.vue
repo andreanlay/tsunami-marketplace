@@ -37,12 +37,12 @@
                         required
                     ></b-form-input>    
                 </b-form-group>
-                <p class="ml-auto" style="color: red" v-show="errorMsg">{{errorMsg}}</p>
+                <p class="bold" style="color: red" v-show="errorMsg">{{errorMsg}}</p>
                 <p>
                     <a href="" class="float-right" style="color: white;">Forgot password?</a>
                 </p>
                 <br>
-                <b-button type="submit" variant="primary">Login</b-button>
+                <b-button :class="{'btn-loading': loading}" type="submit" variant="primary">{{loading ? "Signing in...": "Login"}}</b-button>
             </b-form>
         </b-col>
     </b-row>
@@ -59,11 +59,13 @@ export default {
             email: null,
             password: null,
             errorMsg: null,
+            loading: false,
         }
     },
     methods: {
-        onSubmit() {
-            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        async onSubmit() {
+            this.loading = true
+            await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(res => {
                 this.$router.push({name: 'homepage'})
                 return res;
@@ -71,11 +73,14 @@ export default {
             .catch(err => {
                 this.errorMsg = err.message
             })
+            this.loading = false
         }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+.btn-loading {
+    opacity: 0.6;
+}
 </style>

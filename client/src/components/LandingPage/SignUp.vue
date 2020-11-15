@@ -50,7 +50,7 @@
                 <b-form-group>
                     <b-form-checkbox class="float-right"><span style="color: white;">I accept the terms and conditions</span></b-form-checkbox>
                 </b-form-group>
-                <b-button type="submit" variant="primary">Create account</b-button>
+                <b-button :class="{'btn-loading' : loading}" type="submit" variant="primary">{{loading ? "Creating account..." : "Create account"}}</b-button>
             </b-form>
         </b-col>
     </b-row>
@@ -72,11 +72,13 @@ export default {
             phone: '',
             password: '',
             errorMsg: null,
+            loading: false
         }
     },
     methods: {
-        onSubmit() {
-            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        async onSubmit() {
+            this.loading = true
+            await firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
             .then(res => {
                 axios.post('api/auth/register', {
                     uid: res.user.uid,
@@ -91,11 +93,14 @@ export default {
             .catch(err => {
                 this.errorMsg = err.message
             })
+            this.loading = false
         }
     }
 }
-</script>
+</script> 
 
-<style>
-
+<style scoped>
+.btn-loading {
+    opacity: 0.6;
+}
 </style>
