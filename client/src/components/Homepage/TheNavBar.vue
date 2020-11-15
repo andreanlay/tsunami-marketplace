@@ -34,30 +34,22 @@
         <router-link :to="{ name: 'dashboard' }">
             <div class="nav-btn">
                 <b-icon icon="person-circle"></b-icon>
-                {{activeUser.first_name + ' ' + activeUser.last_name}}
+                {{displayName}}
             </div>
         </router-link>
-        <!-- <router-link :to="{ name: 'login' }" v-else>
-            <div class="nav-btn">
-                <b-icon icon="person-circle"></b-icon>
-                Guest
-            </div>
-        </router-link> -->
     </div>
 </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import firebase from 'firebase/app'
 
 export default {
     data() {
         return {
             searchQuery: '',
+            displayName: 'Guest',
         }
-    },
-    computed: {
-        ...mapGetters(['loginStatus', 'activeUser'])
     },
     methods: {
         search() {
@@ -69,6 +61,11 @@ export default {
             })
         }
     },
+    mounted() {
+        if(firebase.auth().currentUser) {
+            this.displayName = firebase.auth().currentUser.displayName
+        }
+    }
 }
 </script>
 
