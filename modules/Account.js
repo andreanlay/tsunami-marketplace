@@ -6,17 +6,45 @@ const AccountSchema = new Schema({
         unique: true,
         required: true,
     },
-    first_name: {
+    gender: {
         type: String,
         required: true
     },
-    last_name: {
+    birthday: {
         type: String,
+        required: true
     },
     phone_number: {
         type: String,
         required: true,
     },
+    member: {
+        type: String,
+    },
+    seller_status: {
+        type: String,
+        default: 'Inactive'
+    },
+    seller: {
+        name: {
+            type: String,
+            default: 'Not set'
+        },
+        location: {
+            type: String,
+            default: 'Not Set'
+        },
+        products_sold: {
+            type: Number,
+        },
+        products: [
+            {
+                name: String,
+                description: String,
+                price: Number,
+            }
+        ]
+    }
 })
 
 const Account = model('accounts', AccountSchema)
