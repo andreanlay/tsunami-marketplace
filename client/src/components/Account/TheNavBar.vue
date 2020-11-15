@@ -90,10 +90,12 @@
 </template>
 
 <script>
+import firebase from 'firebase/app'
+
 export default {
     methods: {
         logout() {
-            this.$store.commit('logout')
+            firebase.auth().signOut()
         }
     }
 }
