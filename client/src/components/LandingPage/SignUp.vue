@@ -89,6 +89,10 @@ export default {
                     this.$router.push({name: 'homepage'})
                     return res
                 })
+                firebase.auth().currentUser.updateProfile({
+                    displayName: `${this.first_name} ${this.last_name}`
+                })
+                firebase.auth().currentUser.sendEmailVerification()
             })
             .catch(err => {
                 this.errorMsg = err.message
