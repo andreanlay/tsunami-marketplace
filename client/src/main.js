@@ -27,6 +27,18 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
+router.beforeEach((to, from, next) => {
+  const needAuth = to.matched.some(x => x.meta.requiresAuth)
+
+  console.log(firebase.auth().currentUser)
+
+  if(needAuth && !firebase.auth().currentUser) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
 new Vue({
   router,
   store,
