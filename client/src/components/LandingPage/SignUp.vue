@@ -23,12 +23,20 @@
                 </b-form-group>
                 <b-form-group>
                     <b-input-group>
-                        <b-form-input v-model="username" type="text" placeholder="Username" required></b-form-input>
+                        <b-form-input v-model="email" type="email" placeholder="Email address" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
+                    <b-form-select
+                        id="input-3"
+                        v-model="gender"
+                        :options="genders"
+                        required
+                    ></b-form-select>
+                </b-form-group>
+                <b-form-group>
                     <b-input-group>
-                        <b-form-input v-model="email" type="email" placeholder="Email address" required></b-form-input>
+                        <b-form-datepicker v-model="birthday" placeholder="Date of Birth" required></b-form-datepicker>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
@@ -67,12 +75,14 @@ export default {
         return {
             first_name: '',
             last_name: '',
-            username: '',
+            gender: '',
+            birthday: '',
             email: '',
             phone: '',
             password: '',
             errorMsg: null,
-            loading: false
+            loading: false,
+            genders: [{ text: 'Select gender', value: '' }, 'Male', 'Female']
         }
     },
     methods: {
@@ -80,19 +90,22 @@ export default {
             this.loading = true
             await firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
             .then(res => {
-                axios.post('api/auth/register', {
-                    uid: res.user.uid,
-                    first_name: this.first_name,
-                    last_name: this.last_name,
-                    phone_number: this.phone
-                }).then(res => {
-                    this.$router.push({name: 'homepage'})
-                    return res
-                })
                 firebase.auth().currentUser.updateProfile({
                     displayName: `${this.first_name} ${this.last_name}`
                 })
                 firebase.auth().currentUser.sendEmailVerification()
+                axios.post('api/auth/register', {
+                    uid: res.user.uid,
+                    gender: this.gender,
+                    birthday: this.birthday,
+                    phone_number: this.phone
+                }).then(res => {
+                    this.$router.push({name: 'login'})
+                    return res
+                }).catch(err => {
+                    this.errorMsg = "Server error.. try again later"
+                    return err
+                })
             })
             .catch(err => {
                 this.errorMsg = err.message
