@@ -13,10 +13,6 @@ const AccountSchema = new Schema({
     last_name: {
         type: String,
     },
-    email_verified: {
-        type: Boolean,
-        default: false
-    },
     phone_number: {
         type: String,
         required: true,
