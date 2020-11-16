@@ -16,6 +16,9 @@ const mutations = {
     accountData: (state, data) => {
         state.data = data
     },
+    changePIN: (state, data) => {
+        state.data.PIN = data.PIN
+    }
 }
 
 export default {
