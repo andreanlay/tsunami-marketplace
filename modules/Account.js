@@ -21,9 +21,9 @@ const AccountSchema = new Schema({
     member: {
         type: String,
     },
-    seller_status: {
-        type: String,
-        default: 'Inactive'
+    PIN: {
+        type: Number,
+        default: null
     },
     seller: {
         name: {
