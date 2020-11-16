@@ -8,8 +8,8 @@
     </b-col>
     <b-col xl="8" sm="12">
         <div id="data-section" class="d-flex flex-column align-items-start">
-            <h1 class="display-5">{{username}}</h1>
-            <p class="text-muted">📍 West Jakarta</p>
+            <h1 class="display-5">{{accountData.displayName}}</h1>
+            <p class="text-muted">{{`📍 ${accountData.seller.location}`}}</p>
             <p><b>🥈Silver Member</b></p>
             <div class="ratings">
                 <p class="text-muted float-left">Ratings:</p>
@@ -40,6 +40,10 @@
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import axios from 'axios'
+import { mapGetters } from 'vuex' 
+
 import InformationTab from '@/components/Account/AccountSetting/TheInformationTab'
 import SecurityTab from '@/components/Account/AccountSetting/TheSecurityTab'
 import AddressTab from '@/components/Account/AccountSetting/TheAddressTab'
@@ -53,10 +57,18 @@ export default {
         AddressTab,
         AdvanceTab
     },
-    data() {
-        return {
-            username: 'Irfan Bachdim'
-        }
+    computed: {
+        ...mapGetters(['accountData'])
+    },
+    async beforeCreate() {
+        const uid = firebase.auth().currentUser.uid
+        await axios.get(`/api/auth/${uid}`).then(res => {
+            res.data['displayName'] = firebase.auth().currentUser.displayName
+            res.data['email'] = firebase.auth().currentUser.email
+            this.$store.commit('accountData', res.data)
+        }).catch(err => {
+            console.log(err)
+        })
     }
 }
 </script>
