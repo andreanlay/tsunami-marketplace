@@ -6,6 +6,7 @@ const { PORT, mongoUri } = require('./config')
 const app = express()
 
 const authRoute = require('./routes/api/Auth.js')
+const addressRoute = require('./routes/api/Address.js')
 
 app.use(cors())
 app.use(morgan('tiny'))
@@ -20,5 +21,6 @@ mongoose.connect(mongoUri, {
   .catch((err) => console.log(err))
 
 app.use('/api/auth', authRoute)
+app.use('/api/address', addressRoute)
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`))
