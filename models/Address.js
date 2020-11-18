@@ -6,7 +6,7 @@ const AddressSchema = new Schema({
         required: true,
     },
     is_default: {
-        default: false,
+        type: Boolean,
     },
     name: String,
     phone_number: String,
