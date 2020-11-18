@@ -44,7 +44,7 @@ const AccountSchema = new Schema({
                 price: Number,
             }
         ]
-    }
+    },
 })
 
 const Account = model('accounts', AccountSchema)
