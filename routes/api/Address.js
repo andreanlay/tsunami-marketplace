@@ -3,7 +3,7 @@ const Address = require('../../models/Address')
 
 const router = Router()
 
-router.get('/:uid', async(req, res) => {
+router.get('/:uid', async (req, res) => {
     const uid = req.params.uid
 
     try {
@@ -17,7 +17,7 @@ router.get('/:uid', async(req, res) => {
     }
 })
 
-router.post('/add', async(req, res) => {
+router.post('/add', async (req, res) => {
     const newAddress = new Address(req.body)
 
     try {
@@ -26,6 +26,21 @@ router.post('/add', async(req, res) => {
             throw new Error('Something went wrong...')
         }
         res.status(200).json('Address added...')
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.put('/setdefault/:id', async (req, res) => {
+    const id = req.params.id
+
+    try {
+        await Address.findOneAndUpdate({is_default: true}, {is_default: false})
+        const newAddress = await Address.findOneAndUpdate({_id: id}, {is_default: true})
+        if(!newAddress) {
+            throw new Error('Error while updating new address..')
+        }
+        res.status(200).json("Set default success!")
     } catch(err) {
         res.status(500).json({message: err.message})
     }
