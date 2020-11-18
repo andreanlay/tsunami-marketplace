@@ -6,58 +6,273 @@
         <input v-model="receiver" type="text" class="row-input">
     </div>
     <div class="data-row">
-        <p class="row-label">Shipping Addressd</p>
-        <input v-model="address" type="text" class="row-input">
+        <p class="row-label">Phone Number</p>
+        <input v-model="phone_number" type="text" class="row-input">
     </div>
-    <b-button variant="primary" @click="addAddress" class="align-self-end">Add Address</b-button>
-    
+    <div class="data-row">
+        <p class="row-label">Province</p>
+        <select class="row-select" v-model="selectedPlace.provinceID" @change="onSelect(1)">
+            <option 
+                v-for="item in placesData.provinces" 
+                :key="item.id" 
+                :value="item.id"
+            >
+                {{item.nama}}
+            </option>
+        </select>
+    </div>  
+    <div class="data-row" v-show="placesData.citiesRegencies">
+        <p class="row-label">City / Regency</p>
+        <select class="row-select" v-model="selectedPlace.cityRegencyID" @change="onSelect(2)">
+            <option 
+                v-for="item in placesData.citiesRegencies"
+                :key="item.id"
+                :value="item.id"
+            >
+                {{item.nama}}
+            </option>
+        </select>
+    </div>  
+    <div class="data-row" v-show="placesData.districts">
+        <p class="row-label">District</p>
+        <select class="row-select" v-model="selectedPlace.districtID" @change="onSelect(3)">
+            <option 
+                v-for="item in placesData.districts"
+                :key="item.id"
+                :value="item.id"
+            >
+                {{item.nama}}
+            </option>
+        </select>
+    </div>  
+    <div class="data-row" v-show="placesData.subdistricts">
+        <p class="row-label">Sub-district</p>
+        <select class="row-select" v-model="selectedPlace.subdistrictID">
+            <option 
+                v-for="item in placesData.subdistricts"
+                :key="item.id"
+                :value="item.id"
+            >
+                {{item.nama}}
+            </option>
+        </select>
+    </div>  
+    <div class="data-row mt-2">
+        <p class="row-label">Address</p>
+        <input v-model="address" type="text" class="row-input">
+    </div>    
+    <b-form-checkbox
+        v-model="useGeolocation"
+        value=true
+        unchecked-value=false
+        class="align-self-end mb-3"
+    >
+        Use geolocation for more accurate location
+    </b-form-checkbox>
+    <GoogleMaps v-show="useGeolocation == 'true'" @mapClick="mapClick"/>
+    <b-button variant="primary" @click="addAddress" class="align-self-end">
+        <b-icon icon="plus"></b-icon>
+        Add Address
+        </b-button>
     <br>
     <h1 class="display-7 info-header">Address List</h1>
     <div id="table-container">
-        <b-table :items="items" hover responsive></b-table>
+        <b-table 
+            :items="data" 
+            :fields="fields"
+            bordered
+            responsive
+        >
+            <template #cell(actions)="row">
+                <div class="d-flex">
+                    <b-button size="sm" @click="row.toggleDetails" class="m-1">
+                        {{row.detailsShowing ? 'Hide' : 'Show'}} Details
+                    </b-button>
+                    <b-button size="sm" class="m-1" variant="success">
+                        <b-icon icon="check"></b-icon>
+                        Set as Default
+                    </b-button>
+                    <a :href="`//www.google.com/maps/search/?api=1&query=${row.item.details.coordinates}`" target="_blank">
+                        <b-button size="sm" class="m-1" variant="primary">
+                            <b-icon icon="map"></b-icon>
+                            View on Maps
+                        </b-button>
+                    </a>
+                </div>
+            </template>
+            <template #row-details="row">
+                <b-table 
+                    :items="row.item.details"
+                    :fields="detailsField"
+                    borderless
+                    stacked
+                    small
+                ></b-table>
+            </template>
+        </b-table>
     </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { mapGetters } from 'vuex'
+
+import GoogleMaps from '../../GoogleMaps.vue'
+
+const OPTIONS = {
+    province: 1,
+    cityRegency: 2,
+    district: 3,
+    subdistrict: 4
+}
+
 export default {
+    components: {
+        GoogleMaps
+    },
     data() {
         return {
             receiver: '',
+            phone_number: '',
+            selectedPlace: {
+                provinceID: null,
+                cityRegencyID: null,
+                districtID: null,
+                subdistrictID: null
+            },
+            placesData: {
+                provinces: null,
+                citiesRegencies: null,
+                districts: null,
+                subdistricts: null         
+            },
             address: '',
-            count: 2,
-            items: [
-                {
-                    '#': 1,
-                    'Name': 'John' ,
-                    'Shipping Address': 'UNTAR Kampus 4'
-                },
-                {
-                    '#': 2,
-                    'Name': 'Lisa',
-                    'Shipping Address': 'UNTAR Kampus 2'
-                },
-
-            ]
+            coordinates: null,
+            useGeolocation: false,
+            provinces: null,
+            data: [],
+            fields: ['name', 'shipping_address', 'phone_number', 'actions'],
+            detailsField: ['province', 'cityregency', 'district', 'subdistrict', 'coordinates'],
         }
     },
+    computed: {
+        ...mapGetters(['accountData'])
+    },
     methods: {
-        addAddress() {
-            this.count++
-            this.items.push(
-                {
-                    '#': this.count,
-                    'Name': this.receiver,
-                    'Shipping Address': this.address
+        onSelect(index) {
+            if(index == OPTIONS.province) {
+                axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${this.selectedPlace.provinceID}`)
+                .then(res => {
+                    this.placesData.citiesRegencies = res.data.kota_kabupaten
+                })
+                this.placesData.districts = null
+                this.placesData.subdistricts = null
+            } else if(index == OPTIONS.cityRegency) {
+                axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=${this.selectedPlace.cityRegencyID}`)
+                .then(res => {
+                    this.placesData.districts = res.data.kecamatan
+                })
+                this.placesData.subdistricts = null
+            } else {
+                axios.get(`https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=${this.selectedPlace.districtID}`)
+                .then(res => {
+                    this.placesData.subdistricts = res.data.kelurahan
+                })
+            }
+        },
+        async addAddress() {
+            let provinceName = ''
+            for(let obj of this.placesData.provinces) {
+                if(obj['id'] == this.selectedPlace.provinceID) {
+                    provinceName = obj['nama']
+                    break
                 }
-            )
+            }
+            let cityRegencyName = ''
+            for(let obj of this.placesData.citiesRegencies) {
+                if(obj['id'] == this.selectedPlace.cityRegencyID) {
+                    cityRegencyName = obj['nama']
+                    break
+                }
+            }
+            let districtName = ''
+            for(let obj of this.placesData.districts) {
+                if(obj['id'] == this.selectedPlace.districtID) {
+                    districtName = obj['nama']
+                    break
+                }
+            }
+            let subdistrictName = ''
+            for(let obj of this.placesData.subdistricts) {
+                if(obj['id'] == this.selectedPlace.subdistrictID) {
+                    subdistrictName = obj['nama']
+                    break
+                }
+            }
+
+            const newAddress = {
+                'owner_uid': this.accountData.uid,
+                'is_default': false,
+                'name': this.receiver,
+                'phone_number': this.phone_number,
+                'shipping_address': this.address,
+                'details': [{
+                    'province': provinceName,
+                    'cityregency': cityRegencyName,
+                    'district': districtName,
+                    'subdistrict': subdistrictName,
+                    'coordinates': `${this.coordinates.lat}, ${this.coordinates.lng}` 
+                }]
+            }
+
+            this.data.push(newAddress)
+            await axios.post("/api/address/add", newAddress)
+        },
+        mapClick(val) {
+            this.coordinates = val
         }
-    }
+    },
+    async mounted() {
+        await axios.get('https://dev.farizdotid.com/api/daerahindonesia/provinsi')
+        .then(res => {
+            this.placesData.provinces = res.data.provinsi
+        })
+        await axios.get(`/api/address/${this.accountData.uid}`)
+        .then(res => {
+            this.data = res.data
+        })
+    },
 }
 </script>
 
-<style>
+<style scoped>
 #table-container {
     width: 100%;
 }
+.row-input {
+    width: 40%;
+    height: 20px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid lightslategray;
+}
+
+.row-input:focus {
+    outline: none;
+}
+
+.row-select {
+    width: 40%;
+    height: 30px;
+    border: none;
+    background: none;
+    border: 1px solid lightslategray;
+    border-radius: 7.5px;
+}
+
+.row-select:focus {
+    outline: none;
+}
+
 </style>

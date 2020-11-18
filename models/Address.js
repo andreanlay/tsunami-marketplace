@@ -5,7 +5,7 @@ const AddressSchema = new Schema({
         type: String,
         required: true,
     },
-    default: {
+    is_default: {
         default: false,
     },
     name: String,

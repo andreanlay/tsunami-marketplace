@@ -69,11 +69,6 @@ export default {
         }).catch(err => {
             console.log(err)
         })
-        
-        await axios.get(`/api/address/${uid}`)
-        .then(res => {
-            this.$store.commit('accountAddress', res.data)
-        })
     }
 }
 </script>
