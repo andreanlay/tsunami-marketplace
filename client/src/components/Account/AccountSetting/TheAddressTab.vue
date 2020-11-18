@@ -85,17 +85,20 @@
         >
             <template #cell(actions)="row">
                 <div class="d-flex">
-                    <b-button size="sm" @click="row.toggleDetails" class="m-1">
-                        {{row.detailsShowing ? 'Hide' : 'Show'}} Details
+                    <b-button size="sm" @click="row.toggleDetails" class="m-1" variant="primary">
+                        <b-icon v-if="row.detailsShowing" icon="eye-slash"></b-icon>
+                        <b-icon v-else icon="eye"></b-icon>
                     </b-button>
-                    <b-button size="sm" class="m-1" variant="success">
+                    <b-button v-if="row.item.is_default" size="sm" class="m-1" variant="success">
                         <b-icon icon="check"></b-icon>
+                        Default Address
+                    </b-button>
+                    <b-button v-else size="sm" class="m-1" variant="light" @click="setAsDefault(row.item._id)">
                         Set as Default
                     </b-button>
                     <a :href="`//www.google.com/maps/search/?api=1&query=${row.item.details.coordinates}`" target="_blank">
-                        <b-button size="sm" class="m-1" variant="primary">
+                        <b-button size="sm" class="m-1" variant="warning">
                             <b-icon icon="map"></b-icon>
-                            View on Maps
                         </b-button>
                     </a>
                 </div>
@@ -180,6 +183,18 @@ export default {
                     this.placesData.subdistricts = res.data.kelurahan
                 })
             }
+        },
+        async setAsDefault(id) {
+            for(let address of this.data) {
+                if(address['is_default']) {
+                    address['is_default'] = false
+                }
+                if(address['_id'] == id) {
+                    address['is_default'] = true
+                }
+            }
+
+            await axios.put(`/api/address/setdefault/${id}`)
         },
         async addAddress() {
             let provinceName = ''
