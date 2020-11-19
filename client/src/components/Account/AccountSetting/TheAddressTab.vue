@@ -155,7 +155,7 @@ export default {
             useGeolocation: false,
             provinces: null,
             data: [],
-            fields: ['name', 'shipping_address', 'phone_number', 'actions'],
+            fields: [{key: 'name', sortable: true}, 'shipping_address', 'phone_number', 'actions'],
             detailsField: ['province', 'cityregency', 'district', 'subdistrict', 'coordinates'],
         }
     },
