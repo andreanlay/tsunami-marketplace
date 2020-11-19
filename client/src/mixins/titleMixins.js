@@ -6,11 +6,11 @@ function getTitle (vm) {
         : title
     }
   }
-  export default {
-    created () {
-      const title = getTitle(this)
-      if (title) {
-        document.title = title
-      }
+export default {
+  created () {
+    const title = getTitle(this)
+    if (title) {
+      document.title = title
     }
   }
+}
