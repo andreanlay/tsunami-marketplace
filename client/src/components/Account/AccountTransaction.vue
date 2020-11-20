@@ -32,9 +32,11 @@
                 header-class="bold"
                 header-bg-variant="primary"
                 class="m-3"
+                :class="{'card-dark': darkMode}"
             >
                 <b-card-text>
-                    <b-table responsive striped :items="salesReport"></b-table>    
+                    <b-table v-if="darkMode" responsive striped :items="salesReport" dark></b-table>   
+                    <b-table v-else responsive striped :items="salesReport"></b-table>    
                 </b-card-text>
             </b-card>
         </b-col>
@@ -43,8 +45,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     title: 'Transactions – Tsunami',
+    computed: {
+        ...mapGetters(['darkMode'])
+    },
     data() {
         return {
             saved_money: '153.200',

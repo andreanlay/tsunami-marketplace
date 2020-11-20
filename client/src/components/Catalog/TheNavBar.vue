@@ -1,13 +1,13 @@
 <template>
 <div class="d-flex flex-row fixed-top m-2 justify-content-between" id="navbar">
     <router-link :to="{name: 'homepage'}">
-        <b-button variant="light" class="btn-circle">
+        <b-button variant="light" class="btn-circle" :class="{'btn-circle-dark' : darkMode}">
             <b-icon icon="chevron-compact-left" class="btn-icon"></b-icon>
         </b-button>
     </router-link>
     <div class="flex-fill ml-2 d-none"></div> 
     <router-link :to="{name: 'account'}">
-        <b-button variant="light" class="btn-circle">
+        <b-button variant="light" class="btn-circle" :class="{'btn-circle-dark' : darkMode}">
             <b-icon icon="person-circle" class="btn-icon"></b-icon>
         </b-button>
     </router-link>
@@ -15,8 +15,12 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+    computed: {
+        ...mapGetters(['darkMode'])
+    },
 }
 </script>
 
@@ -38,5 +42,16 @@ export default {
 
 #navbar {
     opacity: 0.5;
+}
+
+.btn-circle-dark {
+    color: white;
+    outline: none;
+    background-color: #333 !important;
+}
+
+.btn-circle-dark:hover {
+    color: white;
+    opacity: 0.8;
 }
 </style>

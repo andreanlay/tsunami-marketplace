@@ -1,7 +1,7 @@
 <template>
-<div class="d-flex flex-column side-bar rounded-left rounded-bottom text-center ">
+<div class="d-flex flex-column side-bar rounded-left rounded-bottom text-center " :class="{'side-bar-dark' : darkMode}">
     <div id="brand">
-        <img id="logo" src="@/assets/tsunami_logo.png" style="max-width: 30px; max-height: 28px;">
+        <img id="logo" src="@/assets/tsunami_logo.png" style="max-width: 30px; max-height: 28px;" :class="{'tsunami-logo-dark' : darkMode}">
         <span class="d-none d-sm-inline">Tsunami</span>
     </div>
     <router-link :to="{name: 'dashboard'}">
@@ -9,7 +9,9 @@
             variant="default"
             style="width: 100%"
             @click="setActive(1)"
-            :class="{'sidebar-active' : active == 1}"
+            :class="{'sidebar-active' : active == 1, 
+                     'sidebar-btn-dark' : darkMode,
+                     'sidebar-active-dark': darkMode && active == 1}"
         >
             <b-icon icon="columns"></b-icon>
             <span class="d-none d-sm-inline"> Dashboard</span>
@@ -20,7 +22,9 @@
             variant="default"
             style="width: 100%"
             @click="setActive(2)"
-            :class="{'sidebar-active' : active == 2}"
+            :class="{'sidebar-active' : active == 2, 
+                     'sidebar-btn-dark' : darkMode,
+                     'sidebar-active-dark': darkMode && active == 2}"
         >
             <b-icon icon="box-seam"></b-icon>
             <span class="d-none d-sm-inline"> Products</span>
@@ -31,7 +35,9 @@
             variant="default"
             style="width: 100%"
             @click="setActive(3)"
-            :class="{'sidebar-active' : active == 3}"
+            :class="{'sidebar-active' : active == 3, 
+                     'sidebar-btn-dark' : darkMode,
+                     'sidebar-active-dark': darkMode && active == 3}"
         >
             <b-icon icon="clock-history"></b-icon>
             <span class="d-none d-sm-inline"> Transaction History</span>
@@ -42,7 +48,9 @@
             variant="default"
             style="width: 100%"
             @click="setActive(4)"
-            :class="{'sidebar-active' : active == 4}"
+            :class="{'sidebar-active' : active == 4, 
+                     'sidebar-btn-dark' : darkMode,
+                     'sidebar-active-dark': darkMode && active == 4}"
         >
             <b-icon icon="gear"></b-icon>
             <span class="d-none d-sm-inline"> Account Setting</span>
@@ -52,11 +60,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     data() {
         return {
             active: 1
         }
+    },
+    computed: {
+        ...mapGetters(['darkMode'])
     },
     methods: {
         setActive(index) {
@@ -87,5 +100,26 @@ export default {
 #delete-account-btn:hover {
     background-color: red;
     color: white;
+}
+
+.tsunami-logo-dark {
+  content: url('../../assets/tsunami_logo_white.png') !important;
+}
+
+.side-bar-dark { 
+    background-color: rgba(40, 40, 40, 0.2) !important;
+}
+
+.sidebar-btn-dark {
+    color: white;
+}
+
+.sidebar-btn-dark:hover {
+    background-color: rgb(2, 80, 150) !important;
+    color: white;
+}
+
+.sidebar-active-dark {
+    background-color: rgb(2, 80, 150) !important;
 }
 </style>

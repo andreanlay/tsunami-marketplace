@@ -1,6 +1,6 @@
 <template>
-<div class="d-flex flex-column align-items-start">
-    <h1 class="display-7 info-header">
+<div class="d-flex flex-column align-items-start" :class="{'dark-account-tab': darkMode}">
+    <h1 class="display-7 info-header" :class="{'info-header-dark': darkMode}">
         Personal Information
         <a href="#"><b-badge @click="editPersonalInfo()" variant="light">Edit</b-badge></a>
     </h1>
@@ -34,7 +34,7 @@
         <b-icon icon="check"></b-icon> {{updatingPersonalDetails ? "Saving..." : "Save"}}
     </b-button>
 
-    <h1 class="display-7 info-header">
+    <h1 class="display-7 info-header" :class="{'info-header-dark': darkMode}">
         Seller Information
         <a href="#"><b-badge @click="editSellerInfo()" variant="light">Edit</b-badge></a>
     </h1>
@@ -78,7 +78,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['accountData'])
+        ...mapGetters(['accountData', 'darkMode'])
     },
     methods: {
         updateStore() {
@@ -145,21 +145,6 @@ export default {
     padding-bottom: 5px;
 }
 
-.tab-inactive {
-    opacity: 0.7 !important;
-    color: black !important;
-    transition: all 0.5 ease-in-out;
-}
-
-.tab-inactive:hover {
-    margin-top: -2px;
-}
-
-.tab-active {
-    background: none !important;
-    border-bottom: 2px solid black !important;
-}
-
 .data-row {
     display: flex;
     width: 100%;
@@ -193,5 +178,13 @@ export default {
 
 .update-active {
     opacity: 0.6;
+}
+
+.info-header-dark {
+    border-bottom: 1px solid white;
+}
+
+.dark-account-tab * {
+    color: white;
 }
 </style>

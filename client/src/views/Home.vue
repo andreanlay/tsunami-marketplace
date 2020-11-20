@@ -1,72 +1,75 @@
 <template>
-<b-container fluid>
-    <HomeNavBar/>
-    <b-button v-b-modal.search-modal variant="primary" class="floating-btn btn-circle d-sm-none">
-        <b-icon icon="search" class="icon"></b-icon>
-    </b-button>
-    <b-modal id="search-modal" title="Search" centered>
-        <b-form>
-            <b-form-group
-                id="search-group"
-            >
-                <b-form-input
-                    id="search-input"
-                    type="text"
-                    placeholder="Enter product name"
-                    required
-                ></b-form-input>    
-            </b-form-group>
-        </b-form>
-    </b-modal>
+<div>
+    <b-container fluid>
+        <HomeNavBar/>
+        <b-button v-b-modal.search-modal variant="primary" class="floating-btn btn-circle d-sm-none">
+            <b-icon icon="search" class="icon"></b-icon>
+        </b-button>
+        <b-modal id="search-modal" title="Search" centered>
+            <b-form>
+                <b-form-group
+                    id="search-group"
+                >
+                    <b-form-input
+                        id="search-input"
+                        type="text"
+                        placeholder="Enter product name"
+                        required
+                    ></b-form-input>    
+                </b-form-group>
+            </b-form>
+        </b-modal>
 
-    <b-row class="m-4">
-        <b-col sm="12" xl="8">
-            <b-carousel
-                id="deals-carousel"
-                :interval="3000"
-                controls
-                indicators
-            > 
-                <b-carousel-slide
-                    v-for="banner in banners"
-                    :key="banner.id"
-                    :name="banner.id"
-                    :img-src="banner.image"
-                ></b-carousel-slide>
-            </b-carousel>
-        </b-col>
-        <b-col sm="12" xl="4">
-            <b-row>
-                <p class="lead">Recharge and Payment</p>
-            </b-row>
-            <b-row>
-                <b-col>
-                    <BillsButton v-for="type in billsType" :key="type.id" :iconName="type.iconName" :buttonText="type.caption"/>
-                </b-col>
-            </b-row>
-        </b-col>
-    </b-row>
-    <b-row>
-        <b-col>
-            <h1>Today's Flash sale✨ {{todayDate}}</h1>
-        </b-col>
-    </b-row>
-    <hr>
-    <b-row class="d-flex justify-content-center">
-        <FlashSaleCard v-for="product in flashSaleProducts" :key="product.product_id" :product="product"/>
-    </b-row>
-    <b-row>
-        <b-col>
-            <h1>Daily deals🎁</h1>
-        </b-col>
-    </b-row>
-    <hr>
-    <b-row class="d-flex justify-content-center">
-        <DailyDealsCard v-for="product in dailyDealsProducts" :key="product.id" :product="product"/>
-    </b-row>
-    <br>
+        <b-row class="m-4">
+            <b-col sm="12" xl="8">
+                <b-carousel
+                    id="deals-carousel"
+                    :interval="3000"
+                    controls
+                    indicators
+                > 
+                    <b-carousel-slide
+                        v-for="banner in banners"
+                        :key="banner.id"
+                        :name="banner.id"
+                        :img-src="banner.image"
+                    ></b-carousel-slide>
+                </b-carousel>
+            </b-col>
+            <b-col sm="12" xl="4">
+                <b-row>
+                    <p class="lead" :class="{'header-dark': darkMode}">Recharge and Payment</p>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <BillsButton v-for="type in billsType" :key="type.id" :iconName="type.iconName" :buttonText="type.caption"/>
+                    </b-col>
+                </b-row>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col>
+                <h1 :class="{'header-dark' : darkMode}">Today's Flash sale✨ {{todayDate}}</h1>
+            </b-col>
+        </b-row>
+        <hr>
+        <b-row class="d-flex justify-content-center">
+            <FlashSaleCard v-for="product in flashSaleProducts" :key="product.product_id" :product="product"/>
+        </b-row>
+        <br>
+        <b-row>
+            <b-col>
+                <h1 :class="{'header-dark' : darkMode}">Daily deals🎁</h1>
+            </b-col>
+        </b-row>
+        <hr>
+        <b-row class="d-flex justify-content-center">
+            <DailyDealsCard v-for="product in dailyDealsProducts" :key="product.id" :product="product"/>
+        </b-row>
+        <br>
+    </b-container>
     <Footer/>
-</b-container>
+</div>
 </template>
 
 <script>
@@ -103,7 +106,7 @@ export default {
         Footer
     },
     computed: {
-        ...mapGetters(['flashSaleProducts', 'dailyDealsProducts'])
+        ...mapGetters(['flashSaleProducts', 'dailyDealsProducts', 'darkMode'])
     },
     mounted() {
         let date = new Date()
@@ -165,7 +168,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .floating-btn {
     position: fixed;
     bottom: 20px;
@@ -185,5 +188,15 @@ export default {
 
 .icon {
     margin-left: -4px;
+}
+
+.header-dark {
+    color: white;
+    filter: brightness(50%);
+}
+
+.card-dark {
+    color: white;
+    background-color: #312c2c !important;
 }
 </style>

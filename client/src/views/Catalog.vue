@@ -1,7 +1,7 @@
 <template>
 <div>
     <CatalogNavBar/>
-    <b-jumbotron class="d-flex align-items-center mb-0 parallax" id="main-jumbotron">
+    <b-jumbotron class="d-flex align-items-center mb-0 parallax" id="main-jumbotron" :class="{'jumbotron-dark' : darkMode}">
         <div class="container text-center">
             <h1 class="display-4">Welcome to our Catalog.</h1>
             <h1 class="lead">where all things are organized.</h1>
@@ -28,7 +28,7 @@ export default {
         ParallaxSection,
     },
     computed: {
-        ...mapGetters(['category_names', 'category_data'])
+        ...mapGetters(['category_names', 'category_data', 'darkMode'])
     }
 }
 </script>
@@ -58,5 +58,10 @@ html {
     background-size: cover;
     background-position: 50% 50%;
     height: 100vh;
+}
+
+.jumbotron-dark {
+    color: white;
+    background: linear-gradient(to bottom right, #0D324D, #7F5A83) !important;
 }
 </style>

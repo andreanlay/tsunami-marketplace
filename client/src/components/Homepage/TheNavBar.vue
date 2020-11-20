@@ -1,5 +1,5 @@
 <template>
-<div class="topnav">
+<div class="topnav" :class="{'dark-mode' : darkMode}">
     <router-link :to="{ name: 'homepage' }">
         <div class="nav-btn active">
             <img id="logo" src="@/assets/tsunami_logo_white.png" alt="">
@@ -7,12 +7,12 @@
         </div>
     </router-link>
     <router-link :to="{ name: 'catalog' }">
-        <div class="nav-btn">
+        <div class="nav-btn" :class="{'dark-nav' : darkMode}">
             Catalog
         </div>
     </router-link>
     <router-link :to="{ name: 'about-us' }">
-        <div class="nav-btn">
+        <div class="nav-btn" :class="{'dark-nav' : darkMode}">
             About us
         </div>
     </router-link>
@@ -21,18 +21,18 @@
         <div class="search-bar">
             <input v-model="searchQuery" @keyup.enter="search" class="search-box" id="searchbox" type="text" placeholder="Search..">
             <router-link :to="{ name: search, params: {query: searchQuery}}">
-                <div @click="search" class="nav-btn">
+                <div @click="search" class="nav-btn" :class="{'dark-nav' : darkMode}">
                     <b-icon icon="search"></b-icon>
                 </div>
             </router-link>
         </div>
         <router-link :to="{ name: 'cart' }">
-            <div class="nav-btn">
+            <div class="nav-btn" :class="{'dark-nav' : darkMode}">
                 <b-icon icon="cart"></b-icon>
             </div>
         </router-link>
         <router-link :to="{ name: 'dashboard' }">
-            <div class="nav-btn">
+            <div class="nav-btn" :class="{'dark-nav' : darkMode}">
                 <b-icon icon="person-circle"></b-icon>
                 {{displayName}}
             </div>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import firebase from 'firebase/app'
 
 export default {
@@ -50,6 +51,9 @@ export default {
             searchQuery: '',
             displayName: 'Guest',
         }
+    },
+    computed: {
+        ...mapGetters(['darkMode'])
     },
     methods: {
         search() {
@@ -159,5 +163,18 @@ export default {
         margin: 0;
         padding: 14px;
     }
+}
+
+.dark-mode {
+  color: black;
+  background-color: #312c2c !important;
+}
+
+.dark-mode .nav-btn:hover {
+    background-color: #645959 !important;
+}
+
+.dark-mode .nav-btn {
+    color: white !important;
 }
 </style>

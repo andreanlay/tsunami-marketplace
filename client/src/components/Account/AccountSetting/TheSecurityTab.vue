@@ -1,6 +1,6 @@
 <template>
-<div class="d-flex flex-column align-items-start m-3">
-    <h1 class="display-7 info-header">Password</h1>
+<div class="d-flex flex-column align-items-start m-3" :class="{'dark-account-tab': darkMode}">
+    <h1 class="display-7 info-header" :class="{'info-header-dark': darkMode}">Password</h1>
     <div class="data-row">
         <p class="row-label">Current Password</p>
         <input v-model="password" type="password" class="row-input">
@@ -24,7 +24,7 @@
         {{changePasswordLoading ? 'Updating...' : 'Update'}}
     </b-button>
 
-    <h1 class="display-7 info-header">Tsunami PIN</h1>
+    <h1 class="display-7 info-header" :class="{'info-header-dark': darkMode}">Tsunami PIN</h1>
     <div class="data-row">
         <p class="row-label">Current PIN</p>
         <input v-model="pin" type="password" class="row-input">
@@ -73,7 +73,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['accountData'])
+        ...mapGetters(['accountData', 'darkMode'])
     },
     methods: {
         checkPassword() {

@@ -7,6 +7,7 @@
     img-height="180px"
     img top
     style="width: 18rem;"
+    :class="{'card-dark' : darkMode}"
     >
     <b-card-text>
         {{product.caption}}
@@ -44,7 +45,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex' 
+
 export default {
+    computed: {
+        ...mapGetters(['darkMode'])
+    },
     props: {
         product: Object
     },

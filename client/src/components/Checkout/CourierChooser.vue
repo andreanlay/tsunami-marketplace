@@ -9,7 +9,15 @@
     <b-form-select></b-form-select>
     </b-form-group>
     <div id="table-container">
-        <b-table :fields="fields" :items="items" hover responsive>
+        <b-table v-if="darkMode" :fields="fields" :items="items" hover responsive dark>
+            <template #cell(action)>
+                <b-button size="sm" variant="success">
+                    Select
+                </b-button>
+            </template>
+        </b-table>
+
+        <b-table v-else :fields="fields" :items="items" hover responsive>
             <template #cell(action)>
                 <b-button size="sm" variant="success">
                     Select
@@ -21,6 +29,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     data() {
         return {
@@ -37,6 +47,9 @@ export default {
 
             ]
         }
+    },
+    computed: {
+        ...mapGetters(['darkMode'])
     }
 }
 </script>

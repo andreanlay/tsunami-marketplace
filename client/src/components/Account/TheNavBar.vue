@@ -1,15 +1,17 @@
 <template>
 <div>
-    <div class="topnav rounded-right">
+    <div class="topnav rounded-right" :class="{'topnav-dark' : darkMode}">
         <router-link :to="{name: 'homepage'}">
-            <b-icon icon="chevron-compact-left"></b-icon>
-            <span class="d-sm-inline d-none">Back to Home</span>
+            <span class="d-sm-inline d-none">
+                <b-icon icon="chevron-compact-left"></b-icon>
+                Back to Home
+            </span>
         </router-link>
         <div id="right-side">
-            <b-button id="notification-popover" variant="default">
+            <b-button id="notification-popover" variant="default" :class="{'btn-dark' : darkMode}">
                 <b-icon icon="bell"></b-icon>
             </b-button>
-            <b-button id="message-popover" variant="default">
+            <b-button id="message-popover" variant="default" :class="{'btn-dark' : darkMode}">
                 <b-icon icon="chat-text"></b-icon>
             </b-button>
             <div class="v-div"></div>
@@ -91,8 +93,12 @@
 
 <script>
 import firebase from 'firebase/app'
+import { mapGetters } from 'vuex'
 
 export default {
+    computed: {
+        ...mapGetters(['darkMode'])
+    },
     methods: {
         logout() {
             firebase.auth().signOut()
@@ -152,7 +158,7 @@ export default {
 
 .timeline:before {
     content: ' ';
-    background: #d4d9df;
+    background: black;
     position: absolute;
     left: 29px;
     width: 2px;
@@ -192,5 +198,23 @@ export default {
 
 .chat-item > .row:hover {
     color: lightskyblue;
+}
+
+.topnav-dark {
+    background-color: rgba(40, 40, 40, 0.2) !important;
+}
+
+.topnav-dark a:hover {
+    background-color: rgb(2, 80, 150) !important;
+    border-radius: 25px;
+}
+
+.btn-dark {
+    background: none;
+    border: none;
+}
+
+.topnav-dark span {
+    color: white;
 }
 </style>

@@ -22,7 +22,7 @@ export default {
         ItemCard
     },
     computed: {
-        ...mapGetters(['searchProduct'])
+        ...mapGetters(['searchProduct', 'darkMode'])
     },
     data() {
         return {

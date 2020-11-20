@@ -1,6 +1,6 @@
 <template>
-<div class="d-flex flex-column align-items-start m-3">
-    <h1 class="display-7 info-header">Add New Address</h1>
+<div class="d-flex flex-column align-items-start m-3" :class="{'dark-account-tab': darkMode}">
+    <h1 class="display-7 info-header" :class="{'info-header-dark': darkMode}">Add New Address</h1>
     <div class="data-row">
         <p class="row-label">Receiver Name</p>
         <input v-model="receiver" type="text" class="row-input">
@@ -160,7 +160,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['accountData'])
+        ...mapGetters(['accountData', 'darkMode'])
     },
     methods: {
         onSelect(index) {

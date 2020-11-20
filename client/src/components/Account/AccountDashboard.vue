@@ -54,9 +54,11 @@
             header-class="bold"
             header-bg-variant="primary"
             class="m-3"
+            :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table responsive striped :items="salesReport"></b-table>    
+                <b-table v-if="darkMode" responsive striped :items="salesReport" dark></b-table>    
+                <b-table v-else responsive striped :items="salesReport"></b-table>    
             </b-card-text>
         </b-card>
     </b-col>
@@ -65,10 +67,9 @@
             <b-col>
                 <b-card
                     title="Transaction Status"
-                    text-variant="dark"
-                    bg-variant="white"
                     style="max-width: 24rem;"
                     class="m-3"
+                    :class="{'card-dark': darkMode}"
                 >
                     <b-card-text>
                         <b-progress :value="33" variant="primary"></b-progress>
@@ -79,10 +80,9 @@
             <b-col>
                 <b-card
                     title="Rating summary"
-                    text-variant="dark"
-                    bg-variant="white"
                     style="max-width: 24rem;"
                     class="m-3"
+                    :class="{'card-dark' : darkMode}"
                 >
                     <b-card-text>Your rating is at 5.0. Keep up the good work!</b-card-text>
                 </b-card>
@@ -96,9 +96,11 @@
             header-bg-variant="success"
             class="m-3"
             style="width: 100%"
+            :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table responsive striped :items="productReviews"></b-table>    
+                <b-table v-if="darkMode" responsive striped :items="productReviews" dark></b-table>    
+                <b-table v-else responsive striped :items="productReviews"></b-table>    
             </b-card-text>
         </b-card>
         </b-row>
@@ -113,7 +115,7 @@ import { mapGetters } from 'vuex'
 export default {
     title: 'Dashboard – Tsunami',
     computed: {
-        ...mapGetters(['salesReport', 'productReviews'])
+        ...mapGetters(['salesReport', 'productReviews', 'darkMode'])
     },
     data() {
         return {
@@ -130,5 +132,13 @@ export default {
 .bold {
     font-size: 18px;
     font-weight: 500;
+}
+
+b-card-text {
+    color: white !important;
+}
+
+.card-dark {
+    background-color: rgb(15, 15, 15) !important;
 }
 </style>

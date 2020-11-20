@@ -1,5 +1,5 @@
 <template>
-<footer class="footer py-4 bg-light text-center">
+<footer class="footer py-4 bg-light text-center" :class="{'footer-dark' : darkMode}">
     <div class="container">
         <div class="row">
         <div class="col-sm-3">
@@ -39,8 +39,12 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+    computed: {
+        ...mapGetters(['darkMode'])
+    },
 }
 </script>
 
@@ -61,5 +65,10 @@ a:hover {
 .display-6 {
     font-size: 1.25rem;
     font-weight: 300;
+}
+
+.footer-dark {
+    color: lightgray;
+    background-color: #333 !important;
 }
 </style>
