@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import titleMixin from './mixins/titleMixins'
-import darkModeMixin from './mixins/darkModeMixin'
 import store from './store/store'
 import firebase from 'firebase/app'
 
@@ -14,7 +13,6 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.mixin(titleMixin)
-Vue.mixin(darkModeMixin)
 
 const firebaseConfig = {
   apiKey: "AIzaSyCux04fNQ85Stpk2MsUZXYYd92_rWZDF_o",

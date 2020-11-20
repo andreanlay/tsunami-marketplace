@@ -10,6 +10,7 @@ import ProductReview from './modules/productsReview.js'
 import Products from './modules/products.js'
 import PaymentMethods from './modules/payment.js'
 import Authentication from './modules/auth.js'
+import DarkMode from './modules/darkMode.js'
 
 
 Vue.use(Vuex)
@@ -17,11 +18,12 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     modules: {
         Authentication,
+        DarkMode,
         Catalog,
         Products,
         ProductSold,
         ProductReview,
-        PaymentMethods
+        PaymentMethods,
     }
 })
 
