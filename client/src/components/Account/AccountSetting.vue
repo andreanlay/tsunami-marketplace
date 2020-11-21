@@ -61,8 +61,6 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import axios from 'axios'
 import { mapGetters } from 'vuex' 
 
 import InformationTab from '@/components/Account/AccountSetting/TheInformationTab'
@@ -81,16 +79,6 @@ export default {
     computed: {
         ...mapGetters(['accountData', 'darkMode'])
     },
-    async beforeCreate() {
-        const uid = firebase.auth().currentUser.uid
-        await axios.get(`/api/auth/${uid}`).then(res => {
-            res.data['displayName'] = firebase.auth().currentUser.displayName
-            res.data['email'] = firebase.auth().currentUser.email
-            this.$store.commit('accountData', res.data)
-        }).catch(err => {
-            console.log(err)
-        })
-    }
 }
 </script>
 
