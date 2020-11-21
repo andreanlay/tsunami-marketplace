@@ -100,8 +100,8 @@ export default {
         ...mapGetters(['darkMode'])
     },
     methods: {
-        logout() {
-            firebase.auth().signOut()
+        async logout() {
+            await firebase.auth().signOut()
         }
     }
 }
