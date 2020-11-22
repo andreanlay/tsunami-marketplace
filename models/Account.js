@@ -47,6 +47,6 @@ const AccountSchema = new Schema({
     },
 })
 
-const Account = model('accounts', AccountSchema)
+const Account = model('account', AccountSchema)
 
 module.exports = Account
