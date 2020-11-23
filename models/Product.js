@@ -37,6 +37,10 @@ const ProductSchema = new Schema({
         type: Number,
         required: true
     },
+    sold: {
+        type: Number,
+        required: true
+    },
     specifications: {
         type: Array,
         required: true
