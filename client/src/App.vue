@@ -13,8 +13,8 @@ export default {
     ...mapGetters(['darkMode'])
   },
   mounted() {
-    if(localStorage.getItem('darkMode')) {
-      this.$store.commit('switchDarkMode')
+    if(JSON.parse(localStorage.getItem('darkMode'))) {
+      this.$store.commit('switchDarkMode', true)
     }
   }
 }

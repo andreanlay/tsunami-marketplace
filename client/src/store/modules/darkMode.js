@@ -11,7 +11,7 @@ const actions = {
 }
 
 const mutations = {
-    switchDarkMode: (state) => state.darkMode = !state.darkMode
+    switchDarkMode: (state, flag) => state.darkMode = flag
 }
 
 export default {

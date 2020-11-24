@@ -36,13 +36,13 @@ export default {
     },
     methods: {
         darkModeSwitch() {
-            this.$store.commit('switchDarkMode')
             this.darkMode = !this.darkMode
-            localStorage.setItem('darkMode', this.darkMode)
+            localStorage.setItem('darkMode', JSON.stringify(this.darkMode))
+            this.$store.commit('switchDarkMode', this.darkMode)
         }
     },
     created() {
-        this.darkMode = localStorage.getItem('darkMode')
+        this.darkMode = JSON.parse(localStorage.getItem('darkMode'))
     }
 }
 </script>
