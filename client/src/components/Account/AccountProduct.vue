@@ -7,13 +7,83 @@
     class="m-3"
     :class="{'card-dark': darkMode}"
 >
+    <transition name="fade">
+        <b-alert
+            v-model="event.eventError"
+            class="position-fixed fixed-top m-0 rounded-0"
+            style="z-index: 1000"
+            variant="danger"
+            dismissible
+        >
+            <b>Please select one or more items to add event!</b>
+        </b-alert>
+    </transition>
     <b-card-text>
         <div class="product-action-menu">
-            <b-button variant="success" class="mb-4">Set Flash Sale</b-button>
-            <b-button variant="danger" class="ml-4 mr-auto mb-4">Set Daily Deals</b-button>
-            <b-button v-b-modal.add-product-modal variant="warning" class="ml-4 mb-4 align-self-end">Add Product</b-button>
+            <b-button 
+                variant="success" 
+                @click="fields[0].visible = !fields[0].visible" 
+                class="mb-4" 
+                :class="{'mr-auto': !fields[0].visible}"
+            >
+            {{fields[0].visible ? 'Hide' : 'Toggle'}} Events
+            </b-button>
+            <b-button variant="danger" v-if="fields[0].visible" @click="setEvent" class=" ml-3 mr-auto mb-4">Set Events</b-button>
+            <b-button v-b-modal.add-product-modal variant="warning" class="ml-3 mb-4 align-self-end">Add Product</b-button>
         </div>
-        <b-table responsive striped :items="products" :fields="fields" :dark="darkMode">
+        <b-modal
+            id="add-event-modal"
+            title="Add Event"
+            :header-bg-variant="theme()"
+            :header-text-variant="textTheme()"
+            :body-bg-variant="theme()"
+            :body-text-variant="textTheme()"
+            :footer-bg-variant="theme()"
+            :footer-text-variant="textTheme()"
+            button-size="sm"
+            size="md"
+            v-model="event.eventModal"
+            @ok="addEvent"
+        >
+            <b-form-group
+                label="Event Type"
+            >
+                <b-form-select v-model="event.selectedEvent" :options="event.options"></b-form-select>
+            </b-form-group>
+            <div v-show="event.selectedEvent == 'flashsale'">
+                <b-form-group
+                    label="Start Time"
+                >
+                    <b-form-datepicker value-as-date v-model="event.flashsale.startDate" :min="tommorow"></b-form-datepicker>
+                    <b-form-timepicker v-model="event.flashsale.startTime" class="mt-2"></b-form-timepicker>
+                </b-form-group>
+                <b-form-group
+                    label="End Time"
+                >
+                    <b-form-datepicker value-as-date v-model="event.flashsale.endDate" :min="tommorow"></b-form-datepicker>
+                    <b-form-timepicker v-model="event.flashsale.startTime" class="mt-2"></b-form-timepicker>
+                </b-form-group>
+                <p style="font-size: 18px">Flashsale Stock</p>
+                <div v-for="item in event.flashSaleProduct" :key="item.id">
+                    <b-form-group
+                        :label="`${item.product_name} | Stock: ${item.stock}`"
+                    >
+                        <b-form-input v-model="item.stock" type="range" min="1" :max="item.max_stock" number></b-form-input>
+                        <div class="d-flex flex-row justify-content-between">
+                            <p><b>1</b></p>
+                            <p><b>{{item.max_stock}}</b></p>
+                        </div>
+                    </b-form-group>
+                </div>
+            </div>
+        </b-modal>
+
+        <b-table responsive striped :items="products" :fields="visibleFields" :dark="darkMode">
+            <template #cell(#)="row">
+                <b-form-checkbox
+                    @change="addSelectedProduct(row.item._id)"
+                ></b-form-checkbox>
+            </template>
              <template #cell(actions)="row">
                  <div class="d-flex flex-row justify-content-center">
                     <b-button size="sm" @click="row.toggleDetails" class="m-1" variant="primary">
@@ -31,17 +101,21 @@
             <template #row-details="row">
                 <b-row>
                     <b-col>
-                        <b-carousel
+                        <div class="d-flex justify-content-center">
+                            <b-carousel
                             :interval="4000"
                             controls
                             indicators
+                            class="detail-carousel"
                         >
                             <b-carousel-slide
                                 v-for="(item, i) in row.item.images"
                                 :key="i"
                                 :img-src="'' + item.path"
-                            ></b-carousel-slide>
+                            >
+                            </b-carousel-slide>
                         </b-carousel>
+                        </div>
                     </b-col>
                     <b-col>
                         <div>
@@ -193,7 +267,7 @@
         </form>
     </b-modal>
 
-        <b-modal 
+    <b-modal 
         id="edit-product-modal"
         v-model="editModal"
         title="Edit Product"
@@ -352,7 +426,32 @@ import { quillEditor } from'vue-quill-editor'
 export default {
     title: 'Products – Tsunami',
     data() {
+        const now = new Date()
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        
+        const minDate = new Date(today)
+        minDate.setDate(minDate.getDate() + 1)
+
         return {
+            tommorow: minDate,
+            event: {
+                selectedEvent: null,
+                options: [
+                    { value: null, text: 'Please select an event' },
+                    { value: 'flashsale', text: 'Flash Sale' },
+                    { value: 'dailydeals', text: 'Daily Deals' }
+                ],
+                eventError: false,
+                eventModal: false,
+                flashSaleProduct: [],
+                flashsale: {
+                    startDate: null,
+                    startTime: null,
+                    endDate: null,
+                    endTimw: null,
+                }
+            },
+            selectedProduct: [],
             newProduct: {
                 seller_uid: '',
                 name: '',
@@ -373,31 +472,25 @@ export default {
             editModal: false,
             newImages: [],
             deletedImages: [],
-            editedProduct: {
-
-            },
+            editedProduct: {},
             subcategory: null,
             products: null,
             fields: [
-                {
-                    key: 'name', 
-                    sortable: true
-                }, 
-                {
-                    key: 'stock', 
-                    sortable: true
-                },
-                'description', 'price',
-                {
-                    key: 'sold', 
-                    sortable: true
-                },
-                'actions'
+                { key: '#', visible: false },
+                { key: 'name', sortable: true, visible: true},
+                { key: 'stock', sortable: true, visible: true},
+                { key: 'description', visible: true},
+                { key: 'price', visible: true},
+                { key: 'sold', sortable: true, visible: true},
+                { key: 'actions', visible: true}
             ]
         }
     },
     computed: {
-        ...mapGetters(['darkMode', 'subcategories', 'category_names'])
+        ...mapGetters(['darkMode', 'subcategories', 'category_names']),
+        visibleFields() {
+            return this.fields.filter(field => field.visible)
+        }
     },
     components: {
         quillEditor
@@ -497,6 +590,8 @@ export default {
                 data.append(key, val)
             }
 
+            data.append('posted_date', Date.now())
+
             await axios.post('/api/product/add', data)
             .then(res => {
                 this.resetProductData()
@@ -553,6 +648,8 @@ export default {
                 data.append(key, val)
             }
 
+            data.append('posted_date', Date.now())
+
             await axios.put(`/api/product/edit/${id}`, data)
             .then(res => {
                 for(let i=0; i<this.products.length; i++) {
@@ -572,7 +669,54 @@ export default {
                     break
                 }
             }
-        }
+        },
+        addSelectedProduct(id) {
+            const index = this.selectedProduct.indexOf(id)
+            if(index == -1) {
+                this.selectedProduct.push(id)
+            } else {
+                this.selectedProduct.splice(index, 1)
+            }
+        },
+        setEvent() {
+            if(this.selectedProduct.length == 0) {
+                this.event.eventError = true
+                return
+            }
+
+            this.event.flashSaleProduct = []
+            this.selectedProduct.forEach(id => {
+                for(let i=0; i<this.products.length; i++) {
+                    if(id == this.products[i]._id) {
+                        this.event.flashSaleProduct.push({
+                            product_id: id,
+                            product_name: this.products[i].name,
+                            sold: 0,
+                            stock: 1,
+                            max_stock: this.products[i].stock,
+                        })
+                    }
+                }
+            })
+            this.event.eventModal = true
+        },
+        convertToUnixTime(date, time) {
+            let unix_time = date.getTime()
+            let hms = time.split(':')
+            unix_time += parseInt(hms[0]) * 3600000 + parseInt(hms[1]) * 60000 + parseInt(hms[2]) * 1000
+
+            return unix_time
+        },
+        addEvent() {
+            if(this.event.selectedEvent == 'flashsale') {
+                alert(this.event.flashsale.startDate)
+                const start_time = this.convertToUnixTime(this.event.flashsale.startDate, this.event.flashsale.startTime)
+                // const end_time = this.convertToUnixTime(this.event.flashsale.endDate, this.event.flashsale.endTime)
+                alert(start_time)
+            } else {
+                alert('ok')
+            }
+        },
     }
 }
 </script>
@@ -580,7 +724,6 @@ export default {
 <style scoped>
 .product-action-menu {
     display: flex;
-    flex-direction: row;
 }
 
 .quill-card * {
@@ -589,5 +732,13 @@ export default {
 
 .divider-dark {
     background-color: gray;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
