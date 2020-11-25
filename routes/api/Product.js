@@ -4,6 +4,37 @@ const Product = require('../../models/Product')
 
 const router = Router()
 
+router.get('/', async (req, res) => {
+    try {
+        const products = await Product.find().sort({posted_date: -1}).limit(20)
+        if(!products) {
+            throw new Error('Product not found..')
+        }
+        res.status(200).json(products)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.get('/search/:query', async(req, res) => {
+    const query = req.params.query
+
+    try {
+        const products = await Product.find({
+            name: {
+                $regex: query,
+                $options: 'i'
+            }
+        })
+        if(!products) {
+            throw new Error('No product with such keyword..')
+        }
+        res.status(200).json(products)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
 router.get('/:uid', async (req, res) => {
     const uid = req.params.uid
 
@@ -30,7 +61,7 @@ function generateImgPath(name) {
 }
 
 function resizeAndSave(img, path) {
-    sharp(img.data).resize(250, 180, {fit: 'fill'})
+    sharp(img.data).resize(400, 300, {fit: 'fill'})
                    .toFile(path)
 }
 
