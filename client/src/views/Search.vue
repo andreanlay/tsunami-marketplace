@@ -11,6 +11,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import axios from 'axios'
 
 import TheNavBar from '@/components/Search/TheNavBar'
 import ItemCard from '@/components/Search/ItemCard'
@@ -22,7 +23,7 @@ export default {
         ItemCard
     },
     computed: {
-        ...mapGetters(['searchProduct', 'darkMode'])
+        ...mapGetters(['darkMode'])
     },
     data() {
         return {
@@ -30,11 +31,12 @@ export default {
             results: [],
         }
     },
-    created() {
+    async mounted() {
         this.query = this.$route.params.query
-    },
-    mounted() {
-        this.results = this.searchProduct(this.query)
+        await axios.get(`/api/product/search/${this.query}`)
+        .then(res => {
+            this.results = res.data
+        })
     }
 }
 </script>
