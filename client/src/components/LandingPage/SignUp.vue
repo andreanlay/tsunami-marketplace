@@ -36,7 +36,7 @@
                 </b-form-group>
                 <b-form-group>
                     <b-input-group>
-                        <b-form-datepicker v-model="birthday" placeholder="Date of Birth" required></b-form-datepicker>
+                        <b-form-datepicker v-model="birthday" placeholder="Date of Birth" :max="yesterday" required></b-form-datepicker>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
@@ -72,7 +72,14 @@ import firebase from 'firebase'
 export default {
     title: 'Sign Up – Tsunami',
     data() {
+        const now = new Date()
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        
+        const maxDate = new Date(today)
+        maxDate.setDate(maxDate.getDate() - 1)
+
         return {
+            yesterday: maxDate,
             first_name: '',
             last_name: '',
             gender: '',
