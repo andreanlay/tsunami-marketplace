@@ -44,6 +44,10 @@ const ProductSchema = new Schema({
     specifications: {
         type: Array,
         required: true
+    },
+    posted_date: {
+        type: Date,
+        required: true
     }
 })
 
