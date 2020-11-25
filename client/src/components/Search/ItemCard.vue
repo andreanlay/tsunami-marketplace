@@ -1,8 +1,8 @@
 <template>
-<div class="item-card">
-    <img :src="product.image" class="item-image">
-    <h5 class="item-title"> {{product.name}} </h5>
-    <h6 class="item-caption text-muted"> {{product.caption}} </h6>
+<div class="item-card m-3" :class="{'card-dark': darkMode}">
+    <img :src="'' + product.images[0].path" class="item-image">
+    <h5 class="item-title mt-2"> {{product.name}} </h5>
+    <h6 class="item-caption text-muted"> {{product.description}} </h6>
     <h6 class="item-seller"><b-icon icon="shop"></b-icon> Jantono Shop</h6>
     <div class="item-rating-price">
         <div>
@@ -10,7 +10,7 @@
             <b>4.5</b>
         </div>
         <div>
-            <b>{{product.price}}</b>
+            <b>IDR {{product.price / 1000}}K</b>
         </div>
     </div>
     
@@ -21,18 +21,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     props: {
         product: Object,
     },
+    computed: {
+        ...mapGetters(['darkMode'])
+    }
 }
 </script>
 
 <style scoped>
 .item-card {
     padding: 20px;
-    border: 1px solid lightgray;
-    border-radius: 15px;
+    border: 1px solid gray;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -50,7 +55,7 @@ export default {
 
 .item-caption {
     text-align: justify;
-    height: 150px;
+    height: 75px;
 }
 
 .item-seller, .item-wishlist{
@@ -68,4 +73,7 @@ export default {
     justify-content: space-between;
 }
 
+.card-dark {
+    color: white;
+}
 </style>
