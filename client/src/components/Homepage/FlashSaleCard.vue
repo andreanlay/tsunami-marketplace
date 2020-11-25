@@ -16,19 +16,19 @@
         v-if="2 * product.sold <= product.stock" 
         :value="product.sold / product.stock * 100" 
         variant="success" 
-        :animated="animate"
+        striped
     ></b-progress>
     <b-progress 
         v-else-if="1.5 * product.sold <= product.stock" 
         :value="product.sold / product.stock * 100" 
         variant="warning" 
-        :animated="animate"
+        striped
     ></b-progress>
     <b-progress 
         v-else
         :value="product.sold / product.stock * 100" 
         variant="danger" 
-        :animated="animate"
+        striped
     ></b-progress>
     <br>
     <p><b> {{product.price}} </b></p>
