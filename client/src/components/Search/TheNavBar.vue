@@ -1,11 +1,11 @@
 <template>
 <div class="d-flex flex-row m-3">
     <router-link :to="{name: 'homepage'}">
-        <b-button variant="default" class="bg-light btn-circle"><b-icon icon="chevron-compact-left"></b-icon></b-button>
+        <b-button variant="default" class="bg-light btn-circle" :class="{'btn-circle-dark' : darkMode}"><b-icon icon="chevron-compact-left"></b-icon></b-button>
     </router-link>
     <div class="flex-fill ml-2">
         <form action="">
-            <div class="p-2 bg-light rounded rounded-pill mb-4">
+            <div class="p-2 bg-light rounded rounded-pill mb-4" :class="{'midbar-dark': darkMode}">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button id="button-search" type="submit" class="btn btn-link text-primary" disabled><b-icon icon="search"></b-icon></button>
@@ -14,7 +14,7 @@
                         type="text" 
                         v-model="searchQuery"
                         placeholder="What are you searching for ? (Press ENTER to search)" 
-                        class="form-control border-0 bg-light"
+                        class="form-control border-0"
                     >
                     <div class="input-group-append mr-2">
                         <b-button class="advance-seach" id="advance-search">Advance search</b-button>
@@ -35,7 +35,7 @@
         </form>
     </div> 
     <router-link :to="{name: 'dashboard'}">
-        <b-button variant="default" class="bg-light btn-circle ml-2"><b-icon icon="person-circle"></b-icon></b-button>
+        <b-button variant="default" class="bg-light btn-circle ml-2" :class="{'btn-circle-dark' : darkMode}"><b-icon icon="person-circle"></b-icon></b-button>
     </router-link>
 </div>
 </template>
@@ -53,7 +53,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['subcategories'])
+        ...mapGetters(['subcategories', 'darkMode'])
     },
     mounted() {
         this.searchQuery = this.query
@@ -110,5 +110,26 @@ export default {
 .v-div {
     width: 1px;
     background-color: gray;
+}
+
+.btn-circle-dark {
+    color: white;
+    outline: none;
+    background-color: #333 !important;
+}
+
+.btn-circle-dark:hover {
+    color: white;
+    opacity: 0.8;
+}
+
+.midbar-dark {
+    color: white;
+    background-color: #333 !important;
+}
+
+.midbar-dark * {
+    color: white;
+    background-color: #333 !important;
 }
 </style>
