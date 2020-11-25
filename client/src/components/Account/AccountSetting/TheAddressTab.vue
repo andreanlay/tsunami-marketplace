@@ -290,4 +290,7 @@ export default {
     outline: none;
 }
 
+option {
+    color: black;
+}
 </style>
