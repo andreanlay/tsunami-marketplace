@@ -48,6 +48,22 @@
             </b-col>
         </b-row>
         <b-row>
+            <b-col class="m-4">
+                <h1 :class="{'header-dark' : darkMode}">All products</h1>
+                <carousel
+                    :perPage="5"
+                >
+                    <slide
+                        v-for="product in allProducts"
+                        :key="product._id"
+                    >
+                        <ProductCard :product="product"/>
+                    </slide>
+                </carousel>
+            </b-col>
+        </b-row>
+        <hr>
+        <b-row>
             <b-col>
                 <h1 :class="{'header-dark' : darkMode}">Today's Flash sale✨ {{todayDate}}</h1>
             </b-col>
@@ -74,12 +90,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import axios from 'axios'
 
 import HomeNavBar from '@/components/Homepage/TheNavBar'
 import BillsButton from '@/components/Homepage/BillsButton'
 import FlashSaleCard from '@/components/Homepage/FlashSaleCard'
 import DailyDealsCard from '@/components/Homepage/DailyDealsCard'
 import Footer from '@/components/Homepage/TheFooter'
+import ProductCard from '@/components/Search/ItemCard'
+import { Carousel, Slide } from 'vue-carousel'
 
 var months = {
     1: "January",
@@ -103,7 +122,10 @@ export default {
         BillsButton,
         FlashSaleCard,
         DailyDealsCard,
-        Footer
+        Footer,
+        ProductCard,
+        Carousel,
+        Slide
     },
     computed: {
         ...mapGetters(['flashSaleProducts', 'dailyDealsProducts', 'darkMode'])
@@ -113,10 +135,17 @@ export default {
         let day = date.getDate()
         let month = date.getMonth() + 1
         this.todayDate = `${day} ${months[month]} ${date.getFullYear()}`
+
+        axios.get('/api/product/')
+        .then(res => {
+            console.log('Call!..')
+            this.allProducts = res.data
+        })
     },
     data() {
         return{
             todayDate: '',
+            allProducts: [],
             banners: [
                 {
                     id: 1,
