@@ -1,5 +1,5 @@
 <template>
-<div class="item-card m-3" :class="{'card-dark': darkMode}">
+<div class="item-card m-2" :class="{'card-dark': darkMode}">
     <img :src="'' + product.images[0].path" class="item-image">
     <h5 class="item-title mt-2"> {{product.name}} </h5>
     <h6 class="item-caption text-muted"> {{product.description}} </h6>
