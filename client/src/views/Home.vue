@@ -48,9 +48,10 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col class="m-4">
+            <b-col class="m-3">
                 <h1 :class="{'header-dark' : darkMode}">All products</h1>
                 <carousel
+                    class="m-3"
                     :perPage="5"
                 >
                     <slide
@@ -62,17 +63,25 @@
                 </carousel>
             </b-col>
         </b-row>
-        <hr>
+        <hr :class="{'divider-dark': darkMode}">
         <b-row>
-            <b-col>
-                <h1 :class="{'header-dark' : darkMode}">Today's Flash sale✨ {{todayDate}}</h1>
+            <b-col class="m-3">
+                <h1 :class="{'header-dark' : darkMode}">Today's Flash sale✨- {{todayDate}}</h1>
+                <carousel
+                    class="m-3"
+                    :perPage="5"
+                >
+                    <slide
+                        v-for="product in flashSaleProducts"
+                        :key="product._id"
+                    >
+                        <FlashSaleCard :flashsale="product"/>
+                    </slide>
+                </carousel>
+                <h1 class="display-6 text-white" v-if="flashSaleProducts.length == 0">No Flash Sale today! Come back tommorow</h1>
             </b-col>
         </b-row>
-        <hr>
-        <b-row class="d-flex justify-content-center">
-            <FlashSaleCard v-for="product in flashSaleProducts" :key="product.product_id" :product="product"/>
-        </b-row>
-        <br>
+        <hr :class="{'divider-dark': darkMode}">
         <b-row>
             <b-col>
                 <h1 :class="{'header-dark' : darkMode}">Daily deals🎁</h1>
@@ -128,24 +137,29 @@ export default {
         Slide
     },
     computed: {
-        ...mapGetters(['flashSaleProducts', 'dailyDealsProducts', 'darkMode'])
+        ...mapGetters(['dailyDealsProducts', 'darkMode'])
     },
-    mounted() {
+    async mounted() {
         let date = new Date()
         let day = date.getDate()
         let month = date.getMonth() + 1
         this.todayDate = `${day} ${months[month]} ${date.getFullYear()}`
 
-        axios.get('/api/product/')
+        await axios.get('/api/product/')
         .then(res => {
-            console.log('Call!..')
             this.allProducts = res.data
+        })
+
+        await axios.get(`/api/flashsale/${Date.now()}`)
+        .then(res => {
+            this.flashSaleProducts = res.data
         })
     },
     data() {
         return{
             todayDate: '',
             allProducts: [],
+            flashSaleProducts: [],
             banners: [
                 {
                     id: 1,
@@ -227,5 +241,9 @@ export default {
 .card-dark {
     color: white;
     background-color: #312c2c !important;
+}
+
+.divider-dark {
+    background-color: gray
 }
 </style>
