@@ -1,39 +1,31 @@
 <template>
-<b-card
-    class="m-2"
-    :title="product.name"
-    :img-src="product.image"
-    img-width="250px"
-    img-height="180px"
-    img top
-    style="width: 18rem;"
-    :class="{'card-dark' : darkMode}"
-    >
-    <b-card-text>
-        {{product.caption}}
-    </b-card-text>
+<div class="item-card m-2" :class="{'card-dark': darkMode}">
+    <img :src="'' + flashsale.product.images[0].path" class="item-image">
+    <h5 class="item-title mt-2"> {{flashsale.product.name}} </h5>
+    <h6 class="item-caption text-muted"> {{flashsale.product.description}} </h6>
+    
     <b-progress 
-        v-if="2 * product.sold <= product.stock" 
-        :value="product.sold / product.stock * 100" 
+        v-if="2 * flashsale.sold <= flashsale.stock" 
+        :value="flashsale.sold / flashsale.stock * 100" 
         variant="success" 
         striped
     ></b-progress>
     <b-progress 
-        v-else-if="1.5 * product.sold <= product.stock" 
-        :value="product.sold / product.stock * 100" 
+        v-else-if="1.5 * flashsale.sold <= flashsale.stock" 
+        :value="flashsale.sold / flashsale.stock * 100" 
         variant="warning" 
         striped
     ></b-progress>
     <b-progress 
         v-else
-        :value="product.sold / product.stock * 100" 
+        :value="flashsale.sold / flashsale.stock * 100" 
         variant="danger" 
         striped
     ></b-progress>
-    <br>
-    <p><b> {{product.price}} </b></p>
     
-    <b-button v-if="product.sold == product.stock" href="#" variant="primary" disabled>
+    <h6 class="item-price mt-4 mb-4">IDR {{flashsale.price / 1000 }} K</h6>
+
+    <b-button v-if="flashsale.sold == flashsale.stock" href="#" variant="primary" disabled>
         <b-icon icon="cart"></b-icon>
         Add to Cart
     </b-button>
@@ -41,7 +33,7 @@
         <b-icon icon="cart"></b-icon>
         Add to Cart
     </b-button>
-</b-card>
+</div>
 </template>
 
 <script>
@@ -52,7 +44,7 @@ export default {
         ...mapGetters(['darkMode'])
     },
     props: {
-        product: Object
+        flashsale: Object
     },
     data() {
         return {
@@ -62,6 +54,47 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.item-card {
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
 
+.item-image {
+    align-self: center;
+    width: 250px;
+    height: 180px;
+}
+
+
+.item-title {
+    align-self: center;
+}
+
+.item-caption {
+    text-align: justify;
+    height: 50px;
+}
+
+.item-seller, .item-wishlist{
+    align-self: flex-end;
+}
+
+.item-btn {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.item-rating-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-dark {
+    color: white;
+}
 </style>
