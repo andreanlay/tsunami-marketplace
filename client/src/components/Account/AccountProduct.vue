@@ -74,22 +74,24 @@
             </div>
             <div v-for="item in event.products" :key="item.id" v-show="event.selectedEvent">
                 <b-form-group
-                    :label="`${item.product_name} (Stock: ${item.stock})`"
+                    :label="`${item.product_name} (${event.selectedEvent == 'flashsale' ? 'Stock: ' + item.stock : 'Price: Rp' + item.original_price})`"
                 >
                     <b-input-group
                         prepend="Rp"
                         class="mb-2"
                     >
-                    <b-form-input
-                        type="number"
-                        v-model="item.price"
-                        min="0"
-                    ></b-form-input>
+                        <b-form-input
+                            type="number"
+                            v-model="item.price"
+                            min="0"
+                        ></b-form-input>
                     </b-input-group>
-                    <b-form-input v-model="item.stock" type="range" min="1" :max="item.max_stock" number></b-form-input>
-                    <div class="d-flex flex-row justify-content-between">
-                        <p><b>1</b></p>
-                        <p><b>{{item.max_stock}}</b></p>
+                    <div v-show="event.selectedEvent == 'flashsale'">
+                        <b-form-input v-model="item.stock" type="range" min="1" :max="item.max_stock" number></b-form-input>
+                        <div class="d-flex flex-row justify-content-between">
+                            <p><b>1</b></p>
+                            <p><b>{{item.max_stock}}</b></p>
+                        </div>
                     </div>
                 </b-form-group>
             </div>
@@ -123,6 +125,7 @@
                             :interval="4000"
                             controls
                             indicators
+                            style="width: 400px; height:300px;"
                             class="detail-carousel"
                         >
                             <b-carousel-slide
@@ -622,15 +625,28 @@ export default {
             })
         },
         async deleteProduct(id) {
-            await axios.delete(`/api/product/delete/${id}`)
-            .then(res => {
-                for(let i=0; i<this.products.length; i++) {
-                    if(this.products[i]._id == id) {
-                        this.products.splice(i, 1)
-                        break
+            this.$bvModal.msgBoxConfirm('Are you sure to delete this item ?', {
+                title: 'Delete confirmation',
+                size: 'sm',
+                buttonSize: 'sm',
+                okVariant: 'danger',
+                okTitle: 'Yes',
+                cancelTitle: 'No',
+                hideHeaderClose: false,
+                centered: true
+            })
+            .then(async val =>  {
+                await axios.delete(`/api/product/delete/${id}`)
+                .then(res => {
+                    for(let i=0; i<this.products.length; i++) {
+                        if(this.products[i]._id == id) {
+                            this.products.splice(i, 1)
+                            break
+                        }
                     }
-                }
-                return res
+                    return res
+                })
+                return val
             })
         },
         editProduct(id) {
@@ -714,6 +730,7 @@ export default {
                             sold: 0,
                             stock: 1,
                             price: 0,
+                            original_price: this.products[i].price,
                             max_stock: this.products[i].stock,
                         })
                     }
@@ -734,23 +751,23 @@ export default {
                 const end_time = this.convertToUnixTime(this.event.flashsale.endDate, this.event.flashsale.endTime)
                 
                 this.event.products.forEach(async product => {
-                    await axios.post('/api/flashsale/add', {
-                        product: product.product_id,
-                        sold: product.sold,
-                        stock: product.stock,
-                        price: product.price,
-                        start_time: start_time,
-                        end_time: end_time
+                    await axios.post(`/api/product/flashsale/add/${product.product_id}`, {
+                        flashsale: {
+                            sold: product.sold,
+                            stock: product.stock,
+                            price: product.price,
+                            start_time: start_time,
+                            end_time: end_time
+                        }
                     })
                 })
             } else if(this.event.selectedEvent == 'dailydeals'){
                 this.event.products.forEach(async product => {
-                    await axios.post('/api/dailydeals/add', {
-                        product: product.product_id,
-                        sold: product.sold,
-                        stock: product.stock,
-                        price: product.price,
-                        date: this.event.dailyDeals.date
+                    await axios.post(`/api/product/dailydeals/add/${product.product_id}`, {
+                        dailydeals: {
+                            price: product.price,
+                            date: this.event.dailyDeals.date
+                        }
                     })
                 })
             }
