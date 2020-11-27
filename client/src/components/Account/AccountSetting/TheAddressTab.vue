@@ -84,7 +84,7 @@
             responsive
         >
             <template #cell(actions)="row">
-                <div class="d-flex">
+                <div class="text-center">
                     <b-button size="sm" @click="row.toggleDetails" class="m-1" variant="primary">
                         <b-icon v-if="row.detailsShowing" icon="eye-slash"></b-icon>
                         <b-icon v-else icon="eye"></b-icon>
