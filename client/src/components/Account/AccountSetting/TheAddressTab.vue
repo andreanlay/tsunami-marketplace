@@ -241,8 +241,10 @@ export default {
                 }]
             }
 
-            this.data.push(newAddress)
             await axios.post("/api/address/add", newAddress)
+            .then(res => {
+                this.data.push(res.data)
+            })
         },
         mapClick(val) {
             this.coordinates = val

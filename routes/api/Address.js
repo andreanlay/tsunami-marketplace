@@ -25,7 +25,7 @@ router.post('/add', async (req, res) => {
         if(!AddressItem) {
             throw new Error('Something went wrong...')
         }
-        res.status(200).json('Address added...')
+        res.status(200).json(AddressItem)
     } catch(err) {
         res.status(500).json({message: err.message})
     }
