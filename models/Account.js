@@ -1,4 +1,4 @@
-const { Schema, model} = require('mongoose')
+const { Schema, model } = require('mongoose')
 
 const AccountSchema = new Schema({
     uid: {
@@ -37,14 +37,17 @@ const AccountSchema = new Schema({
         products_sold: {
             type: Number,
         },
-        products: [
-            {
-                name: String,
-                description: String,
-                price: Number,
-            }
-        ]
     },
+    cart: [
+        {
+            product: {
+                type: Schema.Types.ObjectId,
+                ref: 'product'
+            },
+            price: Number,
+            qty: Number,
+        }
+    ]
 })
 
 const Account = model('account', AccountSchema)
