@@ -66,7 +66,7 @@
         <hr :class="{'divider-dark': darkMode}">
         <b-row>
             <b-col class="m-3">
-                <h1 :class="{'header-dark' : darkMode}">Today's Flash sale✨- {{todayDate}}</h1>
+                <h1 :class="{'header-dark' : darkMode}">Flash Sale✨ Time is running out fast!</h1>
                 <carousel
                     class="m-3"
                     :perPage="5"
@@ -83,6 +83,23 @@
         </b-row>
         <hr :class="{'divider-dark': darkMode}">
         <b-row>
+            <b-col class="m-3">
+                <h1 :class="{'header-dark' : darkMode}">Daily deals🎁 Grab yours now!</h1>
+                <carousel
+                    class="m-3"
+                    :perPage="5"
+                >
+                    <slide
+                        v-for="product in flashSaleProducts"
+                        :key="product._id"
+                    >
+                        <DailyDealsCard :dailydeals="product"/>
+                    </slide>
+                </carousel>
+                <h1 class="display-6 text-white" v-if="flashSaleProducts.length == 0">No Daily Deals today! Come back tommorow</h1>
+            </b-col>
+        </b-row>
+        <!-- <b-row>
             <b-col>
                 <h1 :class="{'header-dark' : darkMode}">Daily deals🎁</h1>
             </b-col>
@@ -90,7 +107,7 @@
         <hr>
         <b-row class="d-flex justify-content-center">
             <DailyDealsCard v-for="product in dailyDealsProducts" :key="product.id" :product="product"/>
-        </b-row>
+        </b-row> -->
         <br>
     </b-container>
     <Footer/>
@@ -109,21 +126,6 @@ import Footer from '@/components/Homepage/TheFooter'
 import ProductCard from '@/components/Search/ItemCard'
 import { Carousel, Slide } from 'vue-carousel'
 
-var months = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December"
-};
-
 export default {
     title: 'Tsunami Marketplace',
     components: {
@@ -137,13 +139,12 @@ export default {
         Slide
     },
     computed: {
-        ...mapGetters(['dailyDealsProducts', 'darkMode'])
+        ...mapGetters(['darkMode'])
     },
     async mounted() {
         let date = new Date()
         let day = date.getDate()
         let month = date.getMonth() + 1
-        this.todayDate = `${day} ${months[month]} ${date.getFullYear()}`
 
         await axios.get('/api/product/')
         .then(res => {
@@ -154,12 +155,20 @@ export default {
         .then(res => {
             this.flashSaleProducts = res.data
         })
+
+        const today = `${date.getFullYear()}-${month}-${day}`
+
+        await axios.get(`/api/dailydeals/${today}`)
+        .then(res => {
+            this.dailyDealsProducts = res.data
+        })
     },
     data() {
         return{
             todayDate: '',
             allProducts: [],
             flashSaleProducts: [],
+            dailyDealsProducts: [],
             banners: [
                 {
                     id: 1,

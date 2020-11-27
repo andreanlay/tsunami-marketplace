@@ -61,20 +61,37 @@
                     label="End Time"
                 >
                     <b-form-datepicker value-as-date v-model="event.flashsale.endDate" :min="tommorow"></b-form-datepicker>
-                    <b-form-timepicker v-model="event.flashsale.startTime" class="mt-2"></b-form-timepicker>
+                    <b-form-timepicker v-model="event.flashsale.endTime" class="mt-2"></b-form-timepicker>
                 </b-form-group>
-                <p style="font-size: 18px">Flashsale Stock</p>
-                <div v-for="item in event.flashSaleProduct" :key="item.id">
-                    <b-form-group
-                        :label="`${item.product_name} | Stock: ${item.stock}`"
+                <p style="font-size: 18px">Flashsale Stock & Price</p>
+            </div>
+            <div v-show="event.selectedEvent == 'dailydeals'">
+                <b-form-group
+                    label="Deals Date"
+                >
+                    <b-form-datepicker v-model="event.dailyDeals.date" :min="tommorow"></b-form-datepicker>
+                </b-form-group>
+            </div>
+            <div v-for="item in event.products" :key="item.id" v-show="event.selectedEvent">
+                <b-form-group
+                    :label="`${item.product_name} (Stock: ${item.stock})`"
+                >
+                    <b-input-group
+                        prepend="Rp"
+                        class="mb-2"
                     >
-                        <b-form-input v-model="item.stock" type="range" min="1" :max="item.max_stock" number></b-form-input>
-                        <div class="d-flex flex-row justify-content-between">
-                            <p><b>1</b></p>
-                            <p><b>{{item.max_stock}}</b></p>
-                        </div>
-                    </b-form-group>
-                </div>
+                    <b-form-input
+                        type="number"
+                        v-model="item.price"
+                        min="0"
+                    ></b-form-input>
+                    </b-input-group>
+                    <b-form-input v-model="item.stock" type="range" min="1" :max="item.max_stock" number></b-form-input>
+                    <div class="d-flex flex-row justify-content-between">
+                        <p><b>1</b></p>
+                        <p><b>{{item.max_stock}}</b></p>
+                    </div>
+                </b-form-group>
             </div>
         </b-modal>
 
@@ -443,12 +460,15 @@ export default {
                 ],
                 eventError: false,
                 eventModal: false,
-                flashSaleProduct: [],
+                products: [],
                 flashsale: {
                     startDate: null,
                     startTime: null,
                     endDate: null,
-                    endTimw: null,
+                    endTime: null,
+                },
+                dailyDeals: {
+                    date: null
                 }
             },
             selectedProduct: [],
@@ -684,15 +704,16 @@ export default {
                 return
             }
 
-            this.event.flashSaleProduct = []
+            this.event.products = []
             this.selectedProduct.forEach(id => {
                 for(let i=0; i<this.products.length; i++) {
                     if(id == this.products[i]._id) {
-                        this.event.flashSaleProduct.push({
+                        this.event.products.push({
                             product_id: id,
                             product_name: this.products[i].name,
                             sold: 0,
                             stock: 1,
+                            price: 0,
                             max_stock: this.products[i].stock,
                         })
                     }
@@ -707,14 +728,31 @@ export default {
 
             return unix_time
         },
-        addEvent() {
+        async addEvent() {
             if(this.event.selectedEvent == 'flashsale') {
-                alert(this.event.flashsale.startDate)
                 const start_time = this.convertToUnixTime(this.event.flashsale.startDate, this.event.flashsale.startTime)
-                // const end_time = this.convertToUnixTime(this.event.flashsale.endDate, this.event.flashsale.endTime)
-                alert(start_time)
-            } else {
-                alert('ok')
+                const end_time = this.convertToUnixTime(this.event.flashsale.endDate, this.event.flashsale.endTime)
+                
+                this.event.products.forEach(async product => {
+                    await axios.post('/api/flashsale/add', {
+                        product: product.product_id,
+                        sold: product.sold,
+                        stock: product.stock,
+                        price: product.price,
+                        start_time: start_time,
+                        end_time: end_time
+                    })
+                })
+            } else if(this.event.selectedEvent == 'dailydeals'){
+                this.event.products.forEach(async product => {
+                    await axios.post('/api/dailydeals/add', {
+                        product: product.product_id,
+                        sold: product.sold,
+                        stock: product.stock,
+                        price: product.price,
+                        date: this.event.dailyDeals.date
+                    })
+                })
             }
         },
     }
