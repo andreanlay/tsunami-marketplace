@@ -14,7 +14,7 @@ import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 import TheNavBar from '@/components/Search/TheNavBar'
-import ItemCard from '@/components/Search/ItemCard'
+import ItemCard from '@/components/ProductCard'
 
 export default {
     title: "Search Result – Tsunami",

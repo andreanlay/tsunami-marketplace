@@ -61,6 +61,7 @@
                         <ProductCard :product="product"/>
                     </slide>
                 </carousel>
+                <h1 class="display-6 text-white" v-if="allProducts.length == 0">No latest products available! Come back later</h1>
             </b-col>
         </b-row>
         <hr :class="{'divider-dark': darkMode}">
@@ -75,10 +76,10 @@
                         v-for="product in flashSaleProducts"
                         :key="product._id"
                     >
-                        <FlashSaleCard :flashsale="product"/>
+                        <ProductCard :product="product"/>
                     </slide>
                 </carousel>
-                <h1 class="display-6 text-white" v-if="flashSaleProducts.length == 0">No Flash Sale today! Come back tommorow</h1>
+                <h1 class="display-6 text-white" v-if="flashSaleProducts.length == 0">No Flash Sale currently online! Come back later</h1>
             </b-col>
         </b-row>
         <hr :class="{'divider-dark': darkMode}">
@@ -90,24 +91,15 @@
                     :perPage="5"
                 >
                     <slide
-                        v-for="product in flashSaleProducts"
+                        v-for="product in dailyDealsProducts"
                         :key="product._id"
                     >
-                        <DailyDealsCard :dailydeals="product"/>
+                        <ProductCard :product="product"/>
                     </slide>
                 </carousel>
-                <h1 class="display-6 text-white" v-if="flashSaleProducts.length == 0">No Daily Deals today! Come back tommorow</h1>
+                <h1 class="display-6 text-white" v-if="dailyDealsProducts.length == 0">No Daily Deals today! Come back tommorow</h1>
             </b-col>
         </b-row>
-        <!-- <b-row>
-            <b-col>
-                <h1 :class="{'header-dark' : darkMode}">Daily deals🎁</h1>
-            </b-col>
-        </b-row>
-        <hr>
-        <b-row class="d-flex justify-content-center">
-            <DailyDealsCard v-for="product in dailyDealsProducts" :key="product.id" :product="product"/>
-        </b-row> -->
         <br>
     </b-container>
     <Footer/>
@@ -120,10 +112,8 @@ import axios from 'axios'
 
 import HomeNavBar from '@/components/Homepage/TheNavBar'
 import BillsButton from '@/components/Homepage/BillsButton'
-import FlashSaleCard from '@/components/Homepage/FlashSaleCard'
-import DailyDealsCard from '@/components/Homepage/DailyDealsCard'
 import Footer from '@/components/Homepage/TheFooter'
-import ProductCard from '@/components/Search/ItemCard'
+import ProductCard from '@/components/ProductCard'
 import { Carousel, Slide } from 'vue-carousel'
 
 export default {
@@ -131,8 +121,6 @@ export default {
     components: {
         HomeNavBar,
         BillsButton,
-        FlashSaleCard,
-        DailyDealsCard,
         Footer,
         ProductCard,
         Carousel,
@@ -151,14 +139,14 @@ export default {
             this.allProducts = res.data
         })
 
-        await axios.get(`/api/flashsale/${Date.now()}`)
+        await axios.get(`/api/product/flashsale/${Date.now()}`)
         .then(res => {
             this.flashSaleProducts = res.data
         })
 
         const today = `${date.getFullYear()}-${month}-${day}`
 
-        await axios.get(`/api/dailydeals/${today}`)
+        await axios.get(`/api/product/dailydeals/${today}`)
         .then(res => {
             this.dailyDealsProducts = res.data
         })
