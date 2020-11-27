@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const { PORT, mongoUri } = require('./config')
 const app = express()
 
-const authRoute = require('./routes/api/Auth.js')
+const accountRoute = require('./routes/api/Account')
 const addressRoute = require('./routes/api/Address.js')
 const productRoute = require('./routes/api/Product.js')
 
@@ -23,7 +23,7 @@ mongoose.connect(mongoUri, {
 }).then(() => console.log('Connected to MongoDB Atlas.'))
   .catch((err) => console.log(err))
 
-app.use('/api/auth', authRoute)
+app.use('/api/account', accountRoute)
 app.use('/api/address', addressRoute)
 app.use('/api/product', productRoute)
 
