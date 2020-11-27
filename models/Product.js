@@ -48,6 +48,17 @@ const ProductSchema = new Schema({
     posted_date: {
         type: Date,
         required: true
+    },
+    flashsale: {
+        sold: Number,
+        stock: Number,
+        price: Number,
+        start_time: Date,
+        end_time: Date
+    },
+    dailydeals: {
+        price: Number,
+        date: String
     }
 })
 

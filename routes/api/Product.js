@@ -6,7 +6,20 @@ const router = Router()
 
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find().sort({posted_date: -1}).limit(20)
+        const products = await Product.find({
+            $and: [
+                {
+                    flashsale: {
+                        $exists: false
+                    }
+                },
+                {
+                    dailydeals: {
+                        $exists: false
+                    }
+                }
+            ]
+        }).sort({posted_date: -1}).limit(20)
         if(!products) {
             throw new Error('Product not found..')
         }
@@ -167,6 +180,72 @@ router.delete('/delete/:id', async (req, res) => {
             throw new Error('Fail to delete product..')
         }
         res.status(200).json('Delete success')
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.post('/flashsale/add/:id', async (req, res) => {
+    const id = req.params.id
+
+    try {
+        const productItem = await Product.findOneAndUpdate({_id: id}, req.body)
+        if(!productItem) {
+            throw new Error('Fail to add flash sale event..')
+        }
+        res.status(200).json('Add success')
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.get('/flashsale/:time', async (req, res) => {
+    const time = req.params.time
+
+    try {
+        const products = await Product.find({
+            'flashsale.start_time': {
+                $lte: time
+            },
+            'flashsale.end_time': {
+                $gte: time
+            }
+        })
+         
+        if(!products) {
+            throw new Error('Flash Sale product not found..')
+        }
+        res.status(200).json(products)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.post('/dailydeals/add/:id', async (req, res) => {
+    const id = req.params.id
+    
+    try {
+        const productItem = await Product.findOneAndUpdate({_id: id}, req.body)
+        if(!productItem) {
+            throw new Error('Fail to add daily deals item..')
+        }
+        res.status(200).json(productItem)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.get('/dailydeals/:date', async (req, res) => {
+    const date = req.params.date
+
+    try {
+        const products = await Product.find({
+            'dailydeals.date': date
+        })
+        if(!products) {
+            throw new Error('Daily Deals product not found..')
+        }
+        res.status(200).json(products)
     } catch(err) {
         res.status(500).json({message: err.message})
     }
