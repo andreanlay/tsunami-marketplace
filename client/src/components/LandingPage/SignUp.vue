@@ -101,7 +101,7 @@ export default {
                     displayName: `${this.first_name} ${this.last_name}`
                 })
                 firebase.auth().currentUser.sendEmailVerification()
-                axios.post('api/auth/register', {
+                axios.post('api/account/register', {
                     uid: res.user.uid,
                     gender: this.gender,
                     birthday: this.birthday,

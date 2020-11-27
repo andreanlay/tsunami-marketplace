@@ -636,17 +636,18 @@ export default {
                 centered: true
             })
             .then(async val =>  {
-                await axios.delete(`/api/product/delete/${id}`)
-                .then(res => {
-                    for(let i=0; i<this.products.length; i++) {
-                        if(this.products[i]._id == id) {
-                            this.products.splice(i, 1)
-                            break
+                if(val) {
+                    await axios.delete(`/api/product/delete/${id}`)
+                    .then(res => {
+                        for(let i=0; i<this.products.length; i++) {
+                            if(this.products[i]._id == id) {
+                                this.products.splice(i, 1)
+                                break
+                            }
                         }
-                    }
-                    return res
-                })
-                return val
+                        return res
+                    })
+                }
             })
         },
         editProduct(id) {

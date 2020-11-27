@@ -116,7 +116,7 @@ export default {
             if(this.checkPIN()) {
                 console.log(this.accountData.PIN)
                 if(this.accountData.PIN == null || this.accountData.PIN == this.pin) {
-                    await axios.put(`/api/auth/${this.accountData.uid}`, {
+                    await axios.put(`/api/account/${this.accountData.uid}`, {
                         PIN: this.newPIN
                     })
                     this.$store.commit('changePIN', {

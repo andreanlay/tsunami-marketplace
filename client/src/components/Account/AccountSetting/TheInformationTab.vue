@@ -115,7 +115,7 @@ export default {
                     displayName: this.accountData.displayName
                 })
             }
-            await axios.put(`/api/auth/${this.accountData.uid}`, {
+            await axios.put(`/api/account/${this.accountData.uid}`, {
                 phone_number: this.accountData.phone_number
             })
             this.updateStore()
@@ -125,7 +125,7 @@ export default {
         async saveSellerDetails() {
             this.updatingSellerDetails = true
 
-            await axios.put(`/api/auth/${this.accountData.uid}`, {
+            await axios.put(`/api/account/${this.accountData.uid}`, {
                 seller: {
                     name: this.accountData.seller.name,
                     location: this.accountData.seller.location
