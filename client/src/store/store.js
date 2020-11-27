@@ -1,15 +1,11 @@
-// TODO:
-// Add ORM
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 import Catalog from './modules/catalog.js'
 import ProductSold from './modules/productSold.js'
 import ProductReview from './modules/productsReview.js'
-import Products from './modules/products.js'
 import PaymentMethods from './modules/payment.js'
-import Authentication from './modules/auth.js'
+import Account from './modules/account.js'
 import DarkMode from './modules/darkMode.js'
 
 
@@ -17,10 +13,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     modules: {
-        Authentication,
+        Account,
         DarkMode,
         Catalog,
-        Products,
         ProductSold,
         ProductReview,
         PaymentMethods,
