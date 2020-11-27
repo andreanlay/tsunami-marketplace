@@ -29,7 +29,22 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/search/:query', async(req, res) => {
+router.get('/details/:id', async (req, res) => {
+    const id = req.params.id
+
+    try {
+        const product = await Product.findOne({_id: id})
+
+        if(!product) {
+            throw new Error('Product not found..')
+        }
+        res.status(200).json(product)
+    } catch(err) {
+        res.status(500).json({message: err.message})   
+    }
+})
+
+router.get('/search/:query', async (req, res) => {
     const query = req.params.query
 
     try {
