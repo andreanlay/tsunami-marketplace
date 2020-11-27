@@ -96,7 +96,7 @@
                     <b-button v-else size="sm" class="m-1" variant="light" @click="setAsDefault(row.item._id)">
                         Set as Default
                     </b-button>
-                    <a :href="`//www.google.com/maps/search/?api=1&query=${row.item.details.coordinates}`" target="_blank">
+                    <a :href="`//www.google.com/maps/search/?api=1&query=${row.item.details[0].coordinates}`" target="_blank">
                         <b-button size="sm" class="m-1" variant="warning">
                             <b-icon icon="map"></b-icon>
                         </b-button>
