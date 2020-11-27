@@ -1,25 +1,20 @@
 <template>
-<b-card
-    class="m-2"
-    :title="product.name"
-    :img-src="product.image"
-    img-width="250px"
-    img-height="180px"
-    img top
-    style="width: 18rem;"
-    :class="{'card-dark' : darkMode}"
-    >
-    <b-card-text>
-        {{product.caption}}
-    </b-card-text>
-    <br>
-    <p><b>IDR <strike> {{product.from}}</strike> -> {{product.to}} </b></p>
+<div class="item-card m-2" :class="{'card-dark': darkMode}">
+    <img :src="'' + dailydeals.product.images[0].path" class="item-image">
+    <h5 class="item-title mt-2"> {{dailydeals.product.name}} </h5>
+    <h6 class="item-caption text-muted"> {{dailydeals.product.description}} </h6>
     
-    <b-button href="#" variant="primary">
+    <h6 class="item-price mt-4 mb-4"><strike>IDR {{dailydeals.product.price / 1000 }} K </strike> --> IDR {{dailydeals.price / 1000 }} K</h6>
+
+    <b-button v-if="dailydeals.sold == dailydeals.stock" href="#" variant="primary" disabled>
         <b-icon icon="cart"></b-icon>
         Add to Cart
     </b-button>
-</b-card>
+    <b-button v-else href="#" variant="primary">
+        <b-icon icon="cart"></b-icon>
+        Add to Cart
+    </b-button>
+</div>
 </template>
 
 <script>
@@ -30,11 +25,52 @@ export default {
         ...mapGetters(['darkMode'])
     },
     props: {
-        product: Object
+        dailydeals: Object
     },
 }
 </script>
 
 <style>
+.item-card {
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
 
+.item-image {
+    align-self: center;
+    width: 250px;
+    height: 180px;
+}
+
+
+.item-title {
+    align-self: center;
+}
+
+.item-caption {
+    text-align: justify;
+    height: 50px;
+}
+
+.item-seller, .item-wishlist{
+    align-self: flex-end;
+}
+
+.item-btn {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.item-rating-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-dark {
+    color: white;
+}
 </style>
