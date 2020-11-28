@@ -76,8 +76,10 @@ export default {
                 price: (this.product.dailydeals ? this.product.dailydeals.price : this.product.price),
                 qty: 1 
             }
-            this.$store.commit('addToCart', cartItem)
             await axios.post(`/api/account/${uid}/cart`, cartItem)
+            .then(res => {
+                this.$store.commit('setCart', res.data)
+            })
             
             this.$bvToast.toast(`${this.product.name} Successfuly added to cart`, {
                 title: 'Notification',
