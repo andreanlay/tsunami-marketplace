@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import firebase from 'firebase'
 
 export default {
@@ -66,9 +67,19 @@ export default {
         async onSubmit() {
             this.loading = true
             await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-            .then(res => {
+            .then(user => {
+                const uid = user.uid
+                axios.get(`/api/account/${uid}/cart`)
+                .then(res => {
+                    this.$store.commit('setCart', res.data[0].cart)
+                })
+                axios.get(`/api/account/${uid}`)
+                .then(res => {
+                    res.data['displayName'] = user.displayName
+                    res.data['email'] = user.email
+                    this.$store.commit('accountData', res.data)
+                })
                 this.$router.push({name: 'homepage'})
-                return res;
             })
             .catch(err => {
                 this.errorMsg = err.message
