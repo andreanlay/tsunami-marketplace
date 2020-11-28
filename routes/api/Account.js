@@ -80,7 +80,7 @@ router.post('/:uid/cart', async (req, res) => {
         if(!item) {
             throw new Error('Add to Cart failed..')
         }
-        res.status(200).json(item)
+        res.status(200).json(item.cart)
     } catch(err) {
         console.log(err.message)
         res.status(500).json({message: err.message})
