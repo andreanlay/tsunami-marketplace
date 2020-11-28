@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 import AccountNavBar from '@/components/Account/TheNavBar'
@@ -28,16 +26,6 @@ export default {
     computed: {
         ...mapGetters(['darkMode'])
     },
-    async beforeCreate() {
-        const uid = firebase.auth().currentUser.uid
-        await axios.get(`/api/auth/${uid}`).then(res => {
-            res.data['displayName'] = firebase.auth().currentUser.displayName
-            res.data['email'] = firebase.auth().currentUser.email
-            this.$store.commit('accountData', res.data)
-        }).catch(err => {
-            console.log(err)
-        })
-    }
 }
 </script>
 

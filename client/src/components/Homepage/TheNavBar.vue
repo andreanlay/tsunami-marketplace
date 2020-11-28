@@ -29,12 +29,13 @@
         <router-link :to="{ name: 'cart' }">
             <div class="nav-btn" :class="{'dark-nav' : darkMode}">
                 <b-icon icon="cart"></b-icon>
+                <b-badge variant="primary" v-show="cart.length > 0">{{cart.length}}</b-badge>
             </div>
         </router-link>
         <router-link :to="{ name: 'dashboard' }">
             <div class="nav-btn" :class="{'dark-nav' : darkMode}">
                 <b-icon icon="person-circle"></b-icon>
-                {{displayName}}
+                {{accountData.displayName}}
             </div>
         </router-link>
     </div>
@@ -43,17 +44,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import firebase from 'firebase/app'
 
 export default {
     data() {
         return {
             searchQuery: '',
-            displayName: 'Guest',
         }
     },
     computed: {
-        ...mapGetters(['darkMode'])
+        ...mapGetters(['darkMode', 'cart', 'accountData'])
     },
     methods: {
         search() {
@@ -65,11 +64,6 @@ export default {
             })
         }
     },
-    mounted() {
-        if(firebase.auth().currentUser) {
-            this.displayName = firebase.auth().currentUser.displayName
-        }
-    }
 }
 </script>
 

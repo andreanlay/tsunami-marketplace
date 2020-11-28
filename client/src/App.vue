@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import firebase from 'firebase/app'
+import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -16,6 +18,19 @@ export default {
     if(JSON.parse(localStorage.getItem('darkMode'))) {
       this.$store.commit('switchDarkMode', true)
     }
+    firebase.auth().onAuthStateChanged(user => {
+      const uid = user.uid
+      axios.get(`/api/account/${uid}/cart`)
+      .then(res => {
+          this.$store.commit('setCart', res.data[0].cart)
+      })
+      axios.get(`/api/account/${uid}`)
+      .then(res => {
+        res.data['displayName'] = user.displayName
+        res.data['email'] = user.email
+        this.$store.commit('accountData', res.data)
+      })
+    })
   }
 }
 </script>
