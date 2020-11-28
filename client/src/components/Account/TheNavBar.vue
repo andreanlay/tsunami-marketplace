@@ -102,6 +102,7 @@ export default {
     methods: {
         async logout() {
             await firebase.auth().signOut()
+            this.$store.commit('resetAccountData')
         }
     }
 }
