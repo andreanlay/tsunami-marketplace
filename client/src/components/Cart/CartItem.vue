@@ -1,15 +1,15 @@
 <template>
 <div class="item mb-4">
-    <img :src="'' + product.images[0].path">
+    <img :src="'' + cart.product.images[0].path">
     <div class="item-details">
-        <p class="bold">{{product.name}}</p>
+        <p class="bold">{{cart.product.name}}</p>
         <p>Color: <b>Gray</b></p>
         <p>Size: <b>41</b></p>
         <p><b-icon icon="shop"></b-icon><b> Toko Jantono</b></p>
     </div>
     <div class="item-price-details">
         <b-input-group append="pcs" class="amount-input">
-            <input type="number" min="0" :max="product.stock" @change="onQtyChange" v-model="cart.qty" class="form-control">
+            <input type="number" min="0" :max="cart.product.stock" @change="onQtyChange" v-model="cart.qty" class="form-control">
         </b-input-group>
         <p class="total-price"><b>Rp{{cart.price}} x {{cart.qty}} pcs = {{cart.price * cart.qty}}</b></p>
         <b-button @click="onDelete" variant="danger" style="width: 15%" class="ml-auto">
@@ -21,22 +21,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
     props: {
         cart: Object
-    },
-    data() {
-        return {
-            product: null
-        }
-    },
-    async mounted() {
-        await axios.get(`/api/product/details/${this.cart.product}`)
-        .then(res => {
-            this.product = res.data
-        })
     },
     methods: {
         onQtyChange() {
@@ -49,7 +36,7 @@ export default {
         onDelete() {
             this.$emit('delete-item', this.cart.product)
         }
-    }
+    },
 }
 </script>
 

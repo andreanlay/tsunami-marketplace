@@ -48,10 +48,12 @@ router.get('/:uid/cart', async (req, res) => {
     const uid = req.params.uid
     
     try {
-        const cart = await Account.find({uid: uid}, {cart: 1})
+        const cart = await Account.findOne({uid: uid}, {cart: 1})
         if(!cart) {
             throw new Error('Get cart failed..')
         }
+        await cart.populate('cart.product').execPopulate()
+        
         res.status(200).json(cart)
     } catch(err) {
         res.status(500).json({message: err.message})
@@ -61,7 +63,6 @@ router.get('/:uid/cart', async (req, res) => {
 router.post('/:uid/cart', async (req, res) => {
     const uid = req.params.uid
     let isAdded = false
-    let cart = null
 
     try {
         const item = await Account.findOne({uid: uid})
@@ -80,6 +81,8 @@ router.post('/:uid/cart', async (req, res) => {
         if(!item) {
             throw new Error('Add to Cart failed..')
         }
+        await item.populate('cart.product').execPopulate()
+
         res.status(200).json(item.cart)
     } catch(err) {
         console.log(err.message)

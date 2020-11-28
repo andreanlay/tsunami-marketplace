@@ -22,7 +22,7 @@ export default {
       const uid = user.uid
       axios.get(`/api/account/${uid}/cart`)
       .then(res => {
-          this.$store.commit('setCart', res.data[0].cart)
+          this.$store.commit('setCart', res.data.cart)
       })
       axios.get(`/api/account/${uid}`)
       .then(res => {
