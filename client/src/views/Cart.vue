@@ -8,7 +8,7 @@
         <div class="cart-container mt-3">
             <div class="cart-card items-list" :class="{'cart-card-dark': darkMode}">
                 <p class="nocart-text display-6" :class="{'text-dark': darkMode}">Cart ({{cart.length}} Items)</p>
-                <CartItem v-for="item in cart" :key="item" :cart="item" @qty-changed="updateQty" @delete-item="deleteItem"/>
+                <CartItem v-for="item in cart" :key="item._id" :cart="item" @qty-changed="updateQty" @delete-item="deleteItem"/>
             </div>
             
             <div class="cart-card items-amount">
@@ -31,7 +31,7 @@
                 <p class="bold text-muted items-left-side" :class="{'text-dark': darkMode}">Total</p>
                 <p class="bold text-muted items-right-side" :class="{'text-dark': darkMode}">{{total - saved}}</p>
 
-                <button class="checkout-btn" @click="$router.push('checkout/step-one')">
+                <button class="checkout-btn" @click="checkout">
                     <b>Proceed To Checkout</b>
                 </button>
             </div>
@@ -85,7 +85,7 @@ export default {
         },
         updateQty(data) {
             const uid = firebase.auth().currentUser.uid
-            
+
             for(let i=0; i<this.cart.length; i++) {
                 if(this.cart[i].product == data.id) {
                     axios.post(`/api/account/${uid}/cart`, {
@@ -123,6 +123,13 @@ export default {
                     })
                 }
             })
+        },
+        checkout() {
+            this.$commit('setPayment', {
+                total: this.total,
+                voucher: this.voucher
+            })
+            this.$router.push('checkout/step-one')
         }
     }
 }
