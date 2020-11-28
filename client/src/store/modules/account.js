@@ -1,13 +1,20 @@
-const state = {
-    data: {
+const getdefaultDataState = () => {
+    return {}
+}
 
-    },
+const getDefaultCartState = () => {
+    return []
+}
+
+const state = {
+    data: getdefaultDataState(),
     address: [
 
     ],
-    cart: [
+    cart: getDefaultCartState(),
+    payment: {
 
-    ],
+    }
 }
 
 const getters = {
@@ -22,6 +29,10 @@ const actions = {
 const mutations = {
     accountData: (state, data) => {
         state.data = data
+    },
+    resetAccountData: (state) => {
+        state.data = getdefaultDataState()
+        state.cart = getDefaultCartState()
     },
     changePIN: (state, data) => {
         state.data.PIN = data.PIN
@@ -45,6 +56,9 @@ const mutations = {
                 break
             }
         }
+    },
+    setPayment: (state, data) => {
+        state.payment = data
     }
 }
 
