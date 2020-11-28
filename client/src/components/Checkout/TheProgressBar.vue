@@ -1,13 +1,13 @@
 <template>
 <div class="d-flex flex-row flex-wrap justify-content-center pt-3 pb-3" id="checkout" :class="{'bar-dark': darkMode}">
     <div class="header">
-        <div class="numberCircle text-center active" :class="{'active-dark': darkMode}">
+        <div class="numberCircle text-center" :class="{'active': step == 1, 'active-dark': darkMode && step == 1, 'numberCircle-dark': step != 1}">
             <span class="lead">1</span>
         </div>
         <span class="lead ml-2"><b>Shipping & Payment</b></span>
     </div>
     <div class="header ml-0 ml-md-5">
-        <div class="numberCircle text-center" :class="{'numberCircle-dark': darkMode}">
+        <div class="numberCircle text-center" :class="{'active': step == 2, 'active-dark': darkMode && step == 2, 'numberCircle-dark': step != 2}">
             <span class="lead">2</span>
         </div>
         <span class="lead ml-2"><b>Review & Confirmation</b></span>
@@ -19,9 +19,12 @@
 import { mapGetters } from 'vuex'
 
 export default {
+    props: {
+      step: Number
+    },
     computed: {
       ...mapGetters(['darkMode'])
-    }
+    },
 }
 </script>
 
@@ -62,8 +65,8 @@ export default {
 }
 
 .active-dark {
-  background-color: darkblue;
-  border: 2px solid darkblue;
+  background-color: darkblue !important;
+  border: 2px solid darkblue !important;
 }
 
 </style>
