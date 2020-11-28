@@ -1,25 +1,55 @@
 <template>
-<div class="item">
-    <img src="../../assets/dailydeals_product/newbalance_shoes.jpg">
+<div class="item mb-4">
+    <img :src="'' + product.images[0].path">
     <div class="item-details">
-        <p class="bold">New Balance Men's Classic 993 Running Shoes</p>
+        <p class="bold">{{product.name}}</p>
         <p>Color: <b>Gray</b></p>
         <p>Size: <b>41</b></p>
         <p><b-icon icon="shop"></b-icon><b> Toko Jantono</b></p>
     </div>
     <div class="item-price-details">
         <b-input-group append="pcs" class="amount-input">
-            <input type="number" min="0" class="form-control">
+            <input type="number" min="0" :max="product.stock" @change="onQtyChange" v-model="cart.qty" class="form-control">
         </b-input-group>
-        <p class="total-price"><b>Rp1.200.000 x 3 = Rp4.800.000</b></p>
+        <p class="total-price"><b>Rp{{cart.price}} x {{cart.qty}} pcs = {{cart.price * cart.qty}}</b></p>
+        <b-button @click="onDelete" variant="danger" style="width: 15%" class="ml-auto">
+            <b-icon icon="trash"></b-icon>
+        </b-button>
     </div>
-    <div class="item-divider"></div>
+    <div class="item-divider mt-3"></div>
 </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+    props: {
+        cart: Object
+    },
+    data() {
+        return {
+            product: null
+        }
+    },
+    async mounted() {
+        await axios.get(`/api/product/details/${this.cart.product}`)
+        .then(res => {
+            this.product = res.data
+        })
+    },
+    methods: {
+        onQtyChange() {
+            const data = {
+                id: this.cart.product,
+                qty: this.cart.qty
+            }
+            this.$emit('qty-changed', data)
+        },
+        onDelete() {
+            this.$emit('delete-item', this.cart.product)
+        }
+    }
 }
 </script>
 
@@ -48,7 +78,7 @@ img {
 }
 
 .amount-input {
-    width: 30%;
+    width: 40%;
     align-self: flex-end;
 }
 

@@ -16,7 +16,7 @@
         </div>
         
         <div class="item-btn">
-            <b-button variant="primary" class="mt-3"><b-icon icon="cart"></b-icon>Add to Cart</b-button>
+            <b-button @click="addToCart(product._id)" variant="primary" class="mt-3"><b-icon icon="cart"></b-icon>Add to Cart</b-button>
         </div>
     </div>
     <div v-if="product.flashsale">
@@ -41,14 +41,14 @@
         
         <h6 class="item-price mt-4 mb-4">IDR {{product.flashsale.price / 1000 }} K</h6>
 
-        <b-button href="#" variant="primary" :disabled="product.flashsale.sold == product.flashsale.stock">
+        <b-button @click="addToCart(product._id)" variant="primary" :disabled="product.flashsale.sold == product.flashsale.stock">
             <b-icon icon="cart"></b-icon>
             Add to Cart
         </b-button>
     </div>
     <div v-if="product.dailydeals">
         <h6 class="item-price mt-4 mb-4"><strike>IDR {{product.price / 1000 }} K </strike> --> IDR {{product.dailydeals.price / 1000 }} K</h6>
-        <b-button href="#" variant="primary">
+        <b-button @click="addToCart(product._id)" variant="primary">
             <b-icon icon="cart"></b-icon>
             Add to Cart
         </b-button>
@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import firebase from 'firebase/app'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -65,6 +67,24 @@ export default {
     },
     computed: {
         ...mapGetters(['darkMode'])
+    },
+    methods: {
+        async addToCart(id) {
+            const uid = firebase.auth().currentUser.uid
+            const cartItem = {
+                product: id,
+                price: (this.product.dailydeals ? this.product.dailydeals.price : this.product.price),
+                qty: 1 
+            }
+            this.$store.commit('addToCart', cartItem)
+            await axios.post(`/api/account/${uid}/cart`, cartItem)
+            
+            this.$bvToast.toast(`${this.product.name} Successfuly added to cart`, {
+                title: 'Notification',
+                variant: 'success',
+                solid: true
+            })
+        }
     }
 }
 </script>
@@ -87,10 +107,12 @@ export default {
 
 .item-title {
     align-self: center;
+    height: 50px;
 }
 
 .item-caption {
     text-align: justify;
+    word-wrap: fit;
     height: 75px;
 }
 
