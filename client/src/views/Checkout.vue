@@ -1,7 +1,7 @@
 <template>
 <div>
-    <ProgressBar/>
-    <router-view/>
+    <ProgressBar :step="current_step"/>
+    <router-view @changeStep="changeStep"/>
 </div>
 </template>
 
@@ -17,6 +17,11 @@ export default {
     },
     components: {
         ProgressBar,
+    },
+    methods: {
+        changeStep(val) {
+            this.current_step = val
+        }
     }
 }
 </script>
