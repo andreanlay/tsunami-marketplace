@@ -9,6 +9,7 @@ const app = express()
 const accountRoute = require('./routes/api/Account')
 const addressRoute = require('./routes/api/Address.js')
 const productRoute = require('./routes/api/Product.js')
+const transactionRoute = require('./routes/api/Transaction')
 
 app.use(cors())
 app.use(morgan('tiny'))
@@ -26,5 +27,7 @@ mongoose.connect(mongoUri, {
 app.use('/api/account', accountRoute)
 app.use('/api/address', addressRoute)
 app.use('/api/product', productRoute)
+app.use('/api/transaction', transactionRoute)
+
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`))
