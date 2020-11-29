@@ -20,6 +20,11 @@ router.get('/', async (req, res) => {
                 }
             ]
         }).sort({posted_date: -1}).limit(20)
+
+        for(let product of products) {
+            await product.populate('seller').execPopulate()
+        }
+
         if(!products) {
             throw new Error('Product not found..')
         }
