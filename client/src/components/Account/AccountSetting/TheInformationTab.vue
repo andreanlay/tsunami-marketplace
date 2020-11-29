@@ -6,7 +6,7 @@
     </h1>
     <div class="data-row">
         <p class="row-label">Full Name</p>
-        <input v-model="accountData.displayName" :class="{'row-input-active' : editingPersonalDetails}" type="text" class="row-input" :disabled="!editingPersonalDetails">
+        <input v-model="accountData.display_name" :class="{'row-input-active' : editingPersonalDetails}" type="text" class="row-input" :disabled="!editingPersonalDetails">
     </div>
     <div class="data-row">
         <p class="row-label">Phone Number</p>
@@ -14,7 +14,7 @@
     </div>
     <div class="data-row">
         <p class="row-label">Email Address</p>
-        <input v-model="accountData.email" :class="{'row-input-active' : editingPersonalDetails}" type="text" class="row-input" :disabled="!editingPersonalDetails">
+        <input v-model="accountData.email_address" :class="{'row-input-active' : editingPersonalDetails}" type="text" class="row-input" :disabled="!editingPersonalDetails">
     </div>
     <div class="data-row">
         <p class="row-label">Birthday</p>
@@ -85,8 +85,8 @@ export default {
             const user = firebase.auth().currentUser
             this.$store.commit('accountData', {
                 uid: user.uid,
-                displayName: user.displayName,
-                email: user.email,
+                display_name: this.accountData.display_name,
+                email_address: this.accountData.email_address,
                 phone_number: this.accountData.phone_number,
                 birthday: this.accountData.birthday,
                 gender: this.accountData.gender,
@@ -106,16 +106,16 @@ export default {
             this.updatingPersonalDetails = true
 
             const user = firebase.auth().currentUser
-            if(user.email != this.accountData.email) {
-                user.updateEmail(this.accountData.email)
+            if(user.email != this.accountData.email_address) {
+                user.updateEmail(this.accountData.email_address)
                 user.sendEmailVerification()
             }
-            if(user.displayName != this.accountData.displayName) {
-                user.updateProfile({
-                    displayName: this.accountData.displayName
-                })
-            }
+            user.updateProfile({
+                displayName: this.accountData.display_name
+            })
             await axios.put(`/api/account/${this.accountData.uid}`, {
+                display_name: this.accountData.display_name,
+                email_address: this.accountData.email_address,
                 phone_number: this.accountData.phone_number
             })
             this.updateStore()

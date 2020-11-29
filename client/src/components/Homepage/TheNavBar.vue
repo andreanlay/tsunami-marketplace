@@ -35,7 +35,7 @@
         <router-link :to="{ name: 'dashboard' }">
             <div class="nav-btn" :class="{'dark-nav' : darkMode}">
                 <b-icon icon="person-circle"></b-icon>
-                {{accountData.displayName}}
+                {{accountData.display_name}}
             </div>
         </router-link>
     </div>

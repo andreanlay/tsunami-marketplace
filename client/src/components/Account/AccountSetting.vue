@@ -8,7 +8,7 @@
     </b-col>
     <b-col xl="8" sm="12">
         <div id="data-section" class="d-flex flex-column align-items-start"> 
-            <h1 class="display-5">{{accountData.displayName}}</h1>
+            <h1 class="display-5">{{accountData.display_name}}</h1>
             <p class="text-muted">{{`📍 ${accountData.seller.location}`}}</p>
             <p><b>🥈Silver Member</b></p>
             <div class="ratings">
