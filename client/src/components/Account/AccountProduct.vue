@@ -436,7 +436,6 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import firebase from 'firebase/app'
 import axios from 'axios'
 
 import 'quill/dist/quill.core.css'
@@ -476,7 +475,7 @@ export default {
             },
             selectedProduct: [],
             newProduct: {
-                seller_uid: '',
+                seller: '',
                 name: '',
                 category: '',
                 subcategory: '',
@@ -510,7 +509,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['darkMode', 'subcategories', 'category_names']),
+        ...mapGetters(['darkMode', 'subcategories', 'category_names', 'accountData']),
         visibleFields() {
             return this.fields.filter(field => field.visible)
         }
@@ -519,10 +518,10 @@ export default {
         quillEditor
     },
     async mounted() {
-        const uid = firebase.auth().currentUser.uid
-        this.newProduct.seller_uid = uid
+        const id = this.accountData._id
+        this.newProduct.seller = id
 
-        await axios.get(`/api/product/${uid}`)
+        await axios.get(`/api/product/${id}`)
         .then(res => {
             this.products = res.data
         })

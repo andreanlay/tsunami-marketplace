@@ -1,8 +1,9 @@
 const { Schema, model } = require('mongoose')
 
 const ProductSchema = new Schema({
-    seller_uid: {
-        type: String,
+    seller: {
+        type: Schema.Types.ObjectId,
+        ref: 'account',
         required: true
     },
     name: {

@@ -63,11 +63,11 @@ router.get('/search/:query', async (req, res) => {
     }
 })
 
-router.get('/:uid', async (req, res) => {
-    const uid = req.params.uid
+router.get('/:id', async (req, res) => {
+    const id = req.params.uid
 
     try {
-        const products = await Product.find({seller_uid: uid})
+        const products = await Product.find({seller: id})
         if(!products) {
             throw new Error('Product not found..')
         }
