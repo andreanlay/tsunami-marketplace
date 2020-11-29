@@ -125,7 +125,7 @@ export default {
             })
         },
         checkout() {
-            this.$commit('setPayment', {
+            this.$store.commit('setPayment', {
                 total: this.total,
                 voucher: this.voucher
             })
