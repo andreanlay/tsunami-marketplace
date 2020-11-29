@@ -19,7 +19,7 @@ const state = {
 
 const getters = {
     accountData: (state) => state.data,
-    cart: (state) => state.cart
+    cart: (state) => state.cart,
 }
 
 const actions = {
@@ -56,9 +56,6 @@ const mutations = {
                 break
             }
         }
-    },
-    setPayment: (state, data) => {
-        state.payment = data
     }
 }
 
