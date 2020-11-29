@@ -6,6 +6,14 @@ const AccountSchema = new Schema({
         unique: true,
         required: true,
     },
+    display_name: {
+        type: String,
+        required: true
+    },
+    email_address: {
+        type: String,
+        required: true
+    },
     gender: {
         type: String,
         required: true
