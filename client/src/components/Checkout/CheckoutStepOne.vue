@@ -49,6 +49,9 @@ export default {
     },
     computed: {
         ...mapGetters(['darkMode'])
+    },
+    mounted() {
+        this.$emit('changeStep', 1)
     }
 }
 </script>
