@@ -75,8 +75,6 @@ export default {
                 })
                 axios.get(`/api/account/${uid}`)
                 .then(res => {
-                    res.data['displayName'] = user.displayName
-                    res.data['email'] = user.email
                     this.$store.commit('accountData', res.data)
                 })
                 this.$router.push({name: 'homepage'})
