@@ -4,7 +4,7 @@
     <h5 class="item-title mt-2"> {{product.name}} </h5>
     <h6 class="item-caption text-muted"> {{product.description}} </h6>
     <div v-if="!product.flashsale && !product.dailydeals">
-        <h6 class="item-seller text-right"><b-icon icon="shop"></b-icon> Jantono Shop</h6>
+        <h6 class="item-seller text-right"><b-icon icon="shop"></b-icon> {{product.seller.seller.name}} </h6>
         <div class="item-rating-price">
             <div>
                 <b-icon icon="star-fill" variant="warning"></b-icon>
