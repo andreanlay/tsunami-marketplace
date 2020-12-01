@@ -67,7 +67,7 @@ router.post('/:uid/cart', async (req, res) => {
     try {
         const item = await Account.findOne({uid: uid})
         for(let i=0; i<item.cart.length; i++) {
-            if(item.cart[i].product == req.body.product) {
+            if(item.cart[i].product == req.body.product._id) {
                 item.cart[i].qty++
                 item.save()
                 isAdded = true
