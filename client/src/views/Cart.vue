@@ -87,7 +87,7 @@ export default {
             const uid = firebase.auth().currentUser.uid
 
             for(let i=0; i<this.cart.length; i++) {
-                if(this.cart[i].product == data.id) {
+                if(this.cart[i].product._id == data.id) {
                     axios.post(`/api/account/${uid}/cart`, {
                         product: data.id
                     })
