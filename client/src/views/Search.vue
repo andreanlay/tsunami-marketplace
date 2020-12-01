@@ -3,7 +3,7 @@
     <TheNavBar :query="query"/>
     <b-container fluid>
         <div class="items-container">
-            <itemCard v-for="(item, i) in results" :key="i" :product="item"/>
+            <itemCard v-for="item in results" :key="item._id" :product="item"/>
         </div>
     </b-container>
 </div>
