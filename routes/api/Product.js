@@ -59,6 +59,11 @@ router.get('/search/:query', async (req, res) => {
                 $options: 'i'
             }
         })
+        
+        for(let product of products) {
+            await product.populate('seller').execPopulate()
+        }
+
         if(!products) {
             throw new Error('No product with such keyword..')
         }
@@ -69,7 +74,7 @@ router.get('/search/:query', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const id = req.params.uid
+    const id = req.params.id
 
     try {
         const products = await Product.find({seller: id})
