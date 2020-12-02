@@ -51,7 +51,7 @@ const mutations = {
     },
     deleteCartItem: (state, id) => {
         for(let i=0; i<state.cart.length; i++) {
-            if(state.cart[i].product == id) {
+            if(state.cart[i].product._id == id) {
                 state.cart.splice(i, 1)
                 break
             }
