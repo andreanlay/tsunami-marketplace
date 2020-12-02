@@ -104,11 +104,12 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
     computed: {
-        ...mapGetters(['darkMode', 'payment', 'cart', 'shippingAddress'])
+        ...mapGetters(['darkMode', 'payment', 'cart', 'shippingAddress', 'accountData'])
     },
     data() {
         return {
@@ -134,7 +135,15 @@ export default {
     },
     methods: {
         processTransaction() {
-
+            const id = this.accountData._id
+            axios.post('/api/transaction/', {
+                buyer_id: id,
+                date: Date.now(),
+                cart: this.cart,
+                shipping_address: this.shippingAddress[0]._id,
+                discount: this.discount,
+                total: this.total - this.discount,
+            })
             this.$router.push('../')
         }
     }
