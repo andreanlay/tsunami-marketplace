@@ -15,6 +15,23 @@ const TransactionSchema = new Schema({
         type: Date,
         required: true
     },
+    status: {
+        type: String,
+        default: 'Processing'
+    },
+    shipping_address: {
+        type: Schema.Types.ObjectId,
+        ref: 'addresses',
+        required: true
+    },
+    discount: {
+        type: Number,
+        required: true
+    },
+    total: {
+        type: Number,
+        required: true
+    },
     cart: [
         {
             product: {
