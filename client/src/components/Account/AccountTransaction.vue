@@ -20,7 +20,7 @@
             style="max-width: 24rem;"
             class="m-3"
         >
-            <b-card-text>You just spent <b>{{spent_money}}</b> from transactions this month</b-card-text>
+            <b-card-text>You just spent <b>Rp{{spent_money}}</b> from transactions this month</b-card-text>
         </b-card>
         </b-col>
     </b-row>
@@ -116,8 +116,8 @@ export default {
     },
     data() {
         return {
-            saved_money: '153.200',
-            spent_money: 'Rp55.983.300',
+            saved_money: 0,
+            spent_money: 0,
             transactions: [],
             fields: ['TransactionID', 'date', 'type', 'total', 'status', 'actions']
         }
@@ -126,7 +126,10 @@ export default {
         axios.get(`/api/transaction/${this.accountData._id}`)
         .then(res => {
             this.transactions = res.data
-            console.log(res.data)
+            this.transactions.forEach(transaction => {
+                this.saved_money += transaction.discount
+                this.spent_money += transaction.total - transaction.discount
+            })
         })
     },
     methods: {
