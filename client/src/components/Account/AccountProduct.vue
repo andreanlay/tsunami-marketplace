@@ -679,7 +679,7 @@ export default {
         
             data.append('deletedImages', JSON.stringify(this.deletedImages))
             for(let [key, val] of Object.entries(this.editedProduct)) {
-                if(key == 'images' || key == 'specifications') 
+                if(key == 'images' || key == 'specifications' || key == 'posted_date') 
                     continue
                 data.append(key, val)
             }
