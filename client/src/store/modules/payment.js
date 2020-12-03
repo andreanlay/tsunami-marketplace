@@ -17,7 +17,8 @@ const state = {
     checkout: {
         payment: {},
         address: [],
-        courier: ''
+        courier: '',
+        discount: 0
     }
 }
 
@@ -25,6 +26,7 @@ const getters = {
     paymentMethods: (state) => state.method,
     bankNames: (state) => state.bank,
     payment: (state) => state.checkout.payment,
+    discount: (state) => state.checkout.discount,
     shippingAddress: (state) => state.checkout.address
 }
 
@@ -44,6 +46,15 @@ const mutations = {
     },
     setPaymentMethod: (state, data) => {
         state.checkout.payment['method'] = data
+    },
+    setDiscount: (state, discount) => {
+        state.checkout.discount = discount
+    },
+    resetPayment: (state) => {
+        state.checkout.payment = {}
+        state.checkout.address = []
+        state.courier = ''
+        state.checkout.discount = 0
     }
 }
 
