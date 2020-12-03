@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import Catalog from './modules/catalog.js'
-import ProductSold from './modules/productSold.js'
+import Product from './modules/product.js'
 import ProductReview from './modules/productsReview.js'
 import PaymentMethods from './modules/payment.js'
 import Account from './modules/account.js'
@@ -16,7 +16,7 @@ const store = new Vuex.Store({
         Account,
         DarkMode,
         Catalog,
-        ProductSold,
+        Product,
         ProductReview,
         PaymentMethods,
     }
