@@ -109,7 +109,7 @@ import { mapGetters } from 'vuex'
 
 export default {
     computed: {
-        ...mapGetters(['darkMode', 'payment', 'cart', 'shippingAddress', 'accountData'])
+        ...mapGetters(['darkMode', 'payment', 'discount', 'cart', 'shippingAddress', 'accountData'])
     },
     data() {
         return {
@@ -120,7 +120,6 @@ export default {
                 { key: 'totalprice', label: 'Total Price'}
             ],
             total: 0,
-            discount: 0,
             paymentDetails: []
         }
     },
@@ -129,7 +128,6 @@ export default {
         this.cart.forEach(item => {
             this.total += item.price * item.qty
         })
-        this.discount = this.payment.discount ?? 0
         
         this.paymentDetails.push(this.payment.method)
     },
@@ -144,7 +142,18 @@ export default {
                 discount: this.discount,
                 total: this.total - this.discount,
             })
-            this.$router.push('../')
+            .then(res => {
+                axios.put(`/api/account/${this.accountData.uid}`, {
+                    cart: []
+                })
+                .then(res2 => {
+                    this.$store.commit('resetCart')
+                    this.$store.commit('resetPayment')
+                    this.$router.push('../')
+                    return res2
+                })
+                return res
+            })
         }
     }
 }
