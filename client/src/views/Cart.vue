@@ -76,6 +76,7 @@ export default {
                 this.voucherApplied = false
                 this.saved = 0
             }
+            this.$store.commit('setDiscount', this.saved)
         },
         countTotal() {
             this.total = 0
