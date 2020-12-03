@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const Transaction = require('../../models/Transaction')
+const Product = require('../../models/Product')
 
 const router = Router()
 
@@ -40,6 +41,19 @@ router.post('/', async (req, res) => {
         if(!TransactionItem) {
             throw new Error('Fail to save transaction..')
         }
+
+        // Decrement each bought product's stock
+        req.body.cart.forEach(async item => {
+            await Product.findOneAndUpdate({
+                _id: item.product
+            },
+            {
+                $inc: {
+                    stock: -item.qty
+                }
+            })
+        })
+
         res.status(200).json(TransactionItem)
     } catch(err) {
         res.status(500).json({message: err.message})
