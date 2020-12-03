@@ -165,8 +165,6 @@ router.put('/edit/:id', async (req, res) => {
 
     const currentProductState = await Product.findOne({_id: productID})
 
-    console.log(currentProductState.images)
-
     for(let i=currentProductState.images.length - 1; i>=0; i--) {
         for(let j=0; j<req.body.deletedImages.length; j++) {
             if(currentProductState.images[i].name == req.body.deletedImages[j]) {
@@ -192,6 +190,7 @@ router.put('/edit/:id', async (req, res) => {
         console.log(updatedProduct)
         res.status(200).json(updatedProduct)
     } catch(err) {
+        console.log(err.message)
         res.status(500).json({message: err.message})
     }
 })
