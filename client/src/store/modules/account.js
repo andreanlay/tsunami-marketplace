@@ -32,6 +32,10 @@ const mutations = {
     },
     resetAccountData: (state) => {
         state.data = getdefaultDataState()
+        this.resetCart()
+
+    },
+    resetCart: (state) => {
         state.cart = getDefaultCartState()
     },
     changePIN: (state, data) => {
@@ -56,7 +60,7 @@ const mutations = {
                 break
             }
         }
-    }
+    },
 }
 
 export default {
