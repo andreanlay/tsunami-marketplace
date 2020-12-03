@@ -28,13 +28,13 @@ export default {
     methods: {
         onQtyChange() {
             const data = {
-                id: this.cart.product,
+                id: this.cart.product._id,
                 qty: this.cart.qty
             }
             this.$emit('qty-changed', data)
         },
         onDelete() {
-            this.$emit('delete-item', this.cart.product)
+            this.$emit('delete-item', this.cart.product._id)
         }
     },
 }
