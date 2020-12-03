@@ -49,8 +49,9 @@ router.post('/', async (req, res) => {
             },
             {
                 $inc: {
-                    stock: -item.qty
-                }
+                    stock: -item.qty,
+                    sold: item.qty
+                },
             })
         })
 
