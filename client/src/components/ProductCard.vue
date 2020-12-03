@@ -15,9 +15,14 @@
             </div>
         </div>
         
-        <div class="item-btn">
-            <b-button @click="addToCart(product._id)" variant="primary" class="mt-3"><b-icon icon="cart"></b-icon>Add to Cart</b-button>
-        </div>
+        <b-row class="item-btn">
+            <b-col>
+                <b-button @click="visitProductPage(product._id)" variant="primary" class="mt-3"><b-icon icon="eye"></b-icon>View Product</b-button>
+            </b-col>
+            <b-col>
+                <b-button @click="addToCart(product._id)" variant="primary" class="mt-3"><b-icon icon="cart"></b-icon>Add to Cart</b-button>
+            </b-col>
+        </b-row>
     </div>
     <div v-if="product.flashsale">
         <b-progress 
@@ -73,7 +78,7 @@ export default {
             const uid = firebase.auth().currentUser.uid
             const cartItem = {
                 product: id,
-                price: (this.product.dailydeals ? this.product.dailydeals.price : this.product.price),
+                price: (this.product.dailydeals ? this.product.dailydeals.price : (this.product.flashsale ? this.product.flashsale.price : this.product.price)),
                 qty: 1 
             }
             await axios.post(`/api/account/${uid}/cart`, cartItem)
@@ -85,6 +90,14 @@ export default {
                 title: 'Notification',
                 variant: 'success',
                 solid: true
+            })
+        },
+        visitProductPage(id) {
+            this.$router.push({
+                name: 'product-detail',
+                params: {
+                    id: id
+                }
             })
         }
     }
