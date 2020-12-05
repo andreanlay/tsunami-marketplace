@@ -9,6 +9,7 @@ const app = express()
 const accountRoute = require('./routes/api/Account')
 const addressRoute = require('./routes/api/Address.js')
 const productRoute = require('./routes/api/Product.js')
+const postRoute = require('./routes/api/Post')
 const transactionRoute = require('./routes/api/Transaction')
 
 app.use(cors())
@@ -27,6 +28,7 @@ mongoose.connect(mongoUri, {
 app.use('/api/account', accountRoute)
 app.use('/api/address', addressRoute)
 app.use('/api/product', productRoute)
+app.use('/api/post', postRoute)
 app.use('/api/transaction', transactionRoute)
 
 
