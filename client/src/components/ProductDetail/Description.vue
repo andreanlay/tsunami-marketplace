@@ -41,10 +41,6 @@
                 :dark="darkMode"
                 :class="{'table-dark': darkMode}"
             ></b-table>
-
-            <div class="d-flex flex-column align-items-start">
-                <p class="display-6">Product Review</p>
-            </div>
         </b-col>
     </b-row>
 </div>
