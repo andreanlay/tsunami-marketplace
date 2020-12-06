@@ -1,13 +1,14 @@
 const { Schema, model } = require('mongoose')
 
 const PostSchema = new Schema({
+    product: {
+        type: Schema.Types.ObjectId,
+        ref: 'product',
+        required: true
+    },
     poster: {
         type: Schema.Types.ObjectId,
         ref: 'account',
-        required: true
-    },
-    title: {
-        type: String,
         required: true
     },
     description: {
@@ -19,7 +20,7 @@ const PostSchema = new Schema({
         required: true
     },
     review: {
-        type: String,
+        type: String
     },
     replies: [{
         type: Schema.Types.ObjectId,
