@@ -24,11 +24,7 @@ const PostSchema = new Schema({
         required: true
     },
     review: {
-        rating: String,
-        transaction_id: {
-            type: Schema.Types.ObjectId,
-            ref: 'transaction'
-        }
+        type: String
     },
     replies: [{
         type: Schema.Types.ObjectId,
