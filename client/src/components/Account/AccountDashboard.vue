@@ -99,8 +99,14 @@
             :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table v-if="darkMode" responsive striped :items="productReviews" dark></b-table>    
-                <b-table v-else responsive striped :items="productReviews"></b-table>    
+                <b-table responsive striped :items="latestReviews" :fields="reviewFields" :dark="darkMode">
+                    <template #cell(posted_date)="row">
+                        {{ new Date(row.item.posted_date).toDateString() }}
+                    </template>    
+                    <template #cell(review)="row">
+                        {{ row.item.review }}⭐
+                    </template>
+                </b-table>    
             </b-card-text>
         </b-card>
         </b-row>
@@ -110,19 +116,33 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import { mapGetters } from 'vuex'
 
 export default {
     title: 'Dashboard – Tsunami',
     computed: {
-        ...mapGetters(['salesReport', 'productReviews', 'darkMode'])
+        ...mapGetters(['accountData', 'productReviews', 'darkMode'])
+    },
+    mounted() {
+        axios.get(`/api/post/reviews/seller/${this.accountData._id}`)
+        .then(res => {
+            this.latestReviews = res.data
+        })
     },
     data() {
         return {
             new_follower: 15,
             today_profit: '1.565.3000',
             today_views: 1612,
-            items_sold_today: 4
+            items_sold_today: 4,
+            latestReviews: [],
+            reviewFields: [
+                { 'label': 'Review Date', key: 'posted_date' },
+                { 'label': 'Review', key: 'description'},
+                { 'label': 'Rating', key: 'review'}
+            ],
         }
     },
 }
