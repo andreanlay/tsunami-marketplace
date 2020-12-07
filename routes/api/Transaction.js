@@ -61,11 +61,23 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id/review', async (req, res) => {
     const id = req.params.id
 
     try {
-        const TransactionItem = await Transaction.findOneAndUpdate({_id: id}, req.body, {new: true})
+        const TransactionItem = await Transaction.findOneAndUpdate(
+            {
+                _id: id
+            },
+            {
+                $set: {
+                    'cart.$[el].review': true
+                }
+            },
+            {
+                arrayFilters: [{'el.product': req.body.product}],
+                new: true
+            })
 
         if(!TransactionItem) {
             throw new Error('Fail to update transaction')
