@@ -54,7 +54,7 @@ router.get('/discussions/:id', async (req, res) => {
     try {
         const posts = await Post.find({
             product: id,
-            type: 'discussions'
+            type: 'discussion'
         }).sort({posted_date: -1})
 
         if(!posts) {

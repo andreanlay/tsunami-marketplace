@@ -10,7 +10,7 @@
     <p class="align-self-start"> {{post.description}} </p>
     <small class="ml-auto">Posted on {{new Date(post.posted_date).toDateString()}}</small>
     <b-button 
-        v-if="post.type == 'discussions'" 
+        v-if="post.type == 'discussion'" 
         class="ml-auto" 
         variant="success" 
         size="sm" 
@@ -20,7 +20,7 @@
     </b-button>
 
     <b-modal
-        v-if="post.type == 'discussions'" 
+        v-if="post.type == 'discussion'" 
         title="Reply discussion"
         v-model="replyModal"
         centered
