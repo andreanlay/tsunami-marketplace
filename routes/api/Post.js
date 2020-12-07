@@ -48,6 +48,26 @@ router.get('/reviews/:id', async (req, res) => {
     }
 })
 
+router.get('/reviews/seller/:seller_id', async (req, res) => {
+    const seller = req.params.seller_id
+
+    try {
+        let posts = await Post.find({
+            type: 'review',
+        }).populate('product')
+        
+        if(!posts) {
+            throw new Error('Fail to find reviews..')
+        }
+
+        posts = posts.filter(post => post.product.seller == seller)
+
+        res.status(200).json(posts)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
 router.get('/discussions/:id', async (req, res) => {
     const id = req.params.id
 
