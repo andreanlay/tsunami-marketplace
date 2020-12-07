@@ -2,9 +2,26 @@
 <div>
     <b-row class="justify-content-center mt-5">
         <b-col sm="12" xl="8">
-            <div class="d-flex flex-column align-items-start">
+            <div class="d-flex flex-row justify-content-between">
                 <p class="display-6">Product Discussion</p>
+                <b-button size="md" variant="success" @click="newDiscussionModal = true">Add new discussion</b-button>
             </div>
+            <b-modal
+                title="New discussion"
+                v-model="newDiscussionModal"
+                centered
+                ok-title="Post"
+                ok-variant="success"
+                @ok="newDiscussion"
+                cancel-title="Discard"
+            >
+                <b-form-textarea
+                    v-model="discussionText"
+                    placeholder="What's in your mind ?"
+                >
+                </b-form-textarea>
+            </b-modal>
+
             <div v-if="posts.length == 0">
                 <p class="lead">Discussion is empty.</p>
             </div>
@@ -43,13 +60,15 @@ export default {
             posts: [],
             currentPage: 1,
             itemsPerPage: 2,
+            newDiscussionModal: false,
+            discussionText: ''
         }
     },
     components: {
         Post
     },
     computed: {
-        ...mapGetters(['product'])
+        ...mapGetters(['product', 'accountData'])
     },
     mounted() {
         const id = this.$route.params.id
@@ -71,6 +90,19 @@ export default {
             const post = this.posts.find(post => post._id == discussion_id)
             post.replies.push(reply_data)
         },
+        async newDiscussion() {
+            const id = this.$route.params.id
+
+            await axios.post(`/api/post/`, {
+                type: 'discussion',
+                product: id,
+                poster: this.accountData._id,
+                description: this.discussionText,
+                posted_date: Date.now()
+            }).then(res => {
+                this.posts.unshift(res.data)
+            })
+        }
     }
 }
 </script>
