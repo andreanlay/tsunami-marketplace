@@ -35,7 +35,7 @@
                 :class="{'card-dark': darkMode}"
             >
                 <b-card-text>
-                    <b-table responsive striped :fields="fields" :items="transactions" :dark="darkMode">
+                    <b-table responsive striped :fields="fields" :items="transactions" v-model="currentOpenTransaction" :dark="darkMode">
                         <template #cell(TransactionID)="row">
                             <b>TSU-{{row.item._id}}</b>
                         </template>
@@ -50,12 +50,9 @@
                         </template>
                         <template #cell(actions)="row">
                             <div class="text-center">
-                                <b-button size="sm" @click="row.toggleDetails" class="m-1" variant="primary">
+                                <b-button size="sm" @click="toggleDetails(row.item)" class="m-1" variant="primary">
                                     <b-icon v-if="row.detailsShowing" icon="eye-slash"></b-icon>
                                     <b-icon v-else icon="eye"></b-icon>
-                                </b-button>
-                                <b-button v-show="row.item.buyer_id == accountData._id && row.item.status != 'Done'" size="sm" @click="markAsDone(row.item._id)" class="m-1" variant="success">
-                                    <b-icon icon="check"></b-icon>
                                 </b-button>
                             </div>
                         </template>
@@ -64,9 +61,18 @@
                                 <b-col>
                                     <b-table 
                                         :items="row.item.cart"
-                                        :fields="[{label: 'Product Name', key: 'product.name'}, {label: 'Seller', key: 'product.seller.seller.name'}, 'qty', 'price']"
+                                        :fields="[{label: 'Product Name', key: 'product.name'}, {label: 'Seller', key: 'product.seller.seller.name'}, 'qty', 'price', 'actions']"
                                         :dark="darkMode"
-                                    ></b-table>
+                                    >
+                                        <template #cell(actions)="row">
+                                            <div class="text-center">
+                                                <b-button v-if="!row.item.review" @click="openReviewModal(row.item.product._id)" variant="warning" size="sm">
+                                                    <b-icon icon="pencil-square"></b-icon>
+                                                    Give Review
+                                                </b-button>
+                                            </div>
+                                        </template>
+                                    </b-table>
                                 </b-col>
                                 <b-col>
                                     <b-table 
@@ -98,6 +104,32 @@
                         </template>
                     </b-table>    
                 </b-card-text>
+
+                <b-modal
+                    title="Write your review"
+                    v-model="review.modalShow"
+                    centered
+                    ok-title="Submit"
+                    ok-variant="success"
+                    @ok="submitReview"
+                    cancel-title="Discard"
+                >
+                    <b-form-textarea
+                        v-model="review.message"
+                        placeholder="What's in your mind ?"
+                    >
+                    </b-form-textarea>
+                    <b-form-rating 
+                        v-model="review.rating" 
+                        variant="warning" 
+                        class="mt-3"
+                        no-border
+                    ></b-form-rating>
+                    <div class="d-flex flex-row justify-content-between">
+                        <p>Not Satisfied</p>
+                        <p>Very Satisfied</p>
+                    </div>
+                </b-modal>
             </b-card>
         </b-col>
     </b-row>
@@ -119,7 +151,15 @@ export default {
             saved_money: 0,
             spent_money: 0,
             transactions: [],
-            fields: ['TransactionID', 'date', 'type', 'total', 'status', 'actions']
+            currentOpenTransaction: [],
+            fields: ['TransactionID', 'date', 'type', 'total', 'status', 'actions'],
+            review: {
+                modalShow: false,
+                product_id: '',
+                message: '',
+                rating: '',
+                transaction_id: ''
+            }
         }
     },
     mounted() {
@@ -133,16 +173,42 @@ export default {
         })
     },
     methods: {
-        async markAsDone(id) {
-            await axios.put(`/api/transaction/${id}`, {
-                status: 'Done'
-            }).then(res => {
-                for(let i=0; i<this.transactions.length; i++) {
-                    if(this.transactions[i]._id == id) {
-                        Vue.set(this.transactions, i, res.data)
-                        break
+        toggleDetails(row) {
+            if(row._showDetails){
+                this.$set(row, '_showDetails', false)
+            }else{
+                this.currentOpenTransaction.forEach(item => {
+                    this.$set(item, '_showDetails', false)
+                })
+                this.$nextTick(() => {
+                    this.$set(row, '_showDetails', true)
+                    this.review.transaction_id = row._id
+                })
+            }
+        },
+        openReviewModal(product_id) {
+            this.review.modalShow = true
+            this.review.product_id = product_id
+        },
+        async submitReview() {
+            await axios.post(`/api/post/`, {
+                type: 'review',
+                product: this.review.product_id,
+                poster: this.accountData._id,
+                description: this.review.message,
+                posted_date: Date.now(),
+                review: this.review.rating
+            }).then(async res => {
+                await axios.put(`/api/transaction/${this.review.transaction_id}/review`, {
+                    product: this.review.product_id
+                }).then(res2 => {
+                    for(let i=0; i<this.transactions.length; i++) {
+                        if(this.transactions[i]._id == this.review.transaction_id) {
+                            Vue.set(this.transactions, i, res2.data)
+                        }
                     }
-                }
+                })
+                return res
             })
         }
     }
