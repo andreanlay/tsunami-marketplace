@@ -32,6 +32,37 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+router.get('/:seller_id/sales', async (req, res) => {
+    const seller_id = req.params.seller_id
+
+    let sales = []
+    try {
+        const transactions = await Transaction.find().sort({date: -1}).populate('cart.product')
+
+        if(!transactions) {
+            throw new Error('Fail to fetch transactions..')
+        }
+
+        transactions.forEach(transaction => {
+            transaction.cart.forEach(item => {
+                if(item.product.seller == seller_id) {
+                    sales.push({
+                        transaction_id: transaction._id,
+                        transaction_date: transaction.date,
+                        product_name: item.product.name,
+                        qty: item.qty,
+                        total: item.qty * item.price,
+                    })
+                }
+            })
+        })
+
+        res.status(200).json(sales)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
 router.post('/', async (req, res) => {
     const transaction = await new Transaction(req.body)
 
