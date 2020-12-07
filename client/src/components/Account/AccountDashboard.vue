@@ -3,13 +3,13 @@
 <b-row no-gutters>
     <b-col sm="12" xl="3">
         <b-card
-            title="Follower"
+            title="Coming soon.."
             text-variant="white"
             bg-variant="primary"
             style="max-width: 24rem;"
             class="m-3"
         >
-            <b-card-text>You just got <b>{{new_follower}}</b> new followers today. Keep up the good work</b-card-text>
+            <b-card-text>More information card coming soon. Have an idea ? Contact us!</b-card-text>
         </b-card>
     </b-col>
     <b-col sm="12" xl="3">
@@ -20,7 +20,7 @@
             style="max-width: 24rem;"
             class="m-3"
         >
-            <b-card-text>You just got <b>Rp{{today_profit}} </b> profit today</b-card-text>
+            <b-card-text>You just got <b>Rp{{totalProfit}} </b> from sales since you joined.</b-card-text>
         </b-card>
     </b-col>
     <b-col sm="12" xl="3">
@@ -42,7 +42,7 @@
             style="max-width: 24rem;"
             class="m-3"
         >
-            <b-card-text>You have sold a total of <b>{{items_sold_today}}</b> items today</b-card-text>
+            <b-card-text>You have sold a total of <b>{{itemsSold}}</b> items since you joined.</b-card-text>
         </b-card>
     </b-col>
 </b-row>
@@ -57,8 +57,14 @@
             :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table v-if="darkMode" responsive striped :items="salesReport" dark></b-table>    
-                <b-table v-else responsive striped :items="salesReport"></b-table>    
+                <b-table v-if="darkMode" responsive striped :items="latestSales" :fields="salesFields" :dark="darkMode">
+                    <template #cell(transaction_id)="row">
+                        <p>TSU-{{row.item.transaction_id}} </p>
+                    </template>    
+                    <template #cell(transaction_date)="row">
+                        <p> {{new Date(row.item.transaction_date).toDateString()}} </p>
+                    </template>
+                </b-table>      
             </b-card-text>
         </b-card>
     </b-col>
@@ -66,25 +72,23 @@
         <b-row no-gutters>
             <b-col>
                 <b-card
-                    title="Transaction Status"
-                    style="max-width: 24rem;"
-                    class="m-3"
-                    :class="{'card-dark': darkMode}"
-                >
-                    <b-card-text>
-                        <b-progress :value="33" variant="primary"></b-progress>
-                        1 out of 3 Transaction Completed
-                    </b-card-text>
-                </b-card> 
-            </b-col>
-            <b-col>
-                <b-card
-                    title="Rating summary"
-                    style="max-width: 24rem;"
+                    title="Current Weather"
+                    style="max-width: 48rem; max-height: 24rem"
                     class="m-3"
                     :class="{'card-dark' : darkMode}"
                 >
-                    <b-card-text>Your rating is at 5.0. Keep up the good work!</b-card-text>
+                    <b-card-text>
+                        <p>You are in {{weather.name}}, {{weather.sys.country}}</p>
+                    </b-card-text>
+                    <b-row>
+                        <b-col>
+                            <img :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`">
+                        </b-col>
+                        <b-col align="left">
+                            <p class="display-6">Temp: {{weather.main.temp}} °C</p>
+                            <p class="display-6">Feels like: {{weather.main.feels_like}} °C</p>
+                        </b-col>
+                    </b-row>
                 </b-card>
             </b-col>
         </b-row>
@@ -130,19 +134,46 @@ export default {
         .then(res => {
             this.latestReviews = res.data
         })
+
+        axios.get(`/api/transaction/${this.accountData._id}/sales`)
+        .then(res => {
+            this.latestSales = res.data
+            this.latestSales.forEach(sale => {
+                this.totalProfit += sale.total
+                this.itemsSold += sale.qty
+            })
+        })
+
+        axios.get('http://ip-api.com/json')
+        .then(res => {
+            axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${res.data.regionName}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
+            .then(res2 => {
+                this.weather = res2.data
+            })
+            return res
+        })
     },
     data() {
         return {
             new_follower: 15,
-            today_profit: '1.565.3000',
+            totalProfit: 0,
             today_views: 1612,
-            items_sold_today: 4,
+            itemsSold: 0,
+            latestSales: [],
+            salesFields: [
+                { 'label': 'ID', key: 'transaction_id' },
+                { 'label': 'Date', key: 'transaction_date' },
+                { 'label': 'Name', key: 'product_name' },
+                { 'label': 'Quantity', key: 'qty'},
+                'total'
+            ],
             latestReviews: [],
             reviewFields: [
                 { 'label': 'Review Date', key: 'posted_date' },
                 { 'label': 'Review', key: 'description'},
                 { 'label': 'Rating', key: 'review'}
             ],
+            weather: null
         }
     },
 }
