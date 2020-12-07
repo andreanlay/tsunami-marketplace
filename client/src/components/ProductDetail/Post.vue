@@ -24,16 +24,16 @@
         title="Reply discussion"
         v-model="replyModal"
         centered
+        ok-title="Post"
+        ok-variant="success"
+        @ok="replyPost"
+        cancel-title="Discard"
     >
         <b-form-textarea
             v-model="replyMessage"
             placeholder="What's in your mind ?"
         >
         </b-form-textarea>
-        <template #modal-footer="{ cancel }">
-            <b-button size="sm" @click="cancel">Discard</b-button>
-            <b-button size="sm" variant="success" @click="replyPost">Post</b-button>
-        </template>
     </b-modal>
     <hr>
 </div>
