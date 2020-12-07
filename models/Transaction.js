@@ -40,6 +40,10 @@ const TransactionSchema = new Schema({
             },
             price: Number,
             qty: Number,
+            review: {
+                type: Boolean,
+                default: false
+            }
         }
     ]
 }, {_id: false})
