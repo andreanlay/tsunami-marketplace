@@ -14,15 +14,15 @@
         class="ml-auto" 
         variant="success" 
         size="sm" 
-        v-b-modal.reply-modal
+        @click="replyModal = true"
     >
         Reply
     </b-button>
 
     <b-modal
         v-if="post.type == 'discussions'" 
-        id="reply-modal"
         title="Reply discussion"
+        v-model="replyModal"
         centered
     >
         <b-form-textarea
@@ -54,6 +54,7 @@ export default {
     data() {
         return {
             replyMessage: '',
+            replyModal: false
         }
     },
     methods: {
