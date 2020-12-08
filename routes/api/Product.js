@@ -275,4 +275,44 @@ router.get('/dailydeals/:date', async (req, res) => {
     }
 })
 
+router.get('/:seller_id/views', async (req, res) => {
+    const seller_id = req.params.seller_id
+    let views = 0
+
+    try {
+        const products = await Product.find({seller: seller_id})
+        products.forEach(product => {
+            views += product.views
+        })
+        res.status(200).json(views)
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
+router.post('/:id/view', async (req, res) => {
+    const product_id = req.params.id
+
+    try {
+        const productItem = await Product.findOneAndUpdate(
+            {
+                _id: product_id
+            },
+            {
+                $inc: {
+                    views: 1
+                }
+            }
+        )
+
+        if(!productItem) {
+            throw new Error('Fail to update product view..')
+        }
+
+        res.status(200).json('View updated.')
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+})
+
 module.exports = router
