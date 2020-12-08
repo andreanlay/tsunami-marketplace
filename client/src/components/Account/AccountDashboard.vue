@@ -77,24 +77,29 @@
                     class="m-3"
                     :class="{'card-dark' : darkMode}"
                 >
-                    <b-card-text>
-                        <p>You are in {{weather.name}}, {{weather.sys.country}}</p>
+                    <b-card-text v-if="!weather">
+                        <p>Cannot fetch weather from API</p>
                     </b-card-text>
-                    <b-row>
-                        <b-col>
-                            <img :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`">
-                        </b-col>
-                        <b-col align="left">
-                            <p class="display-7">Temp: {{weather.main.temp}} °C</p>
-                            <p class="display-7">Feels like: {{weather.main.feels_like}} °C</p>
-                        </b-col>
-                        <b-col align="left">
-                            <p>↑ {{weather.main.temp_max}} °C</p>
-                            <p>↓ {{weather.main.temp_min}} °C</p>
-                            <p>💧 {{weather.main.humidity}} RH</p>
-                        </b-col>
-                    </b-row>
-                      <template #footer>
+                    <div v-else>
+                        <b-card-text>
+                            <p>You are in {{weather.name}}, {{weather.sys.country}}</p>
+                        </b-card-text>
+                        <b-row>
+                            <b-col>
+                                <img :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`">
+                            </b-col>
+                            <b-col align="left">
+                                <p class="display-7">Temp: {{weather.main.temp}} °C</p>
+                                <p class="display-7">Feels like: {{weather.main.feels_like}} °C</p>
+                            </b-col>
+                            <b-col align="left">
+                                <p>↑ {{weather.main.temp_max}} °C</p>
+                                <p>↓ {{weather.main.temp_min}} °C</p>
+                                <p>💧 {{weather.main.humidity}} RH</p>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <template #footer>
                         <em class="float-right">Powered by OpenWeatherMap API</em>
                     </template>
                 </b-card>
@@ -159,7 +164,7 @@ export default {
 
         axios.get('https://api.ipify.org?format=json')
         .then(res => {
-            axios.get(`http://ipwhois.app/json/${res.data.ip}`)
+            axios.get(`https://ipwhois.app/json/${res.data.ip}`)
             .then(res2 => {
                 axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${res2.data.city}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
                 .then(res3 => {
