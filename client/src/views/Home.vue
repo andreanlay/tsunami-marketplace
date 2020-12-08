@@ -131,7 +131,7 @@ export default {
     },
     async mounted() {
         let date = new Date()
-        let day = date.getDate()
+        let day = ('0' + date.getDate()).slice(-2)
         let month = date.getMonth() + 1
 
         await axios.get('/api/product/')
