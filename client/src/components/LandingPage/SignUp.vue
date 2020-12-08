@@ -36,7 +36,7 @@
                 </b-form-group>
                 <b-form-group>
                     <b-input-group>
-                        <b-form-datepicker v-model="birthday" placeholder="Date of Birth" :max="yesterday" required></b-form-datepicker>
+                        <b-form-datepicker v-model="birthday" placeholder="Date of Birth" :max="yesterday" required show-decade-nav></b-form-datepicker>
                     </b-input-group>
                 </b-form-group>
                 <b-form-group>
