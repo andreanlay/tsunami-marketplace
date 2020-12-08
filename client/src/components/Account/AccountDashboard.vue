@@ -166,7 +166,7 @@ export default {
         .then(res => {
             axios.get(`https://ipwhois.app/json/${res.data.ip}`)
             .then(res2 => {
-                axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${res2.data.city}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
+                axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${res2.data.city}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
                 .then(res3 => {
                     this.weather = res3.data
                 })
