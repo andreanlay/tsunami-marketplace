@@ -61,7 +61,7 @@
                         <ProductCard :product="product"/>
                     </slide>
                 </carousel>
-                <h1 class="display-6 text-white" v-if="allProducts.length == 0">No latest products available! Come back later</h1>
+                <h1 class="display-6" :class="{'text-white': darkMode}" v-if="allProducts.length == 0">No latest products available! Come back later</h1>
             </b-col>
         </b-row>
         <hr :class="{'divider-dark': darkMode}">
@@ -79,7 +79,7 @@
                         <ProductCard :product="product"/>
                     </slide>
                 </carousel>
-                <h1 class="display-6 text-white" v-if="flashSaleProducts.length == 0">No Flash Sale currently online! Come back later</h1>
+                <h1 class="display-6" :class="{'text-white': darkMode}" v-if="flashSaleProducts.length == 0">No Flash Sale currently online! Come back later</h1>
             </b-col>
         </b-row>
         <hr :class="{'divider-dark': darkMode}">
@@ -97,7 +97,7 @@
                         <ProductCard :product="product"/>
                     </slide>
                 </carousel>
-                <h1 class="display-6 text-white" v-if="dailyDealsProducts.length == 0">No Daily Deals today! Come back tommorow</h1>
+                <h1 class="display-6" :class="{'text-white': darkMode}" v-if="dailyDealsProducts.length == 0">No Daily Deals today! Come back tommorow</h1>
             </b-col>
         </b-row>
         <br>
