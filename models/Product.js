@@ -46,6 +46,10 @@ const ProductSchema = new Schema({
         type: Array,
         required: true
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     posted_date: {
         type: Date,
         required: true
