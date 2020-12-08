@@ -31,7 +31,7 @@
             style="max-width: 24rem;"
             class="m-3"
         >
-            <b-card-text><b>{{today_views}} new views from your products today</b></b-card-text>
+            <b-card-text><b>You got {{totalViews}} views from your products since you joined</b></b-card-text>
         </b-card>
     </b-col>
     <b-col sm="12" xl="3">
@@ -130,17 +130,22 @@ export default {
         ...mapGetters(['accountData', 'productReviews', 'darkMode'])
     },
     mounted() {
+        const account_id = this.accountData._id
         axios.get(`/api/post/reviews/seller/${this.accountData._id}`)
         .then(res => {
             this.latestReviews = res.data
         })
 
-        axios.get(`/api/transaction/${this.accountData._id}/sales`)
+        axios.get(`/api/product/${account_id}/views`)
+        .then(res => {  
+            this.totalViews = res.data
+        })
+
+        axios.get(`/api/transaction/${account_id}/sales`)
         .then(res => {
             this.latestSales = res.data
             this.latestSales.forEach(sale => {
                 this.totalProfit += sale.total
-                this.itemsSold += sale.qty
             })
         })
 
@@ -155,9 +160,8 @@ export default {
     },
     data() {
         return {
-            new_follower: 15,
             totalProfit: 0,
-            today_views: 1612,
+            totalViews: 0,
             itemsSold: 0,
             latestSales: [],
             salesFields: [
