@@ -25,6 +25,8 @@ mongoose.connect(mongoUri, {
 }).then(() => console.log('Connected to MongoDB Atlas.'))
   .catch((err) => console.log(err))
 
+app.get('/', (req, res) => res.redirect('./client/public/index.html'))
+
 app.use('/api/account', accountRoute)
 app.use('/api/address', addressRoute)
 app.use('/api/product', productRoute)
