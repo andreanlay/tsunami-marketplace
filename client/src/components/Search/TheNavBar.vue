@@ -14,7 +14,7 @@
                         type="text" 
                         v-model="searchQuery"
                         placeholder="What are you searching for ? (Press ENTER to search)" 
-                        class="form-control border-0"
+                        class="form-control border-0 search-input"
                     >
                     <div class="input-group-append mr-2">
                         <b-button class="advance-seach" id="advance-search">Advance search</b-button>
@@ -131,5 +131,9 @@ export default {
 .midbar-dark * {
     color: white;
     background-color: #333 !important;
+}
+
+.search-input {
+    background: none;
 }
 </style>
