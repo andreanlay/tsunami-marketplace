@@ -4,6 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const { PORT, mongoUri } = require('./config')
+const path = require('path')
 const app = express()
 
 const accountRoute = require('./routes/api/Account')
@@ -31,5 +32,11 @@ app.use('/api/product', productRoute)
 app.use('/api/post', postRoute)
 app.use('/api/transaction', transactionRoute)
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/dist'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+  })
+}
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`))
