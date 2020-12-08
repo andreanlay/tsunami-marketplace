@@ -504,6 +504,7 @@ export default {
                 { key: 'description', visible: true},
                 { key: 'price', visible: true},
                 { key: 'sold', sortable: true, visible: true},
+                { key: 'views', sortable: true, visible: true},
                 { key: 'actions', visible: true}
             ]
         }
