@@ -37,6 +37,8 @@ export default {
         .then(res => {
             this.$store.commit('setProduct', res.data)
         })
+
+        axios.post(`/api/product/${id}/view`)
     }
 }
 </script>
