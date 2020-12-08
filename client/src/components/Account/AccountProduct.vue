@@ -125,13 +125,15 @@
                             :interval="4000"
                             controls
                             indicators
+                            img-width="400"
+                            img-height="300"
                             style="width: 400px; height:300px;"
                             class="detail-carousel"
                         >
                             <b-carousel-slide
                                 v-for="(item, i) in row.item.images"
                                 :key="i"
-                                :img-src="'' + item.path"
+                                :img-src="item.path"
                             >
                             </b-carousel-slide>
                         </b-carousel>
@@ -200,7 +202,7 @@
                 label="Product Image(s)"
             >
                 <b-form-file
-                    v-model="newProduct.images"
+                    v-model="images"
                     placeholder="Choose any image for your product.."
                     :file-name-formatter="formatNames"
                     accept="image/*"
@@ -342,7 +344,7 @@
                 <b-tbody class="text-center">
                     <b-tr v-for="image in editedProduct.images" :key="image.name">
                         <b-td>
-                            <img :src="'' + image.path">
+                            <img :src="image.path" style="width: 400px; height: 300px">
                         </b-td>
                         <b-td style="vertical-align: middle;">
                             <b-button variant="danger" @click="deleteImage(image.name)">
@@ -437,6 +439,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
+import firebase from 'firebase/app'
 
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -474,6 +477,7 @@ export default {
                 }
             },
             selectedProduct: [],
+            images: [],
             newProduct: {
                 seller: '',
                 name: '',
@@ -584,6 +588,7 @@ export default {
             })
         },
         resetProductData() {
+            this.images = []
             this.newProduct['name'] = ''
             this.newProduct['category'] = ''
             this.newProduct['subcategory'] = ''
@@ -594,34 +599,47 @@ export default {
             this.newProduct['stock'] = 0
             this.newProduct['specifications'] = []
         },
-        async addProduct() {
-            // Convert string to Number
-            this.newProduct['price'] = parseInt(this.newProduct['price'])
-            this.newProduct['stock'] = parseInt(this.newProduct['stock'])
+        generateImgName(file_name) {
+            const name = file_name.substring(0, file_name.lastIndexOf('.'))
+            const ext = file_name.substring(file_name.lastIndexOf('.') + 1)
+        
+            return `${name}_${Date.now()}.${ext}`
+        },
+        async uploadImage(imgName, img) {
+            var storage = firebase.storage()
 
-            let data = new FormData()
-            this.newProduct['images'].forEach(item => {
-                data.append('file', item)
+            return new Promise((resolve, reject) => {
+                const task = storage.ref(`uploads/${imgName}`).put(img)
+                
+                task.on('state_changed', snapshot => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    console.log(progress)
+                }, error => {
+                    reject(error)
+                }, () => {
+                    task.snapshot.ref.getDownloadURL().then(url => {
+                        resolve(url)
+                    })
+                })
             })
-            
-            // Convert to JSON string because FormData doesn't accept Object 
-            data.append('specifications', JSON.stringify(this.newProduct['specifications']))
-
-            for(let [key, val] of Object.entries(this.newProduct)) {
-                if(key == 'images' || key == 'specifications')
-                    continue
-                data.append(key, val)
+        },
+        async addProduct() {
+            for(let i=0; i<this.images.length; i++) {
+                const name = this.generateImgName(this.images[i].name)
+                const url = await this.uploadImage(name, this.images[i])
+                
+                this.newProduct.images.push({
+                    name: name,
+                    path: url
+                })
             }
+            
+            this.newProduct['posted_date'] = Date.now()
 
-            data.append('posted_date', Date.now())
-
-            await axios.post('/api/product/add', data)
+            axios.post('/api/product/add', this.newProduct)
             .then(res => {
                 this.resetProductData()
                 this.products.push(res.data)
-            })
-            .catch(err => {
-                console.log(err.message)
             })
         },
         async deleteProduct(id) {
@@ -670,28 +688,23 @@ export default {
             const id = this.editedProduct._id
             delete this.editedProduct._id
 
-            let data = new FormData()
-
-            this.newImages.forEach(img => {
-                data.append('file', img)
-            })
-
-            data.append('specifications', JSON.stringify(this.editedProduct['specifications']))
-        
-            data.append('deletedImages', JSON.stringify(this.deletedImages))
-            for(let [key, val] of Object.entries(this.editedProduct)) {
-                if(key == 'images' || key == 'specifications' || key == 'posted_date') 
-                    continue
-                data.append(key, val)
+            for(let i=0; i<this.newImages.length; i++) {
+                const name = this.generateImgName(this.newImages[i].name)
+                const url = await this.uploadImage(name, this.newImages[i])
+                
+                this.editedProduct.images.push({
+                    name: name,
+                    path: url
+                })
             }
 
-            data.append('posted_date', Date.now())
+            this.newProduct['posted_date'] = Date.now()
 
-            await axios.put(`/api/product/edit/${id}`, data)
+            await axios.put(`/api/product/edit/${id}`, this.editedProduct)
             .then(res => {
+                this.resetProductData()
                 for(let i=0; i<this.products.length; i++) {
                     if(this.products[i]._id == id) {
-                        // Use Vue.set to trigger reactivity
                         Vue.set(this.products, i, res.data)
                         break
                     }
@@ -701,7 +714,6 @@ export default {
         deleteImage(name) {
             for(let i=0; i<this.editedProduct.images.length; i++) {
                 if(this.editedProduct.images[i].name == name) {
-                    this.deletedImages.push(name)
                     this.editedProduct.images.splice(i, 1)
                     break
                 }
@@ -794,7 +806,7 @@ export default {
   transition: opacity .25s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>
