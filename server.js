@@ -1,5 +1,4 @@
 const express = require('express')
-const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
@@ -16,7 +15,6 @@ const transactionRoute = require('./routes/api/Transaction')
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(express.json())
-app.use(fileUpload())
 
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
