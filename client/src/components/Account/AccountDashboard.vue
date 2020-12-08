@@ -85,10 +85,18 @@
                             <img :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`">
                         </b-col>
                         <b-col align="left">
-                            <p class="display-6">Temp: {{weather.main.temp}} °C</p>
-                            <p class="display-6">Feels like: {{weather.main.feels_like}} °C</p>
+                            <p class="display-7">Temp: {{weather.main.temp}} °C</p>
+                            <p class="display-7">Feels like: {{weather.main.feels_like}} °C</p>
+                        </b-col>
+                        <b-col align="left">
+                            <p>↑ {{weather.main.temp_max}} °C</p>
+                            <p>↓ {{weather.main.temp_min}} °C</p>
+                            <p>💧 {{weather.main.humidity}} RH</p>
                         </b-col>
                     </b-row>
+                      <template #footer>
+                        <em class="float-right">Powered by OpenWeatherMap API</em>
+                    </template>
                 </b-card>
             </b-col>
         </b-row>
@@ -149,13 +157,15 @@ export default {
             })
         })
 
-        axios.get('http://ip-api.com/json')
+        axios.get('https://api.ipify.org?format=json')
         .then(res => {
-            axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${res.data.regionName}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
+            axios.get(`http://ipwhois.app/json/${res.data.ip}`)
             .then(res2 => {
-                this.weather = res2.data
+                axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${res2.data.city}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
+                .then(res3 => {
+                    this.weather = res3.data
+                })
             })
-            return res
         })
     },
     data() {
