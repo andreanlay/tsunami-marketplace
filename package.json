@@ -1,5 +1,5 @@
 {
-  "name": "tsunami-marketplace",
+  "name": "tsunami",
   "version": "1.0.0",
   "description": "<p align=\"center\">\r   <img src=\"src/assets/tsunami_logo.png\"\r     width=\"150\"\r     height=\"150\"\r   />\r </p>\r <h1 align=\"center\"> Tsunami Marketplace </h1>\r <p1> Tsunami Marketplace is a marketplace website to offer you unique UI and UX experience which you never get before in any other marketplace.</p1>",
   "main": "index.js",
@@ -7,7 +7,8 @@
     "server": "nodemon server.js --ignore 'client/`",
     "client": "npm run serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "postinstall": "cd client && npm install"
+    "postinstall": "cd client && npm install",
+    "build": "npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
