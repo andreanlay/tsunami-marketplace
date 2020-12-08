@@ -51,12 +51,14 @@
                 </b-form-group>
                 <b-form-group>
                     <b-input-group>
-                        <b-form-input type="password" placeholder="Confirm password" required></b-form-input>
+                        <b-form-input v-model="confirmPassword" type="password" placeholder="Confirm password" @change="checkPassword" required></b-form-input>
                     </b-input-group>
                 </b-form-group>
-                <p style="color: red" v-show="errorMsg"> {{errorMsg}}</p>
+                <div class="d-flex justify-content-end">
+                    <p style="color: red; font-size:20px" v-show="errorMsg"> {{errorMsg}}</p>
+                </div>
                 <b-form-group>
-                    <b-form-checkbox class="float-right"><span style="color: white;">I accept the terms and conditions</span></b-form-checkbox>
+                    <b-form-checkbox v-model="checkedTOC" class="float-right"><span style="color: white;">I accept the terms and conditions</span></b-form-checkbox>
                 </b-form-group>
                 <b-button :class="{'btn-loading' : loading}" type="submit" variant="primary">{{loading ? "Creating account..." : "Create account"}}</b-button>
             </b-form>
@@ -87,6 +89,8 @@ export default {
             email: '',
             phone: '',
             password: '',
+            confirmPassword: '',
+            checkedTOC: false,
             errorMsg: null,
             loading: false,
             genders: [{ text: 'Select gender', value: '' }, 'Male', 'Female']
@@ -95,6 +99,12 @@ export default {
     methods: {
         async onSubmit() {
             this.loading = true
+            if(!this.checkedTOC) {
+                this.errorMsg = 'Please make sure you are agree with our terms and conditions.'
+                this.loading = false
+                return
+            }
+            
             await firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
             .then(res => {
                 firebase.auth().currentUser.updateProfile({
@@ -120,6 +130,13 @@ export default {
                 this.errorMsg = err.message
             })
             this.loading = false
+        },
+        checkPassword() {
+            if(this.password != this.confirmPassword) {
+                this.errorMsg = "Password is not the same!"
+            } else {
+                this.errorMsg = null
+            }
         }
     }
 }
