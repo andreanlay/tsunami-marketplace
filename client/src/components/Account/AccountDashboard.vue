@@ -77,27 +77,33 @@
                     class="m-3"
                     :class="{'card-dark' : darkMode}"
                 >
-                    <b-card-text v-if="!weather">
-                        <p>Cannot fetch weather from API</p>
+                    <b-card-text v-if="fetchingWeatherError">
+                        <p> {{fetchingWeatherError}} </p>
                     </b-card-text>
                     <div v-else>
-                        <b-card-text>
-                            <p>You are in {{weather.name}}, {{weather.sys.country}}</p>
-                        </b-card-text>
-                        <b-row>
-                            <b-col>
-                                <img :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`">
-                            </b-col>
-                            <b-col align="left">
-                                <p class="display-7">Temp: {{weather.main.temp}} °C</p>
-                                <p class="display-7">Feels like: {{weather.main.feels_like}} °C</p>
-                            </b-col>
-                            <b-col align="left">
-                                <p>↑ {{weather.main.temp_max}} °C</p>
-                                <p>↓ {{weather.main.temp_min}} °C</p>
-                                <p>💧 {{weather.main.humidity}} RH</p>
-                            </b-col>
-                        </b-row>
+                        <div v-if="fetchingWeather">
+                            <b-spinner small></b-spinner>
+                            Fetching weather..
+                        </div>
+                        <div v-else>
+                            <b-card-text>
+                                <p>You are in {{weather.name}}, {{weather.sys.country}}</p>
+                            </b-card-text>
+                            <b-row>
+                                <b-col>
+                                    <img :src="`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`">
+                                </b-col>
+                                <b-col align="left">
+                                    <p class="display-7">Temp: {{weather.main.temp}} °C</p>
+                                    <p class="display-7">Feels like: {{weather.main.feels_like}} °C</p>
+                                </b-col>
+                                <b-col align="left">
+                                    <p>↑ {{weather.main.temp_max}} °C</p>
+                                    <p>↓ {{weather.main.temp_min}} °C</p>
+                                    <p>💧 {{weather.main.humidity}} RH</p>
+                                </b-col>
+                            </b-row>
+                        </div>
                     </div>
                     <template #footer>
                         <em class="float-right">Powered by OpenWeatherMap API</em>
@@ -142,7 +148,7 @@ export default {
     computed: {
         ...mapGetters(['accountData', 'productReviews', 'darkMode'])
     },
-    mounted() {
+    async mounted() {
         const account_id = this.accountData._id
         axios.get(`/api/post/reviews/seller/${this.accountData._id}`)
         .then(res => {
@@ -162,19 +168,41 @@ export default {
             })
         })
 
-        axios.get('https://api.ipify.org?format=json')
+        this.fetchingWeather = true
+        let ip = null
+        await axios.get('https://api.ipify.org?format=json')
         .then(res => {
-            axios.get(`https://ipwhois.app/json/${res.data.ip}`)
-            .then(res2 => {
-                axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${res2.data.city}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
-                .then(res3 => {
-                    this.weather = res3.data
-                })
-            })
+            ip = res.data.ip
+        })
+        .catch(err => {
+            this.fetchingWeatherError = 'Error when getting IP'
+            return err
+        })
+
+        let city = null
+        await axios.get(`https://ipwhois.app/json/${ip}`)
+        .then(res => {
+            city = res.data.city
+        })
+        .catch(err => {
+            this.fetchingWeatherError = 'Error when geocoding detected location'
+            return err
+        })
+
+        await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=235b9a12b1b9c1bed97244a67959abf3&units=metric`)
+        .then(res => {
+            this.weather = res.data
+            this.fetchingWeather = false
+        })
+        .catch(err => {
+            this.fetchingWeatherError = 'Error when fetching weather from the API'
+            return err
         })
     },
     data() {
         return {
+            fetchingWeather: false,
+            fetchingWeatherError: null,
             totalProfit: 0,
             totalViews: 0,
             itemsSold: 0,
