@@ -1,5 +1,27 @@
 <template>
 <div class="m-4 mt-n5">
+    <transition name="fade">
+        <b-alert
+            v-model="forgotPasswordError"
+            class="position-fixed fixed-top m-0 rounded-0"
+            style="z-index: 1000"
+            variant="danger"
+            dismissible
+        >
+            <b>Please fill email address before requesting a password reset request.</b>
+        </b-alert>
+    </transition>
+    <transition name="fade">
+        <b-alert
+            v-model="passwordResetSent"
+            class="position-fixed fixed-top m-0 rounded-0"
+            style="z-index: 1000"
+            variant="success"
+            dismissible
+        >
+            <b>Password reset email sent. Please check your email</b>
+        </b-alert>
+    </transition>
     <b-row>
         <b-col sm="12" md="6" xl="2" offset-md="3" offset-xl="5">
             <p><b>Login via social media</b></p>
@@ -41,7 +63,7 @@
                     <p class="bold" style="color: red" v-show="errorMsg">{{errorMsg}}</p>
                 </div>
                 <p>
-                    <a href="" class="float-right" style="color: white;">Forgot password?</a>
+                    <a @click="forgotPassword" class="float-right" style="color: white;">Forgot password?</a>
                 </p>
                 <br>
                 <b-button :class="{'btn-loading': loading}" type="submit" variant="primary">{{loading ? "Signing in...": "Login"}}</b-button>
@@ -63,6 +85,8 @@ export default {
             password: null,
             errorMsg: null,
             loading: false,
+            forgotPasswordError: false,
+            passwordResetSent: false
         }
     },
     methods: {
@@ -145,6 +169,15 @@ export default {
                 })
                 this.$router.push({name: 'homepage'})
             })
+        },
+        forgotPassword() {
+            if(this.email == '') {
+                this.forgotPasswordError = true
+                return
+            }
+            const auth = firebase.auth()
+            auth.sendPasswordResetEmail(this.email)
+            this.passwordResetSent = true
         }
     }
 }
@@ -153,5 +186,12 @@ export default {
 <style scoped>
 .btn-loading {
     opacity: 0.6;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
