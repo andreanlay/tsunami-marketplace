@@ -69,7 +69,7 @@
                 <b-form-group
                     label="Deals Date"
                 >
-                    <b-form-datepicker v-model="event.dailyDeals.date" :min="tommorow"></b-form-datepicker>
+                    <b-form-datepicker value-as-date v-model="event.dailyDeals.date" :min="tommorow"></b-form-datepicker>
                 </b-form-group>
             </div>
             <div v-for="item in event.products" :key="item.id" v-show="event.selectedEvent">
@@ -813,7 +813,7 @@ export default {
                     await axios.post(`/api/product/dailydeals/add/${product.product_id}`, {
                         dailydeals: {
                             price: product.price,
-                            date: this.event.dailyDeals.date
+                            date: this.event.dailyDeals.date.getTime()
                         }
                     })
                 })
