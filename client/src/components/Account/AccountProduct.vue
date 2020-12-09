@@ -459,6 +459,7 @@ import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 import firebase from 'firebase/app'
+import 'firebase/storage'
 
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'

@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            currentActive: Number
+            currentActive: 1
         }
     },
     methods: {

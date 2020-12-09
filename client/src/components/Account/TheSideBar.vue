@@ -8,7 +8,6 @@
         <b-button
             variant="default"
             style="width: 100%"
-            @click="setActive(1)"
             :class="{'sidebar-active' : active == 1, 
                      'sidebar-btn-dark' : darkMode,
                      'sidebar-active-dark': darkMode && active == 1}"
@@ -21,7 +20,6 @@
         <b-button
             variant="default"
             style="width: 100%"
-            @click="setActive(2)"
             :class="{'sidebar-active' : active == 2, 
                      'sidebar-btn-dark' : darkMode,
                      'sidebar-active-dark': darkMode && active == 2}"
@@ -34,7 +32,6 @@
         <b-button
             variant="default"
             style="width: 100%"
-            @click="setActive(3)"
             :class="{'sidebar-active' : active == 3, 
                      'sidebar-btn-dark' : darkMode,
                      'sidebar-active-dark': darkMode && active == 3}"
@@ -47,7 +44,6 @@
         <b-button
             variant="default"
             style="width: 100%"
-            @click="setActive(4)"
             :class="{'sidebar-active' : active == 4, 
                      'sidebar-btn-dark' : darkMode,
                      'sidebar-active-dark': darkMode && active == 4}"
@@ -69,11 +65,6 @@ export default {
     computed: {
         ...mapGetters(['darkMode'])
     },
-    methods: {
-        setActive(index) {
-            this.active = index
-        }
-    }
 }
 </script>
 

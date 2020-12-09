@@ -73,7 +73,7 @@
             <b-col>
                 <b-card
                     title="Current Weather"
-                    style="max-width: 48rem; max-height: 24rem"
+                    style="max-width: 48rem; max-height: 28rem"
                     class="m-3"
                     :class="{'card-dark' : darkMode}"
                 >
@@ -85,7 +85,7 @@
                             <b-spinner small></b-spinner>
                             Fetching weather..
                         </div>
-                        <div v-else>
+                        <div v-if="weather">
                             <b-card-text>
                                 <p>You are in {{weather.name}}, {{weather.sys.country}}</p>
                             </b-card-text>
