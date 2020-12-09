@@ -108,7 +108,12 @@ router.put('/:id/review', async (req, res) => {
             {
                 arrayFilters: [{'el.product': req.body.product}],
                 new: true
-            })
+            }
+        )
+
+        await TransactionItem.populate('cart.product').execPopulate()
+        await TransactionItem.populate('cart.product.seller').execPopulate()
+        await TransactionItem.populate('shipping_address').execPopulate()
 
         if(!TransactionItem) {
             throw new Error('Fail to update transaction')
