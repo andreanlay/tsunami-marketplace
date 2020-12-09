@@ -75,15 +75,16 @@ router.post('/', async (req, res) => {
 
         // Decrement each bought product's stock
         req.body.cart.forEach(async item => {
-            await Product.findOneAndUpdate({
-                _id: item.product
-            },
-            {
-                $inc: {
-                    stock: -item.qty,
-                    sold: item.qty
-                },
-            })
+            let product = await Product.findById(item.product)
+
+            if(Object.keys(product.flashsale).length != 0) {
+                product.flashsale.sold += item.qty
+            }
+            
+            product.sold += item.qty
+            product.stock -= item.qty
+            
+            product.save()
         })
 
         res.status(200).json(TransactionItem)
