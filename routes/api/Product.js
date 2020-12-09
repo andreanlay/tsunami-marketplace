@@ -4,21 +4,33 @@ const Product = require('../../models/Product')
 const router = Router()
 
 router.get('/', async (req, res) => {
+    const currentTime = Date.now()
+    const currentDate = new Date(currentTime).setHours(0, 0, 0, 0)
+
     try {
+        await Product.updateMany(
+            {
+                $or: [
+                    { 'flashsale.end_time': { $lte: currentTime } },
+                    { 'dailydeals.date': { $lt: currentDate } }
+                ]
+            },
+            {
+                flashsale: null,
+                dailydeals: null
+            }
+        )
+
         const products = await Product.find({
             $and: [
                 {
-                    flashsale: {
-                        $exists: false
-                    }
+                    flashsale: null
                 },
                 {
-                    dailydeals: {
-                        $exists: false
-                    }
+                    dailydeals: null
                 }
             ]
-        }).sort({posted_date: -1}).limit(20)
+        }).sort({posted_date: -1}).limit(25)
 
         for(let product of products) {
             await product.populate('seller').execPopulate()
