@@ -63,10 +63,8 @@
 import { mapGetters } from 'vuex'
 
 export default {
-    data() {
-        return {
-            active: 1
-        }
+    props: {
+        active: Number
     },
     computed: {
         ...mapGetters(['darkMode'])

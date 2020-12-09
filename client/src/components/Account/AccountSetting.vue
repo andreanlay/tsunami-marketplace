@@ -79,6 +79,9 @@ export default {
     computed: {
         ...mapGetters(['accountData', 'darkMode'])
     },
+    mounted() {
+        this.$emit('activated', 4)
+    }
 }
 </script>
 

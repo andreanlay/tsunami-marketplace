@@ -149,6 +149,8 @@ export default {
         ...mapGetters(['accountData', 'productReviews', 'darkMode'])
     },
     async mounted() {
+        this.$emit('activated', 1)
+
         const account_id = this.accountData._id
         axios.get(`/api/post/reviews/seller/${this.accountData._id}`)
         .then(res => {

@@ -544,6 +544,8 @@ export default {
         quillEditor
     },
     async mounted() {
+        this.$emit('activated', 2)
+
         const id = this.accountData._id
         this.newProduct.seller = id
 

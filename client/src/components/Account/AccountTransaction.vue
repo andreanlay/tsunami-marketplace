@@ -163,6 +163,8 @@ export default {
         }
     },
     mounted() {
+        this.$emit('activated', 3)
+
         axios.get(`/api/transaction/${this.accountData._id}`)
         .then(res => {
             this.transactions = res.data

@@ -2,11 +2,11 @@
 <b-container fluid class="pt-3 pb-3" id="account-container" :class="{'account-container-dark' : darkMode}">
     <b-row no-gutters>
         <b-col cols="2">
-            <AccountSideBar/>
+            <AccountSideBar :active="currentActive"/>
         </b-col>
         <b-col cols="10">
             <AccountNavBar/>
-            <router-view/>
+            <router-view @activated="setActive"/>
         </b-col>
     </b-row>
 </b-container>
@@ -26,6 +26,16 @@ export default {
     computed: {
         ...mapGetters(['darkMode'])
     },
+    data() {
+        return {
+            currentActive: Number
+        }
+    },
+    methods: {
+        setActive(data) {
+            this.currentActive = data
+        }
+    }
 }
 </script>
 
