@@ -1,19 +1,9 @@
 <template>
 <div class="m-4 mt-n5">
     <b-row>
-        <b-col sm="12" md="6" xl="2" offset-md="3" offset-xl="5">
-            <p><b>Sign up via social media</b></p>
-            <b-button variant="light" class="w-100 mb-3">
-                <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
-                Sign Up with Google
-            </b-button>
-            <b-button variant="light" class="w-100">
-                <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Akash_rajoriya_Facebook_.png"/>
-                Sign Up with Facebook
-            </b-button>
-        </b-col>
         <b-col sm="12" md="6" xl="4" offset-md="3" offset-xl="4" class="mt-3">
-            <p><b>or create a new Tsunami Account</b></p>
+            <p class="display-6"><b>Welcome to Tsunami👋</b></p>
+            <p class="display-6"><b>Please enter your details to create an account</b></p>
             <b-form @submit.prevent="onSubmit">
                 <b-form-group>
                     <b-input-group>
@@ -111,7 +101,7 @@ export default {
                     displayName: `${this.first_name} ${this.last_name}`
                 })
                 firebase.auth().currentUser.sendEmailVerification()
-                axios.post('api/account/register', {
+                axios.post('/api/account/register', {
                     uid: res.user.uid,
                     display_name: `${this.first_name} ${this.last_name}`,
                     email_address: this.email,
