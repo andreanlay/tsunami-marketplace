@@ -48,7 +48,7 @@
                                 <p>About Us</p>
                             </b-button>
                         </router-link>
-                        <router-link :to="{name: 'account'}">
+                        <router-link :to="{name: 'dashboard'}">
                             <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
                                 <b-icon icon="person"></b-icon>
                                 <p>Dashboard</p>
@@ -62,7 +62,7 @@
                         </router-link>
                         <router-link :to="{name: 'account-products'}">
                             <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
-                                <b-icon icon="gear"></b-icon>
+                                <b-icon icon="box-seam"></b-icon>
                                 <p>Products</p>
                             </b-button>
                         </router-link>
