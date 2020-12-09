@@ -1,27 +1,27 @@
 <template>
 <div>
     <b-row no-gutters>
-        <b-col cols="3">
-        <b-card
-            title="Saving"
-            text-variant="white"
-            bg-variant="danger"
-            style="max-width: 24rem;"
-            class="m-3"
-        >
-            <b-card-text>You just saved <b>Rp{{saved_money}}</b> from vouchers this month</b-card-text>
-        </b-card>
+        <b-col sm="12" xl="3">
+            <b-card
+                title="Saving"
+                text-variant="white"
+                bg-variant="danger"
+                style="max-width: 24rem;"
+                class="m-3"
+            >
+                <b-card-text>You just saved <b>Rp{{saved_money}}</b> from vouchers this month</b-card-text>
+            </b-card>
         </b-col>
-        <b-col cols="3">
-        <b-card
-            title="Spending"
-            text-variant="white"
-            bg-variant="success"
-            style="max-width: 24rem;"
-            class="m-3"
-        >
-            <b-card-text>You just spent <b>Rp{{spent_money}}</b> from transactions this month</b-card-text>
-        </b-card>
+        <b-col cols="12" xl="3">
+            <b-card
+                title="Spending"
+                text-variant="white"
+                bg-variant="success"
+                style="max-width: 24rem;"
+                class="m-3"
+            >
+                <b-card-text>You just spent <b>Rp{{spent_money}}</b> from transactions this month</b-card-text>
+            </b-card>
         </b-col>
     </b-row>
     <b-row no-gutters>
