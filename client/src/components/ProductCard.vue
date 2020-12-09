@@ -8,7 +8,7 @@
         <div class="item-rating-price">
             <div>
                 <b-icon icon="star-fill" variant="warning"></b-icon>
-                <b>4.5</b>
+                <b> {{rating ? rating : 'No rating'}} </b>
             </div>
             <div>
                 <b>IDR {{product.price / 1000}}K</b>
@@ -72,6 +72,22 @@ export default {
     },
     computed: {
         ...mapGetters(['darkMode'])
+    },
+    data() {
+        return {
+            rating: null
+        }
+    },
+    mounted() {
+        axios.get(`/api/post/reviews/${this.product._id}`)
+        .then(res => {
+            let total = 0
+            res.data.forEach(post => {
+                total += parseInt(post.review)
+            })
+            total /= res.data.length
+            this.rating = total
+        })
     },
     methods: {
         async addToCart(id) {

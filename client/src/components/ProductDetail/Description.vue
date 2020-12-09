@@ -19,7 +19,7 @@
             <div class="d-flex flex-column align-items-start">
                 <h1 class="display-5"> {{product.name}} </h1>
                 <p> {{product.description}} </p>
-                <p>Rating: 4.5 ⭐</p>
+                <p>⭐{{ rating ? rating : 'No Rating'}}</p>
                 <p class="display-6"><b> Rp{{product.price}} </b></p>
                 <p><b> Stock: {{product.stock}} </b></p>
                 <p><b> Sold: {{product.sold}} </b></p>
@@ -54,6 +54,22 @@ import { mapGetters } from 'vuex'
 export default {
     computed: {
         ...mapGetters(['product', 'darkMode'])
+    },
+    data() {
+        return {
+            rating: null
+        }
+    },
+    mounted() {
+        axios.get(`/api/post/reviews/${this.product._id}`)
+        .then(res => {
+            let total = 0
+            res.data.forEach(post => {
+                total += parseInt(post.review)
+            })
+            total /= res.data.length
+            this.rating = total
+        })
     },
     methods: {
         async addToCart(id) {
