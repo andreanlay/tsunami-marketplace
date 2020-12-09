@@ -117,7 +117,14 @@ export default {
             })
         },
         async facebookSignIn() {
+            const provider = new firebase.auth.FacebookAuthProvider()
 
+            firebase.auth().signInWithPopup(provider).then(result => {
+                const user = result.user
+
+                console.log('User data:')
+                console.log(user)
+            })
         }
     }
 }
