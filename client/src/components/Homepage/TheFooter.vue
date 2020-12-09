@@ -9,7 +9,7 @@
         <div class="col-sm">
             <h1 class="display-6"><b>Explore</b></h1>
             <p><a href="#top">Home</a></p>
-            <p><router-link :to="{name: 'account'}">Account</router-link></p>
+            <p><router-link :to="{name: 'dashboard'}">Account</router-link></p>
             <p><router-link :to="{name: 'catalog'}">Catalog</router-link></p>
             <p><router-link :to="{name: 'about-us'}">About</router-link></p>
         </div>
