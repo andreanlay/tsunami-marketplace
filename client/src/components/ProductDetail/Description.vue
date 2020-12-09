@@ -19,7 +19,7 @@
             <div class="d-flex flex-column align-items-start">
                 <h1 class="display-5"> {{product.name}} </h1>
                 <p> {{product.description}} </p>
-                <p>⭐{{ rating ? rating : 'No Rating'}}</p>
+                <p>⭐{{ rating ? rating.toFixed(2) : 'No Rating'}}</p>
                 <p class="display-6"><b> Rp{{product.price}} </b></p>
                 <p><b> Stock: {{product.stock}} </b></p>
                 <p><b> Sold: {{product.sold}} </b></p>
@@ -60,16 +60,18 @@ export default {
             rating: null
         }
     },
-    mounted() {
-        axios.get(`/api/post/reviews/${this.product._id}`)
-        .then(res => {
-            let total = 0
-            res.data.forEach(post => {
-                total += parseInt(post.review)
+    watch: {
+        product: function() {
+            axios.get(`/api/post/reviews/${this.product._id}`)
+            .then(res => {
+                let total = 0.0
+                res.data.forEach(post => {
+                    total += parseFloat(post.review)
+                })
+                total /= res.data.length
+                this.rating = total
             })
-            total /= res.data.length
-            this.rating = total
-        })
+        }
     },
     methods: {
         async addToCart(id) {

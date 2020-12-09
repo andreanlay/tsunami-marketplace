@@ -8,7 +8,7 @@
         <div class="item-rating-price">
             <div>
                 <b-icon icon="star-fill" variant="warning"></b-icon>
-                <b> {{rating ? rating : 'No rating'}} </b>
+                <b> {{rating ? rating.toFixed(2) : 'No rating'}} </b>
             </div>
             <div>
                 <b>IDR {{product.price / 1000}}K</b>
@@ -81,9 +81,9 @@ export default {
     mounted() {
         axios.get(`/api/post/reviews/${this.product._id}`)
         .then(res => {
-            let total = 0
+            let total = 0.0
             res.data.forEach(post => {
-                total += parseInt(post.review)
+                total += parseFloat(post.review)
             })
             total /= res.data.length
             this.rating = total
