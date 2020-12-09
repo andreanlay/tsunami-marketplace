@@ -76,7 +76,6 @@
 <script>
 import axios from 'axios'
 import firebase from 'firebase/app'
-import 'firebase/auth'
 
 export default {
     title: 'Sign In – Tsunami',
