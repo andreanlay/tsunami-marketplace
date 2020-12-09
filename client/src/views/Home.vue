@@ -163,10 +163,6 @@ export default {
         ...mapGetters(['darkMode'])
     },
     async mounted() {
-        // let date = new Date()
-        // let day = ('0' + date.getDate()).slice(-2)
-        // let month = date.getMonth() + 1
-
         await axios.get('/api/product/')
         .then(res => {
             this.allProducts = res.data
@@ -176,11 +172,8 @@ export default {
         .then(res => {
             this.flashSaleProducts = res.data
         })
-
-        // const today = `${date.getFullYear()}-${month}-${day}`
+        
         const today = new Date(Date.now()).setHours(0, 0, 0, 0)
-        alert(today)
-        alert('ok')
 
         await axios.get(`/api/product/dailydeals/${today}`)
         .then(res => {
