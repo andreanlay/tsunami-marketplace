@@ -168,6 +168,7 @@
     <b-modal 
         id="add-product-modal"
         title="Add New Product"
+        v-model="addModal"
         :header-bg-variant="theme()"
         :header-text-variant="textTheme()"
         :body-bg-variant="theme()"
@@ -176,9 +177,9 @@
         :footer-text-variant="textTheme()"
         button-size="sm"
         size="md"
-        @ok="addProduct"
+
     >
-        <form @submit.stop.prevent="handleSubmit">
+        <form @submit.prevent="addProduct" id="addForm">
             <b-form-group
                 label="Product Name"
             >
@@ -207,6 +208,7 @@
                     :file-name-formatter="formatNames"
                     accept="image/*"
                     multiple
+                    required
                 ></b-form-file>
             </b-form-group>
             <b-form-group
@@ -218,6 +220,7 @@
                     rows="3"
                     :state="newProduct.description.length <= 180"
                     no-resize
+                    required
                 ></b-form-textarea>
             </b-form-group>
             <b-form-group
@@ -239,6 +242,7 @@
                         type="number"
                         v-model="newProduct.price"
                         min="0"
+                        required
                     ></b-form-input>
                 </b-input-group>
             </b-form-group>
@@ -252,6 +256,7 @@
                         type="number"
                         v-model="newProduct.stock"
                         min="0"
+                        required
                     ></b-form-input>
                 </b-input-group>
             </b-form-group>
@@ -278,15 +283,22 @@
                     :items="newProduct.specifications"
                     :fields="['name', 'value', 'actions']"
                     :dark="darkMode"
-                >
-                <template #cell(actions)="row">
-                    <b-button variant=danger @click="deleteSpecs(row.item.id)" size="sm">
-                        <b-icon icon="trash"></b-icon>
-                    </b-button>
-                </template>
+                    >
+                    <template #cell(actions)="row">
+                        <b-button variant=danger @click="deleteSpecs(row.item.id)" size="sm">
+                            <b-icon icon="trash"></b-icon>
+                        </b-button>
+                    </template>
                 </b-table>
             </b-form-group>
         </form>
+        <template #modal-footer="{cancel}">
+            <b-button @click="cancel">Close</b-button>
+            <b-button type="submit" form="addForm" variant="primary" :disabled="savingProduct">
+                <b-spinner small v-show="savingProduct"></b-spinner>
+                {{savingProduct ? 'Saving..' : 'Save Product'}}
+            </b-button>
+        </template>
     </b-modal>
 
     <b-modal 
@@ -301,9 +313,8 @@
         :footer-text-variant="textTheme()"
         button-size="sm"
         size="md"
-        @ok="saveEditedProduct"
     >
-        <form @submit.stop.prevent="handleSubmit">
+        <form @submit.prevent="saveEditedProduct" id="editForm">
             <b-form-group
                 label="Product Name"
             >
@@ -362,6 +373,7 @@
                     placeholder="Enter product description (Max. 180 chars)"
                     rows="3"
                     no-resize
+                    required
                 ></b-form-textarea>
             </b-form-group>
             <b-form-group
@@ -382,7 +394,7 @@
                     <b-form-input
                         type="number"
                         v-model="editedProduct.price"
-                        min="0"
+                        min="1"
                     ></b-form-input>
                 </b-input-group>
             </b-form-group>
@@ -395,7 +407,7 @@
                     <b-form-input
                         type="number"
                         v-model="editedProduct.stock"
-                        min="0"
+                        min="1"
                     ></b-form-input>
                 </b-input-group>
             </b-form-group>
@@ -431,6 +443,13 @@
                 </b-table>
             </b-form-group>
         </form>
+        <template #modal-footer="{cancel}">
+            <b-button @click="cancel">Close</b-button>
+            <b-button type="submit" form="editForm" variant="primary" :disabled="savingProduct">
+                <b-spinner small v-show="savingProduct"></b-spinner>
+                {{savingProduct ? 'Saving..' : 'Save Product'}}
+            </b-button>
+        </template>
     </b-modal>
 </b-card>
 </template>
@@ -477,6 +496,8 @@ export default {
                 }
             },
             selectedProduct: [],
+            addModal: false,
+            savingProduct: false,
             images: [],
             newProduct: {
                 seller: '',
@@ -624,6 +645,8 @@ export default {
             })
         },
         async addProduct() {
+            this.savingProduct = true
+
             for(let i=0; i<this.images.length; i++) {
                 const name = this.generateImgName(this.images[i].name)
                 const url = await this.uploadImage(name, this.images[i])
@@ -641,6 +664,9 @@ export default {
                 this.resetProductData()
                 this.products.push(res.data)
             })
+
+            this.savingProduct = false
+            this.addModal = false
         },
         async deleteProduct(id) {
             this.$bvModal.msgBoxConfirm('Are you sure to delete this item ?', {
@@ -685,6 +711,8 @@ export default {
             this.changeSubcategory()
         },
         async saveEditedProduct() {
+            this.savingProduct = true
+
             const id = this.editedProduct._id
             delete this.editedProduct._id
 
@@ -710,6 +738,9 @@ export default {
                     }
                 }
             })
+
+            this.savingProduct = false
+            this.editModal = false
         },
         deleteImage(name) {
             for(let i=0; i<this.editedProduct.images.length; i++) {
