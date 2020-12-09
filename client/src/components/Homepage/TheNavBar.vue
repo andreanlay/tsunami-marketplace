@@ -12,8 +12,8 @@
         </div>
     </router-link>
 
-    <div id="right-side" class="d-sm-flex d-none">
-        <div class="search-bar">
+    <div id="right-side">
+        <div class="search-bar d-sm-flex d-none">
             <input v-model="searchQuery" @keyup.enter="search" class="search-box" id="searchbox" type="text" placeholder="Search..">
             <router-link :to="{ name: search, params: {query: searchQuery}}">
                 <div @click="search" class="nav-btn" :class="{'dark-nav' : darkMode}">
@@ -21,7 +21,7 @@
                 </div>
             </router-link>
         </div>
-        <router-link :to="{ name: 'cart' }">
+        <router-link :to="{ name: 'cart' }" class="d-sm-flex d-none">
             <div class="nav-btn" :class="{'dark-nav' : darkMode}">
                 <b-icon icon="cart"></b-icon>
                 <b-badge variant="primary" v-show="cart.length > 0">{{cart.length}}</b-badge>
