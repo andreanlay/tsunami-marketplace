@@ -37,7 +37,9 @@
                         required
                     ></b-form-input>    
                 </b-form-group>
-                <p class="bold" style="color: red" v-show="errorMsg">{{errorMsg}}</p>
+                <div class="d-flex justify-content-end">
+                    <p class="bold" style="color: red" v-show="errorMsg">{{errorMsg}}</p>
+                </div>
                 <p>
                     <a href="" class="float-right" style="color: white;">Forgot password?</a>
                 </p>
@@ -122,8 +124,26 @@ export default {
             firebase.auth().signInWithPopup(provider).then(result => {
                 const user = result.user
 
-                console.log('User data:')
-                console.log(user)
+                axios.get(`/api/account/${user.uid}`)
+                .then(res => {
+                    this.commitToStore(user)
+                    return res
+                })
+                .catch(err => {
+                    axios.post('/api/account/register', {
+                        uid: user.uid,
+                        display_name: user.displayName,
+                        email_address: user.email,
+                        gender: 'Not available',
+                        birthday: 'Not available',
+                        phone_number: 'Not set'
+                    }).then(res => {
+                        this.commitToStore(user)
+                        return res
+                    })
+                    return err
+                })
+                this.$router.push({name: 'homepage'})
             })
         }
     }
