@@ -54,6 +54,12 @@
                                 <p>Dashboard</p>
                             </b-button>
                         </router-link>
+                       <router-link :to="{name: 'cart'}" class="d-sm-none">
+                            <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
+                                <b-icon icon="cart"></b-icon>
+                                <p>Cart</p>
+                            </b-button>
+                        </router-link>
                         <router-link :to="{name: 'account-products'}">
                             <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
                                 <b-icon icon="gear"></b-icon>
