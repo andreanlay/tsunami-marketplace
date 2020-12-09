@@ -13,9 +13,9 @@
     </router-link>
 
     <div id="right-side">
-        <div class="search-bar d-sm-flex d-none">
+        <div class="search-bar d-sm-inline d-none">
             <input v-model="searchQuery" @keyup.enter="search" class="search-box" id="searchbox" type="text" placeholder="Search..">
-            <router-link :to="{ name: search, params: {query: searchQuery}}">
+            <router-link :to="{ name: 'search', params: {query: searchQuery}}">
                 <div @click="search" class="nav-btn" :class="{'dark-nav' : darkMode}">
                     <b-icon icon="search"></b-icon>
                 </div>
