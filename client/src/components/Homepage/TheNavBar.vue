@@ -11,11 +11,6 @@
             Catalog
         </div>
     </router-link>
-    <router-link :to="{ name: 'about-us' }">
-        <div class="nav-btn" :class="{'dark-nav' : darkMode}">
-            About us
-        </div>
-    </router-link>
 
     <div id="right-side" class="d-sm-flex d-none">
         <div class="search-bar">
