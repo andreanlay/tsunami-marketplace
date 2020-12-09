@@ -63,7 +63,7 @@ const ProductSchema = new Schema({
     },
     dailydeals: {
         price: Number,
-        date: String
+        date: Date
     }
 })
 
