@@ -57,7 +57,7 @@
             :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table v-if="darkMode" responsive striped :items="latestSales" :fields="salesFields" :dark="darkMode">
+                <b-table responsive striped :items="latestSales" :fields="salesFields" :dark="darkMode">
                     <template #cell(transaction_id)="row">
                         <p>TSU-{{row.item.transaction_id}} </p>
                     </template>    
