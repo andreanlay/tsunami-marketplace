@@ -3,11 +3,11 @@
     <b-row>
         <b-col sm="12" md="6" xl="2" offset-md="3" offset-xl="5">
             <p><b>Login via social media</b></p>
-            <b-button variant="light" class="w-100 mb-3">
+            <b-button variant="light" class="w-100 mb-3" @click="googleSignIn">
                 <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
                 Sign In with Google
             </b-button>
-            <b-button variant="light" class="w-100">
+            <b-button variant="light" class="w-100" @click="facebookSignIn">
                 <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Akash_rajoriya_Facebook_.png"/>
                 Sign In with Facebook
             </b-button>
@@ -64,25 +64,60 @@ export default {
         }
     },
     methods: {
+        commitToStore(user) {
+            const uid = user.uid
+            axios.get(`/api/account/${uid}/cart`)
+                .then(res => {
+                    this.$store.commit('setCart', res.data[0].cart)
+                })
+            axios.get(`/api/account/${uid}`)
+                .then(res => {
+                    this.$store.commit('accountData', res.data)
+            })
+        },
         async onSubmit() {
             this.loading = true
             await firebase.auth().signInWithEmailAndPassword(this.email, this.password)
             .then(user => {
-                const uid = user.uid
-                axios.get(`/api/account/${uid}/cart`)
-                .then(res => {
-                    this.$store.commit('setCart', res.data[0].cart)
-                })
-                axios.get(`/api/account/${uid}`)
-                .then(res => {
-                    this.$store.commit('accountData', res.data)
-                })
+                this.commitToStore(user)
                 this.$router.push({name: 'homepage'})
             })
             .catch(err => {
                 this.errorMsg = err.message
             })
             this.loading = false
+        },
+        async googleSignIn() {
+            const provider = new firebase.auth.GoogleAuthProvider()
+
+            firebase.auth().signInWithPopup(provider).then(result => {
+                const user = result.user
+
+                axios.get(`/api/account/${user.uid}`)
+                .then(res => {
+                    this.commitToStore(user)
+                    return res
+                })
+                .catch(err => {
+                    axios.post('/api/account/register', {
+                        uid: user.uid,
+                        display_name: user.displayName,
+                        email_address: user.email,
+                        gender: 'Not available',
+                        birthday: 'Not available',
+                        phone_number: 'Not set'
+                    }).then(res => {
+                        this.commitToStore(user)
+                        return res
+                    })
+                    return err
+                })
+
+                this.$router.push({name: 'homepage'})
+            })
+        },
+        async facebookSignIn() {
+
         }
     }
 }
