@@ -39,7 +39,9 @@ const mutations = {
         state.checkout.payment = data
     },
     setAddress: (state, data) => {
-        state.checkout.address.push(data)
+        let temp = []
+        temp.push(data)
+        state.checkout.address = temp
     },
     setCourier: (state, data) => {
         state.checkout.courier = data
