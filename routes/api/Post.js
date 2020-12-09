@@ -25,8 +25,8 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/reviews/:id', async (req, res) => {
-    const id = req.params.id
+router.get('/reviews/:product_id', async (req, res) => {
+    const id = req.params.product_id
 
     try {
         const posts = await Post.find({
