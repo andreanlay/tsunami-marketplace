@@ -38,11 +38,40 @@
             </b-col>
             <b-col sm="12" xl="4">
                 <b-row>
-                    <p class="lead" :class="{'header-dark': darkMode}">Recharge and Payment</p>
+                    <p class="lead" :class="{'header-dark': darkMode}" align="middle">Quick Access</p>
                 </b-row>
                 <b-row>
                     <b-col>
-                        <BillsButton v-for="type in billsType" :key="type.id" :iconName="type.iconName" :buttonText="type.caption"/>
+                        <router-link :to="{name: 'about-us'}">
+                            <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
+                                <b-icon icon="people"></b-icon>
+                                <p>About Us</p>
+                            </b-button>
+                        </router-link>
+                        <router-link :to="{name: 'account'}">
+                            <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
+                                <b-icon icon="person"></b-icon>
+                                <p>Dashboard</p>
+                            </b-button>
+                        </router-link>
+                        <router-link :to="{name: 'account-products'}">
+                            <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
+                                <b-icon icon="gear"></b-icon>
+                                <p>Products</p>
+                            </b-button>
+                        </router-link>
+                        <router-link :to="{name: 'transactions-history'}">
+                            <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
+                                <b-icon icon="clock-history"></b-icon>
+                                <p>Transactions</p>
+                            </b-button>
+                        </router-link>
+                        <router-link :to="{name: 'account-setting'}">
+                            <b-button variant="light" class="qa-btn" :class="{'dark-qa' : darkMode}">
+                                <b-icon icon="gear"></b-icon>
+                                <p>Settings</p>
+                            </b-button>
+                        </router-link>
                     </b-col>
                 </b-row>
             </b-col>
@@ -111,7 +140,6 @@ import { mapGetters } from 'vuex';
 import axios from 'axios'
 
 import HomeNavBar from '@/components/Homepage/TheNavBar'
-import BillsButton from '@/components/Homepage/BillsButton'
 import Footer from '@/components/Homepage/TheFooter'
 import ProductCard from '@/components/ProductCard'
 import { Carousel, Slide } from 'vue-carousel'
@@ -120,7 +148,6 @@ export default {
     title: 'Tsunami Marketplace',
     components: {
         HomeNavBar,
-        BillsButton,
         Footer,
         ProductCard,
         Carousel,
@@ -171,38 +198,6 @@ export default {
                     image: require('@/assets/banners/bills_banner.png')
                 }
             ],
-            billsType: [
-                {
-                    id: 1,
-                    iconName: 'lightning',
-                    caption: 'Electricity'
-                },
-                {
-                    id: 2,
-                    iconName: 'droplet',
-                    caption: 'Water'
-                },
-                {
-                    id: 3,
-                    iconName: 'wifi',
-                    caption: 'Internet'
-                },
-                {
-                    id: 4,
-                    iconName: 'phone',
-                    caption: 'Mobile Recharge'
-                },
-                {
-                    id: 5,
-                    iconName: 'truck',
-                    caption: 'Transportation'
-                },
-                {
-                    id: 6,
-                    iconName: 'archive',
-                    caption: 'Cinema'
-                }
-            ]
         }
     }
 }
@@ -242,5 +237,26 @@ export default {
 
 .divider-dark {
     background-color: gray
+}
+
+.qa-btn {
+    margin: 10px;
+    width: 125px;
+    height: 125px;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.qa-btn:hover {
+    background-color: #B7F8DB;
+}
+
+.dark-qa {
+  color: white !important;
+  border: none;
+  background-color: #312c2c !important;
+}
+
+.dark-qa:hover {
+  background-color: #5c5454 !important;
 }
 </style>
