@@ -168,14 +168,12 @@ export default {
             this.allProducts = res.data
         })
 
-        await axios.get(`/api/product/flashsale/${Date.now()}`)
+        await axios.get(`/api/product/flashsale`)
         .then(res => {
             this.flashSaleProducts = res.data
         })
-        
-        const today = new Date(Date.now()).setHours(0, 0, 0, 0)
 
-        await axios.get(`/api/product/dailydeals/${today}`)
+        await axios.get(`/api/product/dailydeals`)
         .then(res => {
             this.dailyDealsProducts = res.data
         })

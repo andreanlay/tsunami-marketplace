@@ -92,7 +92,7 @@ router.get('/search/:query', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/seller/:id', async (req, res) => {
     const id = req.params.id
 
     try {

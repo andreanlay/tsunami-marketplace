@@ -550,7 +550,7 @@ export default {
         const id = this.accountData._id
         this.newProduct.seller = id
 
-        await axios.get(`/api/product/${id}`)
+        await axios.get(`/api/product/seller/${id}`)
         .then(res => {
             this.products = res.data
         })

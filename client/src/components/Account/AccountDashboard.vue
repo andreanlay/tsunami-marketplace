@@ -196,7 +196,7 @@ export default {
             this.totalViews = res.data
         })
         
-        axios.get(`/api/product/${account_id}`)
+        axios.get(`/api/product/seller/${account_id}`)
         .then(res => {
             res.data.forEach(product => {
                 this.itemsSold += product.sold
