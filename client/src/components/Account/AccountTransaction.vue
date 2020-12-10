@@ -35,7 +35,11 @@
                 :class="{'card-dark': darkMode}"
             >
                 <b-card-text>
-                    <b-table responsive striped :fields="fields" :items="transactions" v-model="currentOpenTransaction" :dark="darkMode">
+                    <div v-if="fetchingTransactions" align="center">
+                        <b-spinner small></b-spinner>
+                        Getting your transactions..
+                    </div>
+                    <b-table v-else responsive striped :fields="fields" :items="transactions" v-model="currentOpenTransaction" :dark="darkMode">
                         <template #cell(TransactionID)="row">
                             <b>TSU-{{row.item._id}}</b>
                         </template>
@@ -159,10 +163,13 @@ export default {
                 message: '',
                 rating: '',
                 transaction_id: ''
-            }
+            },
+            fetchingTransactions: false
         }
     },
     mounted() {
+        this.fetchingTransactions = true
+
         this.$emit('activated', 3)
 
         axios.get(`/api/transaction/${this.accountData._id}`)
@@ -172,6 +179,7 @@ export default {
                 this.saved_money += transaction.discount
                 this.spent_money += transaction.total - transaction.discount
             })
+            this.fetchingTransactions = false
         })
     },
     methods: {
