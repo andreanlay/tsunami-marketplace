@@ -75,6 +75,15 @@ export default {
     },
     methods: {
         async addToCart(id) {
+            if(!firebase.auth().currentUser) {
+                this.$bvToast.toast(`Please login first to add items to cart`, {
+                    title: 'Notification',
+                    variant: 'danger',
+                    solid: true
+                })
+                return
+            }
+
             const uid = firebase.auth().currentUser.uid
             const cartItem = {
                 product: id,
