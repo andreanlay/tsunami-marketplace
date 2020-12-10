@@ -49,7 +49,7 @@
 <b-row no-gutters>
     <b-col sm="12" xl="6">
         <b-card
-            header="October 2020 - Sales Report"
+            header="Latest Sales Report"
             header-text-variant="white"
             header-class="bold"
             header-bg-variant="primary"
@@ -57,7 +57,16 @@
             :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table responsive striped :items="latestSales" :fields="salesFields" :dark="darkMode">
+                <b-table 
+                    :items="getSales" 
+                    :fields="salesFields" 
+                    :dark="darkMode"
+                    :current-page="salesCurrentPage"
+                    :per-page="salesItemsPerPage"
+                    ref="salesTable"
+                    responsive 
+                    striped
+                >
                     <template #cell(transaction_id)="row">
                         <p>TSU-{{row.item.transaction_id}} </p>
                     </template>    
@@ -65,6 +74,14 @@
                         <p> {{new Date(row.item.transaction_date).toDateString()}} </p>
                     </template>
                 </b-table>      
+                <b-pagination 
+                    v-model="salesCurrentPage" 
+                    :per-page="salesItemsPerPage" 
+                    :total-rows="latestSales.length"
+                    aria-controls="review-table"
+                    align="center"
+                    pills
+                ></b-pagination>  
             </b-card-text>
         </b-card>
     </b-col>
@@ -122,14 +139,31 @@
             :class="{'card-dark' : darkMode}"
         >
             <b-card-text>
-                <b-table responsive striped :items="latestReviews" :fields="reviewFields" :dark="darkMode">
+                <b-table 
+                    :items="getReviews" 
+                    :fields="reviewFields" 
+                    :dark="darkMode" 
+                    :current-page="reviewCurrentPage"
+                    :per-page="reviewItemsPerPage"
+                    ref="reviewTable"
+                    responsive 
+                    striped
+                >
                     <template #cell(posted_date)="row">
                         {{ new Date(row.item.posted_date).toDateString() }}
                     </template>    
                     <template #cell(review)="row">
                         {{ row.item.review }}⭐
                     </template>
-                </b-table>    
+                </b-table>  
+                <b-pagination 
+                    v-model="reviewCurrentPage"
+                    :per-page="reviewItemsPerPage" 
+                    :total-rows="latestReviews.length"
+                    aria-controls="sales-table"
+                    align="center"
+                    pills
+                ></b-pagination>  
             </b-card-text>
         </b-card>
         </b-row>
@@ -160,6 +194,13 @@ export default {
         axios.get(`/api/product/${account_id}/views`)
         .then(res => {  
             this.totalViews = res.data
+        })
+        
+        axios.get(`/api/product/${account_id}`)
+        .then(res => {
+            res.data.forEach(product => {
+                this.itemsSold += product.sold
+            })
         })
 
         axios.get(`/api/transaction/${account_id}/sales`)
@@ -203,6 +244,10 @@ export default {
     },
     data() {
         return {
+            salesCurrentPage: 1,
+            salesItemsPerPage: 5,
+            reviewCurrentPage: 1,
+            reviewItemsPerPage: 5,
             fetchingWeather: false,
             fetchingWeatherError: null,
             totalProfit: 0,
@@ -225,6 +270,28 @@ export default {
             weather: null
         }
     },
+    methods: {
+        getReviews(ctx) {
+            return this.latestReviews.slice(
+                (ctx.currentPage - 1) * ctx.perPage,
+                ctx.currentPage * ctx.perPage
+            )
+        },
+        getSales(ctx) {
+            return this.latestSales.slice(
+                (ctx.currentPage - 1) * ctx.perPage,
+                ctx.currentPage * ctx.perPage
+            )
+        }
+    },
+    watch: {
+        latestSales: function() {
+            this.$refs.salesTable.refresh()
+        },
+        latestReviews: function() {
+            this.$refs.reviewTable.refresh()
+        }
+    }
 }
 </script>
 
