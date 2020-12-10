@@ -83,14 +83,19 @@ router.post('/', async (req, res) => {
                 }
             })
             
-            await Product.findOneAndUpdate({_id: item.product}, {
-                flashsale: {
-                    $ne: null
-                },
-                $inc: {
-                    'flashsale.sold': item.qty
+            await Product.findOneAndUpdate(
+                {
+                    _id: item.product,
+                    flashsale: {
+                        $ne: null
+                    }
+                }, 
+                {
+                    $inc: {
+                        'flashsale.sold': item.qty
+                    }
                 }
-            })
+            )
         })
 
         res.status(200).json(TransactionItem)
