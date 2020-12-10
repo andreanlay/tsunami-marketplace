@@ -84,7 +84,7 @@ router.post('/', async (req, res) => {
             })
             
             await Product.findOneAndUpdate({_id: item.product}, {
-                'flashsale': {
+                flashsale: {
                     $ne: null
                 },
                 $inc: {
