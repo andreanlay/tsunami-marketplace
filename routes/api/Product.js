@@ -3,9 +3,17 @@ const Product = require('../../models/Product')
 
 const router = Router()
 
+function getCurrentTime() {
+    return Date.now()
+}
+
+function getCurrentDate() {
+    return new Date(Date.now()).setHours(0, 0, 0, 0)
+}
+
 router.get('/', async (req, res) => {
-    const currentTime = Date.now()
-    const currentDate = new Date(currentTime).setHours(0, 0, 0, 0)
+    const currentTime = getCurrentTime()
+    const currentDate = getCurrentDate()
 
     try {
         await Product.updateMany(
@@ -155,8 +163,8 @@ router.post('/flashsale/add/:id', async (req, res) => {
     }
 })
 
-router.get('/flashsale/:time', async (req, res) => {
-    const time = req.params.time
+router.get('/flashsale', async (req, res) => {
+    const time = getCurrentTime()
 
     try {
         const products = await Product.find({
@@ -191,8 +199,8 @@ router.post('/dailydeals/add/:id', async (req, res) => {
     }
 })
 
-router.get('/dailydeals/:date', async (req, res) => {
-    const date = req.params.date
+router.get('/dailydeals', async (req, res) => {
+    const date = getCurrentDate()
 
     try {
         const products = await Product.find({
