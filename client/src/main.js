@@ -15,14 +15,14 @@ Vue.use(IconsPlugin)
 Vue.mixin(titleMixin)
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API,
-  authDomain: process.env.FIREBASE_AUTHDOMAIN,
-  databaseURL: process.env.FIREBASE_DB_URL,
-  projectId: process.env.FIREBASE_PROJECTID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDERID,
-  appId: process.env.FIREBASE_APPID,
-  measurementId: process.env.FIREBASE_MEASUREMENTID
+  apiKey: "AIzaSyCux04fNQ85Stpk2MsUZXYYd92_rWZDF_o",
+  authDomain: "tsunami-bcb28.firebaseapp.com",
+  databaseURL: "https://tsunami-bcb28.firebaseio.com",
+  projectId: "tsunami-bcb28",
+  storageBucket: "tsunami-bcb28.appspot.com",
+  messagingSenderId: "1088125828395",
+  appId: "1:1088125828395:web:0d4396efbe5d7b9d49996e",
+  measurementId: "G-Z2N33M9DMJ"
 }
 
 firebase.initializeApp(firebaseConfig)
