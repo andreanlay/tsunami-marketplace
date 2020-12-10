@@ -97,7 +97,11 @@
             </div>
         </b-modal>
 
-        <b-table responsive striped :items="products" :fields="visibleFields" :dark="darkMode">
+        <div v-if="fetchingProduct" align="center">
+            <b-spinner small></b-spinner>
+            Getting your products..
+        </div>
+        <b-table v-else responsive striped :items="products" :fields="visibleFields" :dark="darkMode">
             <template #cell(#)="row">
                 <b-form-checkbox
                     @change="addSelectedProduct(row.item._id)"
@@ -475,6 +479,7 @@ export default {
         minDate.setDate(minDate.getDate() + 1)
 
         return {
+            fetchingProduct: false,
             tommorow: minDate,
             event: {
                 selectedEvent: null,
@@ -545,6 +550,7 @@ export default {
         quillEditor
     },
     async mounted() {
+        this.fetchingProduct = true
         this.$emit('activated', 2)
 
         const id = this.accountData._id
@@ -553,6 +559,7 @@ export default {
         await axios.get(`/api/product/seller/${id}`)
         .then(res => {
             this.products = res.data
+            this.fetchingProduct = false
         })
     },
     methods: {
