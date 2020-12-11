@@ -5,7 +5,9 @@
   />
 </p>
 <h1 align="center"> Tsunami Marketplace </h1>
-<p1> Tsunami Marketplace is a marketplace website to offer you unique UI and UX experience which you never get before in any other marketplace.</p1>
+<p> Tsunami Marketplace is a marketplace website to offer you unique UI and UX experience which you never get before in any other marketplace.</p>
+<br>
+<p>Visit our demo page <a href="http://tsunami-marketplace.herokuapp.com/">Here</a></p>
 
 # Setup and Installation
 
