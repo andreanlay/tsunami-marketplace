@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="client/src/assets/tsunami_logo.png"
+  <img src="UAS/Source Code/client/src/assets/tsunami_logo.png"
     width="150"
     height="150"
   />
