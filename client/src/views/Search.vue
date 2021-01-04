@@ -1,6 +1,6 @@
 <template>
 <div>
-    <TheNavBar :query="query"/>
+    <TheNavBar/>
     <b-container fluid>
         <div class="items-container">
             <itemCard v-for="item in results" :key="item._id" :product="item"/>

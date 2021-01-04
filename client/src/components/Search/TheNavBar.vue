@@ -44,9 +44,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-    props: {
-        query: String,
-    },
     data() {
         return {
             searchQuery: '',
@@ -56,7 +53,7 @@ export default {
         ...mapGetters(['subcategories', 'darkMode'])
     },
     mounted() {
-        this.searchQuery = this.query
+        this.searchQuery = this.$route.params.query
     }
 }
 </script>
