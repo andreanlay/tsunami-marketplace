@@ -13,6 +13,7 @@
                     <input 
                         type="text" 
                         v-model="searchQuery"
+                        @keydown.enter="queryChanged"
                         placeholder="What are you searching for ? (Press ENTER to search)" 
                         class="form-control border-0 search-input"
                     >
@@ -54,6 +55,12 @@ export default {
     },
     mounted() {
         this.searchQuery = this.$route.params.query
+    },
+    methods: {
+        queryChanged() {
+            this.$router.push({query: {query: this.searchQuery}})
+            this.$emit('query-changed', this.searchQuery)
+        }
     }
 }
 </script>
@@ -132,5 +139,9 @@ export default {
 
 .search-input {
     background: none;
+}
+
+.search-input:focus {
+    background: none
 }
 </style>

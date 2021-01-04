@@ -1,6 +1,6 @@
 <template>
 <div>
-    <TheNavBar/>
+    <TheNavBar @query-changed="getProductList"/>
     <b-container fluid>
         <div class="items-container">
             <itemCard v-for="item in results" :key="item._id" :product="item"/>
@@ -32,11 +32,16 @@ export default {
         }
     },
     async mounted() {
-        this.query = this.$route.params.query
-        await axios.get(`/api/product/search/${this.query}`)
-        .then(res => {
-            this.results = res.data
-        })
+        this.getProductList(this.$route.params.query)
+    },
+    methods: {
+        async getProductList(query) {
+            this.query = query
+            await axios.get(`/api/product/search/${this.query}`)
+            .then(res => {
+                this.results = res.data
+            })
+        }
     }
 }
 </script>
